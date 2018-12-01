@@ -1,7 +1,24 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run test",
+    "build": "lerna run build",
+    "ship": "lerna publish",
+    "prepublishOnly": "yarn run build",
+    "launch": "cd examples && yarn start && cd .."
+  },
   "devDependencies": {
-    "lerna": "^3.5.0"
-  }
+    "lerna": "^3.5.0",
+    "prettier": "^1.15.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.6"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
