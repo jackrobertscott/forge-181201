@@ -2,26 +2,16 @@
   "name": "forge-server",
   "version": "0.2.9",
   "private": true,
-  "description": "Improved logic management for React apps.",
+  "description": "The tool every software developer wished they had.",
+  "main": "src/index.js",
   "author": {
     "name": "Jack R. Scott",
     "email": "jack.rob.scott@gmail.com"
   },
-  "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "source": "src/index.ts",
-  "files": [
-    "lib",
-    "README.md"
-  ],
   "scripts": {
     "dev": "nodemon",
     "start": "ts-node src/index.ts",
-    "test": "mocha -r ts-node/register src/**/*.test.ts",
-    "build": "yarn run clean && yarn run compile",
-    "clean": "rm -rf lib",
-    "compile": "tsc"
+    "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
   "dependencies": {},
   "devDependencies": {

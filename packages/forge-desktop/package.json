@@ -1,10 +1,10 @@
 {
   "name": "forge-desktop",
   "version": "0.2.9",
+  "private": true,
   "description": "The tool every software developer wished they had.",
   "main": "public/electron.js",
   "homepage": "./",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jackrobertscott/forge-desktop.git"
