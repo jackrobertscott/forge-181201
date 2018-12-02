@@ -1,7 +1,31 @@
 {
   "name": "forge-desktop",
   "version": "0.0.1",
+  "description": "The tool every software developer wished they had.",
+  "main": "public/electron.js",
+  "homepage": "./",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackrobertscott/forge-desktop.git"
+  },
+  "author": {
+    "name": "Jack Scott",
+    "email": "jack.rob.scott@gmail.com"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start": "concurrently \"BROWSER=none yarn run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "start:win": "concurrently \"SET BROWSER=none&&yarn run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "clean": "rm -rf build dist",
+    "ship": "yarn run clean && yarn run build:react && yarn run build:electron --mac --linux --win --publish=always",
+    "build": "yarn run clean && yarn run build:react && yarn run build:electron",
+    "build:test": "yarn run clean && yarn run build:react && yarn run build:electron --dir",
+    "build:react": "REACT_APP_NODE_ENV=production react-scripts build",
+    "build:electron": "electron-builder --config=electron-builder.yml"
+  },
   "dependencies": {
     "@types/node": "10.12.11",
     "@types/react": "16.7.11",
@@ -13,12 +37,6 @@
     "@types/jest": "23.3.10",
     "react-scripts": "2.1.1",
     "typescript": "3.2.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
