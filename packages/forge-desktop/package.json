@@ -3,7 +3,7 @@
   "version": "0.2.9",
   "private": true,
   "description": "The tool every software developer wished they had.",
-  "main": "public/electron.js",
+  "main": "public/app.js",
   "homepage": "./",
   "repository": {
     "type": "git",
@@ -17,8 +17,9 @@
     "dev": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "concurrently \"BROWSER=none yarn run dev\" \"wait-on http://localhost:3000 && electron .\"",
-    "start:win": "concurrently \"SET BROWSER=none&&yarn run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "electron .",
+    "start": "concurrently \"BROWSER=none yarn run dev\" \"wait-on http://localhost:3000 && yarn run electron\"",
+    "start:win": "concurrently \"SET BROWSER=none&&yarn run dev\" \"wait-on http://localhost:3000 && yarn run electron\"",
     "clean": "rm -rf build dist",
     "ship": "yarn run clean && yarn run build:react && yarn run build:electron --mac --linux --win --publish=always",
     "build": "yarn run clean && yarn run build:react && yarn run build:electron",
@@ -27,16 +28,28 @@
     "build:electron": "electron-builder --config=electron-builder.yml"
   },
   "dependencies": {
+    "@sentry/browser": "^4.4.1",
+    "@sentry/electron": "^0.14.0",
     "@types/node": "10.12.11",
     "@types/react": "16.7.11",
     "@types/react-dom": "16.0.11",
+    "electron-is-dev": "^1.0.1",
+    "electron-updater": "^4.0.5",
+    "lumbridge": "^0.1.1",
+    "query-string": "^6.2.0",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "styled-components": "^4.1.2",
+    "yup": "^0.26.6"
   },
   "devDependencies": {
     "@types/jest": "23.3.10",
+    "concurrently": "^4.1.0",
+    "electron": "^3.0.10",
+    "electron-builder": "^20.38.2",
     "react-scripts": "2.1.1",
-    "typescript": "3.2.1"
+    "typescript": "3.2.1",
+    "wait-on": "^3.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
