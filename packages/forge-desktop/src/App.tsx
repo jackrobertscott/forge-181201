@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from './components/buttons/Button';
 
 class App extends Component {
   public render() {
@@ -19,6 +20,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Button>Hello</Button>
         </header>
       </div>
     );
