@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, RefObject, createRef } from 'react';
 import styled from 'styled-components';
 import * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import 'monaco-editor/esm/vs/basic-languages/monaco.contribution';
@@ -42,7 +42,7 @@ interface IEditorProps {
   };
 }
 
-export default class Editor extends React.Component<IEditorProps> {
+export default class Editor extends Component<IEditorProps> {
   public static defaultProps = {
     onChange: () => null,
     onBlur: () => null,
@@ -53,7 +53,7 @@ export default class Editor extends React.Component<IEditorProps> {
     command: null,
   };
 
-  private container: React.RefObject<any>;
+  private container: RefObject<any>;
   private editor?: Monaco.editor.IStandaloneCodeEditor;
 
   constructor(props: IEditorProps) {

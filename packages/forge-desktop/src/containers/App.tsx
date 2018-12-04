@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import Button from '../components/buttons/Button';
 import GoodButton from '../components/buttons/GoodButton';
 import BadButton from '../components/buttons/BadButton';
@@ -21,7 +21,7 @@ class App extends Component {
       </Background>
     );
   }
-  private renderSidebar = (): React.ReactNode => {
+  private renderSidebar = (): ReactNode => {
     return (
       <Card>
         <Button>Hello</Button>
