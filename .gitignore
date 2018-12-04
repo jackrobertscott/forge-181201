@@ -29,3 +29,6 @@ package-lock.json
 # documentation
 .docz
 .cache
+
+# publishing
+electron-builder.yml
