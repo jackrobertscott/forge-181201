@@ -1,6 +1,4 @@
-import { css } from 'styled-components';
-
-export default css`
+*[class^="sc-"], *[class*=" sc-"] {
   animation: none;
   animation-delay: 0;
   animation-direction: normal;
@@ -146,4 +144,4 @@ export default css`
   width: auto;
   word-spacing: normal;
   z-index: auto;
-`;
+}
