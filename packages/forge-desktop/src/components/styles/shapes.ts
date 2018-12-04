@@ -4,6 +4,12 @@ export default {
   /**
    * Used for most regular info components.
    */
+  padded: () => css`
+    padding: 15px;
+  `,
+  /**
+   * Used for most regular info components.
+   */
   simple: () => css`
     padding: 15px;
     border-radius: 5px;
