@@ -212,8 +212,3 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
-/**
- * Load code for GitHub Auth.
- */
-require('./app/auth');
