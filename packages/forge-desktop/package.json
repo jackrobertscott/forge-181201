@@ -25,6 +25,8 @@
     "build:test": "yarn run clean && yarn run build:react && yarn run build:electron --dir",
     "build:react": "REACT_APP_NODE_ENV=production react-scripts build",
     "build:electron": "electron-builder --config=electron-builder.yml",
+    "build:storybook": "build-storybook -s public",
+    "storybook": "start-storybook -p 9009 -s public",
     "clean": "rm -rf build dist"
   },
   "dependencies": {
@@ -50,7 +52,13 @@
     "electron-builder": "^20.38.2",
     "react-scripts": "2.1.1",
     "typescript": "3.2.1",
-    "wait-on": "^3.2.0"
+    "wait-on": "^3.2.0",
+    "@storybook/react": "^4.0.11",
+    "@storybook/addon-actions": "^4.0.11",
+    "@storybook/addon-links": "^4.0.11",
+    "@storybook/addons": "^4.0.11",
+    "@babel/core": "^7.2.0",
+    "babel-loader": "^8.0.4"
   },
   "eslintConfig": {
     "extends": "react-app"
