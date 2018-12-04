@@ -6,6 +6,7 @@ import Card from '../components/cards/Card';
 import Background from '../components/layouts/Background';
 import Header from '../components/menus/Header';
 import Split from '../components/layouts/Split';
+import Editor from '../components/extras/Editor';
 
 class App extends Component {
   public render() {
@@ -14,11 +15,7 @@ class App extends Component {
         <Header />
         <Split sidebar={this.renderSidebar()}>
           <Card>
-            <Button>Hello</Button>
-            <br />
-            <GoodButton>Hello</GoodButton>
-            <br />
-            <BadButton>Hello</BadButton>
+            <Editor />
           </Card>
         </Split>
       </Background>
