@@ -10,70 +10,44 @@ export default {
   /**
    * Regular components used on most pages.
    */
-  dark: ({ hover }: IStyleStates = {}) => css`
+  dark: () => css`
+    color: ${colors.white};
     border: 1px solid ${colors.nightDark};
     background-color: ${colors.night};
-    color: ${colors.white};
-    transition: 0.2s;
-    ${hover &&
-      css`
-        &:hover {
-          cursor: pointer;
-          background-color: ${Color(colors.night)
-            .lighten(0.3)
-            .string()};
-        }
-      `}
   `,
-  /**
-   * Highlighted boxes.
-   */
-  darkLight: ({ hover }: IStyleStates = {}) => css`
+  darkLight: () => css`
+    color: ${colors.white};
     border: 1px solid ${colors.nightDark};
     background-color: ${colors.nightLight};
-    color: ${colors.white};
-    transition: 0.2s;
-    ${hover &&
-      css`
-        &:hover {
-          cursor: pointer;
-          background-color: ${Color(colors.nightLight)
-            .lighten(0.3)
-            .string()};
-        }
-      `}
   `,
-  marine: ({ hover }: IStyleStates = {}) => css`
+  /**
+   * Primary actions.
+   */
+  marine: () => css`
+    color: ${colors.marineLight};
     border: 1px solid ${colors.marineDark};
     background-color: ${colors.marine};
+  `,
+  marineLight: () => css`
     color: ${colors.marineLight};
-    transition: 0.2s;
-    ${hover &&
-      css`
-        &:hover {
-          cursor: pointer;
-          background-color: ${Color(colors.marine)
-            .lighten(0.3)
-            .string()};
-        }
-      `}
+    border: 1px solid ${colors.marineDark};
+    background-color: ${Color(colors.marine)
+      .lighten(0.3)
+      .string()};
   `,
   /**
    * Dangerous actions.
    */
-  danger: ({ hover }: IStyleStates = {}) => css`
-    background-color: ${colors.dangerLight};
+  danger: () => css`
+    color: ${colors.danger};
     border: 1px solid ${colors.dangerDark};
-    color: ${colors.dangerDark};
-    transition: 0.2s;
-    ${hover &&
-      css`
-        &:hover {
-          cursor: pointer;
-          background-color: ${Color(colors.dangerLight)
-            .lighten(0.3)
-            .string()};
-        }
-      `}
+    background-color: ${colors.dangerLight};
+  `,
+  dangerLight: () => css`
+    color: ${colors.danger};
+    border: 1px solid ${colors.dangerDark};
+    background-color: ${Color(colors.dangerLight)
+      .lighten(0.3)
+      .string()};
   `,
 };
