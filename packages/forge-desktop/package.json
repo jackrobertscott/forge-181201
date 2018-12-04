@@ -17,15 +17,15 @@
     "dev": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron .",
-    "start": "concurrently \"BROWSER=none yarn run dev\" \"wait-on http://localhost:3000 && yarn run electron\"",
-    "start:win": "concurrently \"SET BROWSER=none&&yarn run dev\" \"wait-on http://localhost:3000 && yarn run electron\"",
-    "clean": "rm -rf build dist",
+    "start": "concurrently \"BROWSER=none yarn run dev\" \"yarn run electron\"",
+    "start:win": "concurrently \"SET BROWSER=none&&yarn run dev\" \"yarn run electron\"",
+    "electron": "wait-on http://localhost:3000 && electron .",
     "ship": "yarn run clean && yarn run build:react && yarn run build:electron --mac --linux --win --publish=always",
     "build": "yarn run clean && yarn run build:react && yarn run build:electron",
     "build:test": "yarn run clean && yarn run build:react && yarn run build:electron --dir",
     "build:react": "REACT_APP_NODE_ENV=production react-scripts build",
-    "build:electron": "electron-builder --config=electron-builder.yml"
+    "build:electron": "electron-builder --config=electron-builder.yml",
+    "clean": "rm -rf build dist"
   },
   "dependencies": {
     "@sentry/browser": "^4.4.1",
