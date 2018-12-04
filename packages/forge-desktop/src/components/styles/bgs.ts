@@ -2,52 +2,63 @@ import Color from 'color';
 import colors from './colors';
 import { css } from 'styled-components';
 
-export interface IStyleStates {
-  hover?: boolean;
+export interface IBgsConfig {
+  [name: string]: any;
 }
 
 export default {
+  fade: () => css`
+    color: ${colors.white};
+    background: linear-gradient(to top right, #191919, #3e3e3e);
+  `,
   /**
    * Regular components used on most pages.
    */
-  dark: () => css`
+  dark: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.white};
-    border: 1px solid ${colors.nightDark};
     background-color: ${colors.night};
+    ${!borderless && `border: 1px solid ${colors.nightDark};`}
   `,
-  darkLight: () => css`
+  darkLight: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.white};
-    border: 1px solid ${colors.nightDark};
     background-color: ${colors.nightLight};
+    ${!borderless && `border: 1px solid ${colors.nightDark};`}
+  `,
+  darkLighter: ({ borderless }: IBgsConfig = {}) => css`
+    color: ${colors.white};
+    background-color: ${Color(colors.nightLight)
+      .lighten(0.3)
+      .string()};
+    ${!borderless && `border: 1px solid ${colors.nightDark};`}
   `,
   /**
    * Primary actions.
    */
-  marine: () => css`
+  marine: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.marineLight};
-    border: 1px solid ${colors.marineDark};
     background-color: ${colors.marine};
+    ${!borderless && `border: 1px solid ${colors.marineDark};`}
   `,
-  marineLight: () => css`
+  marineLight: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.marineLight};
-    border: 1px solid ${colors.marineDark};
     background-color: ${Color(colors.marine)
       .lighten(0.3)
       .string()};
+    ${!borderless && `border: 1px solid ${colors.marineDark};`}
   `,
   /**
    * Dangerous actions.
    */
-  danger: () => css`
+  danger: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.danger};
-    border: 1px solid ${colors.dangerDark};
     background-color: ${colors.dangerLight};
+    ${!borderless && `border: 1px solid ${colors.dangerDark};`}
   `,
-  dangerLight: () => css`
+  dangerLight: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.danger};
-    border: 1px solid ${colors.dangerDark};
     background-color: ${Color(colors.dangerLight)
       .lighten(0.3)
       .string()};
+    ${!borderless && `border: 1px solid ${colors.dangerDark};`}
   `,
 };

@@ -2,12 +2,9 @@ import styled from 'styled-components';
 import bgs from '../styles/bgs';
 import shapes from '../styles/shapes';
 import shadows from '../styles/shadows';
-import states from '../styles/states';
 
-export default styled('button')`
+export default styled('div')`
   ${bgs.dark}
-  ${shapes.narrow}
+  ${shapes.simple}
   ${shadows.simple}
-  ${states.clickable(bgs.darkLight)}
-  ${states.clicked([bgs.dark, shadows.none])}
 `;

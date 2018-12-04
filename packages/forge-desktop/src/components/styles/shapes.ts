@@ -15,4 +15,11 @@ export default {
     padding: 10px 15px;
     border-radius: 5px;
   `,
+  /**
+   * Used for most regular info components.
+   */
+  mini: () => css`
+    padding: 5px 10px;
+    border-radius: 3px;
+  `,
 };
