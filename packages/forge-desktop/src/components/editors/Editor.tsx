@@ -52,15 +52,15 @@ export default class Editor extends Component<IEditorProps> {
     snippeting: false,
     command: null,
   };
-
   private container: RefObject<any>;
   private editor?: Monaco.editor.IStandaloneCodeEditor;
-
   constructor(props: IEditorProps) {
     super(props);
     this.container = React.createRef();
   }
-
+  /**
+   * Load and configure the editor.
+   */
   public componentDidMount() {
     const { initialValue, value, language, command } = this.props;
     this.editor = Monaco.editor.create(this.container.current, {
@@ -84,7 +84,6 @@ export default class Editor extends Component<IEditorProps> {
       );
     }
   }
-
   /**
    * Insert a code snippet (such as "const ${2:defaultElement} = null;") and
    * allow the user to start inserting the default variables.
@@ -112,7 +111,9 @@ export default class Editor extends Component<IEditorProps> {
       active.blur();
     }
   }
-
+  /**
+   * Editor is wrapped so that it has nice spacing.
+   */
   public render() {
     return (
       <Wrap>
@@ -120,7 +121,9 @@ export default class Editor extends Component<IEditorProps> {
       </Wrap>
     );
   }
-
+  /**
+   * Make sure editor is setup nicely.
+   */
   private configureEditor() {
     if (this.editor) {
       const model = this.editor.getModel();
@@ -129,17 +132,21 @@ export default class Editor extends Component<IEditorProps> {
       }
     }
   }
-
+  /**
+   * Call the event handlers provided in props when the
+   * corresponding editor action occurs.
+   */
   private handleEvents() {
-    const { onChange, onBlur } = this.props;
     if (this.editor) {
       this.editor.onDidChangeModelContent(() => {
+        const { onChange } = this.props;
         const value = this.editor && this.editor.getValue();
         if (onChange) {
           onChange({ value, event });
         }
       });
       this.editor.onDidBlurEditorText(() => {
+        const { onBlur } = this.props;
         const value = this.editor && this.editor.getValue();
         if (onBlur) {
           onBlur({ value, event });
