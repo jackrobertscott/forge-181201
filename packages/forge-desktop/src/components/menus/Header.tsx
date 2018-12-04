@@ -7,6 +7,7 @@ import layouts from '../styles/layouts';
 import shapes from '../styles/shapes';
 import words from '../styles/words';
 import states from '../styles/states';
+import Circles from '../extras/Circles';
 
 const Header = styled('div').attrs({ borderless: 'true' })`
   ${bgs.dark}
@@ -25,9 +26,9 @@ const MiniButton = styled('button')`
   ${bgs.darkLight}
   ${shapes.mini}
   ${shadows.simple}
-  ${words.small}
   ${states.clickable(bgs.darkLighter)}
   ${states.clicked([bgs.darkLight, shadows.none])}
+  ${words.small}
   margin-left: 10px;
 `;
 
@@ -35,5 +36,8 @@ export default () => (
   <Header>
     <MiniButton>Dashboard</MiniButton>
     <MiniButton>Market</MiniButton>
+    <MiniButton>
+      <Circles height="15px" />
+    </MiniButton>
   </Header>
 );
