@@ -7,6 +7,7 @@ import Background from '../components/layouts/Background';
 import Header from '../components/menus/Header';
 import Split from '../components/layouts/Split';
 import StatusEditor from '../components/editors/StatusEditor';
+import SimpleInput from '../components/inputs/SimpleInput';
 
 class App extends Component {
   public render() {
@@ -25,6 +26,8 @@ class App extends Component {
   private renderSidebar = (): ReactNode => {
     return (
       <Card>
+        <SimpleInput placeholder="E.g. Fred Blogs" />
+        <br />
         <Button>Hello</Button>
         <br />
         <GoodButton>Hello</GoodButton>

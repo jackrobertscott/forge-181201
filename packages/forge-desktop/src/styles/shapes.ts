@@ -18,7 +18,7 @@ export default {
    * Used for most regular info components.
    */
   narrow: () => css`
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-radius: 5px;
   `,
   /**
@@ -27,5 +27,11 @@ export default {
   mini: () => css`
     padding: 5px 10px;
     border-radius: 3px;
+  `,
+  /**
+   * Fill space.
+   */
+  fill: () => css`
+    width: 100%;
   `,
 };

@@ -5,6 +5,7 @@ import shadows from '../../styles/shadows';
 
 export default styled('input')`
   ${bgs.dark}
-  ${shapes.simple}
+  ${shapes.narrow}
+  ${shapes.fill}
   ${shadows.simple}
 `;

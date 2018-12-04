@@ -50,7 +50,7 @@
   border-top-width: medium;
   bottom: auto;
   box-shadow: none;
-  box-sizing: content-box;
+  box-sizing: border-box;
   caption-side: top;
   clear: none;
   clip: auto;

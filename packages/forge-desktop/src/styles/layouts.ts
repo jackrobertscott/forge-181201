@@ -23,4 +23,10 @@ export default {
     flex-direction: row;
     align-items: center;
   `,
+  /**
+   * List items.
+   */
+  spaceBottom: () => css`
+    margin-bottom: 10px;
+  `,
 };

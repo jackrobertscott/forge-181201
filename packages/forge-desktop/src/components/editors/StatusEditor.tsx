@@ -26,6 +26,7 @@ const Status = styled('div')`
   ${shapes.narrow}
   ${shadows.simple}
   ${layouts.rowsCenter}
+  ${layouts.spaceBottom}
 `;
 
 const Title = styled('span')``;
