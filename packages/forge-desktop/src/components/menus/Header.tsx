@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import bgs from '../styles/bgs';
-import colors from '../styles/colors';
-import shadows from '../styles/shadows';
-import layouts from '../styles/layouts';
-import shapes from '../styles/shapes';
-import words from '../styles/words';
-import states from '../styles/states';
+import bgs from '../../styles/bgs';
+import colors from '../../styles/colors';
+import shadows from '../../styles/shadows';
+import layouts from '../../styles/layouts';
+import shapes from '../../styles/shapes';
+import words from '../../styles/words';
+import states from '../../styles/states';
 import Circles from '../extras/Circles';
 
 const Header = styled('div').attrs({ borderless: 'true' })`

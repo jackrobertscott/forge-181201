@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import colors from '../styles/colors';
-import layouts from '../styles/layouts';
+import colors from '../../styles/colors';
+import layouts from '../../styles/layouts';
 
 const Wrap = styled('div')`
   ${layouts.rowsCenter}

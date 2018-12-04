@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import layouts from '../styles/layouts';
-import shapes from '../styles/shapes';
+import layouts from '../../styles/layouts';
+import shapes from '../../styles/shapes';
 
 const Wrap = styled('div')`
   ${layouts.rows}

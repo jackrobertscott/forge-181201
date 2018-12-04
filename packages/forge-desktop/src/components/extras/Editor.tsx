@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import 'monaco-editor/esm/vs/basic-languages/monaco.contribution';
 import 'monaco-editor/esm/vs/editor/contrib/snippet/snippetController2';
-import colors from '../styles/colors';
+import colors from '../../styles/colors';
 
 const Wrap = styled.div`
   padding: 15px 0 0;
