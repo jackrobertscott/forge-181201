@@ -7,7 +7,7 @@ import layouts from '../../styles/layouts';
 import shapes from '../../styles/shapes';
 import words from '../../styles/words';
 import states from '../../styles/states';
-import Circles from '../extras/Circles';
+import Circles from '../buttons/Circles';
 
 const Header = styled('div').attrs({ borderless: 'true' })`
   ${bgs.dark}

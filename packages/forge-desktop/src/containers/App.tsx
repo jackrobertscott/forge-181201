@@ -6,7 +6,7 @@ import Card from '../components/cards/Card';
 import Background from '../components/layouts/Background';
 import Header from '../components/menus/Header';
 import Split from '../components/layouts/Split';
-import Editor from '../components/extras/Editor';
+import Editor from '../components/editors/Editor';
 
 class App extends Component {
   public render() {
