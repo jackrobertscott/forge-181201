@@ -9,6 +9,7 @@ import Split from '../components/layouts/Split';
 import StatusEditor from '../components/editors/StatusEditor';
 import SimpleInput from '../components/inputs/SimpleInput';
 import Control from '../components/forms/Control';
+import LargeInput from '../components/inputs/LargeInput';
 
 class App extends Component {
   public render() {
@@ -31,7 +32,7 @@ class App extends Component {
           label="Name"
           help="Your full name."
           placeholder="E.g. Fred Blogs"
-          input={SimpleInput}
+          input={LargeInput}
         />
         <br />
         <Control

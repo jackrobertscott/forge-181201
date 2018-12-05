@@ -32,4 +32,10 @@ export default {
   danger: () => css`
     color: ${colors.dangerLighter};
   `,
+  /**
+   * For multi-line areas.
+   */
+  multiline: () => css`
+    line-height: 1.4em;
+  `,
 };
