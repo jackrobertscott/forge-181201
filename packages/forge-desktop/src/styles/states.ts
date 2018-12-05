@@ -20,4 +20,13 @@ export default {
       ${hoverCss}
     }
   `,
+  /**
+   * Focus with a transition.
+   */
+  focused: (hoverCss: any) => () => css`
+    transition: 0.2s;
+    &:focus {
+      ${hoverCss}
+    }
+  `,
 };
