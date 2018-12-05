@@ -21,6 +21,7 @@ export default {
   dangerDark: '#2B0606',
   danger: '#5D0707',
   dangerLight: '#912C2C',
+  dangerLighter: '#DE281B',
   /**
    * Stock colors.
    */

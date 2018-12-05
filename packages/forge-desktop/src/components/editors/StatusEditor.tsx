@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
 import bgs from '../../styles/bgs';
 import shapes from '../../styles/shapes';
@@ -14,11 +14,9 @@ const Wrap = styled('div')`
 `;
 
 const Status = styled('div')`
-  ${({ active }: { active?: boolean | string }) =>
+  ${({ active }: { active?: boolean | string; space?: string | string[] }) =>
     active
-      ? css`
-          ${bgs.marine}
-        `
+      ? bgs.marine
       : css`
         ${bgs.darkLight}
         color: ${colors.shade};
@@ -26,7 +24,7 @@ const Status = styled('div')`
   ${shapes.narrow}
   ${shadows.simple}
   ${layouts.rowsCenter}
-  ${layouts.spaceBottom}
+  ${layouts.space}
 `;
 
 const Title = styled('span')``;
@@ -40,9 +38,12 @@ interface IStatusEditorProps {
   [name: string]: any;
 }
 
-const StatusEditor: SFC<IStatusEditorProps> = ({ active, ...args }) => (
+const StatusEditor: FunctionComponent<IStatusEditorProps> = ({
+  active,
+  ...args
+}) => (
   <Wrap>
-    <Status active={active}>
+    <Status active={active} space="bottom">
       <Title>{active ? 'Insert mode' : 'Preview mode'}</Title>
       <Subtitle>Press Enter to Copy</Subtitle>
     </Status>

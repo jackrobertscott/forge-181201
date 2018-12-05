@@ -1,4 +1,4 @@
-import React, { ReactNode, SFC } from 'react';
+import React, { ReactNode, FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
 import layouts from '../../styles/layouts';
 import shapes from '../../styles/shapes';
@@ -23,7 +23,7 @@ interface ISplitProps {
   sidebar: ReactNode;
 }
 
-const Split: SFC<ISplitProps> = ({ sidebar, children }: ISplitProps) => (
+const Split: FunctionComponent<ISplitProps> = ({ sidebar, children }: ISplitProps) => (
   <Wrap>
     <Sidebar>{sidebar}</Sidebar>
     <Main>{children}</Main>
