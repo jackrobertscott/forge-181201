@@ -5,13 +5,14 @@ import shapes from '../../styles/shapes';
 import shadows from '../../styles/shadows';
 import Editor from './Editor';
 import layouts from '../../styles/layouts';
-import colors from '../../styles/colors';
 import words from '../../styles/words';
 
 const Wrap = styled('div')`
   ${bgs.dark}
   ${shapes.simple}
   ${shadows.simple}
+  ${layouts.columns}
+  flex-grow: 1;
 `;
 
 const Status = styled('div')`
@@ -27,6 +28,7 @@ const Status = styled('div')`
       ${bgs.marine}
       ${words.primary}
     `}
+  margin-bottom: 20px;
 `;
 
 const Title = styled('span')``;

@@ -1,18 +1,14 @@
-import React, { Component, RefObject, createRef } from 'react';
+import React, { Component, RefObject } from 'react';
 import styled from 'styled-components';
+import { throttle } from 'throttle-debounce';
 import * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import 'monaco-editor/esm/vs/basic-languages/monaco.contribution';
 import 'monaco-editor/esm/vs/editor/contrib/snippet/snippetController2';
 import colors from '../../styles/colors';
 
-const Wrap = styled.div`
-  padding: 15px 0 0;
-  background-color: ${colors.night};
-`;
-
-const Container = styled.div`
-  width: 100%;
-  min-height: 400px;
+const Container = styled('div')`
+  flex-grow: 1;
+  height: 100%;
 `;
 
 Monaco.editor.defineTheme('phantom', {
@@ -52,6 +48,14 @@ export default class Editor extends Component<IEditorProps> {
     snippeting: false,
     command: null,
   };
+  /**
+   * Resize editor to fit screen.
+   */
+  private resize = throttle(500, () => {
+    if (this.editor) {
+      this.editor.layout();
+    }
+  });
   private container: RefObject<any>;
   private editor?: Monaco.editor.IStandaloneCodeEditor;
   constructor(props: IEditorProps) {
@@ -71,6 +75,7 @@ export default class Editor extends Component<IEditorProps> {
         enabled: false,
       },
     });
+    window.addEventListener('resize', this.resize);
     this.configureEditor();
     this.handleEvents();
     if (command) {
@@ -83,6 +88,12 @@ export default class Editor extends Component<IEditorProps> {
         command.context || ''
       );
     }
+  }
+  /**
+   * Unsubscribe from listeners.
+   */
+  public componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
   }
   /**
    * Insert a code snippet (such as "const ${2:defaultElement} = null;") and
@@ -115,11 +126,7 @@ export default class Editor extends Component<IEditorProps> {
    * Editor is wrapped so that it has nice spacing.
    */
   public render() {
-    return (
-      <Wrap>
-        <Container ref={this.container} />
-      </Wrap>
-    );
+    return <Container ref={this.container} />;
   }
   /**
    * Make sure editor is setup nicely.

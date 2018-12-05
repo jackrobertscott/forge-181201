@@ -28,7 +28,12 @@ class App extends Component {
    * Must be in function or warning thrown.
    */
   private renderSidebar = (): ReactNode => {
-    const popup = <Card>Hello world</Card>;
+    const sidebar = <Card>Hello world</Card>;
+    const popup = (
+      <Split modal={true} sidebar={sidebar}>
+        <Card>Hello world</Card>
+      </Split>
+    );
     const modalPopup = ({ open }: IToggle) => (
       <Button onClick={open}>Hello</Button>
     );
