@@ -1,16 +1,11 @@
-import React, { FunctionComponent, useState } from 'react';
+import { Router } from 'lumbridge';
+import FindCode from '../pages/FindCode';
 
-interface IMainRoutesProps {}
-
-const MainRoutes: FunctionComponent = () => {
-  const [count, setCount] = useState(0);
-  const upvote = () => setCount(count + 1);
-  return (
-    <div>
-      MainRoutes: {count}
-      <button onClick={upvote}>Up</button>
-    </div>
-  );
-};
-
-export default MainRoutes;
+export default Router.create({
+  routes: {
+    findCode: {
+      path: '/',
+      component: FindCode,
+    },
+  },
+}).render();
