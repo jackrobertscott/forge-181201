@@ -12,12 +12,14 @@ import Control from '../components/forms/Control';
 import LargeInput from '../components/inputs/LargeInput';
 import { IToggle } from '../components/statefuls/Toggle';
 import Settings from '../components/layouts/Settings';
+import ErrorCatch from './pages/ErrorCatch';
 
 class App extends Component {
   public render() {
     return (
       <Background>
         <Header />
+        <ErrorCatch />
         <Split sidebar={this.renderSidebar()}>
           <StatusEditor active={true} />
         </Split>

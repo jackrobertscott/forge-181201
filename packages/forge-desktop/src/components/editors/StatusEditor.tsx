@@ -48,7 +48,7 @@ const StatusEditor: FunctionComponent<IStatusEditorProps> = ({
 }) => (
   <Wrap>
     <Status active={active} space="bottom">
-      <Title>{active ? 'Insert mode' : 'Preview mode'}</Title>
+      <Title>{active ? 'Inserting...' : 'Preview'}</Title>
       <Subtitle>Press Enter to Copy</Subtitle>
     </Status>
     <Editor {...args} />
