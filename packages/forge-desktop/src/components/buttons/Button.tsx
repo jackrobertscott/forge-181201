@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import bgs from '../../styles/bgs';
 import shapes from '../../styles/shapes';
 import shadows from '../../styles/shadows';
@@ -12,4 +12,9 @@ export default styled('button')`
   ${layouts.space}
   ${states.hovered(bgs.darkLight)}
   ${states.clicked([bgs.dark, shadows.none])}
+  ${({ auto }: any) =>
+    auto &&
+    css`
+    margin-${auto}: auto;
+  `}
 `;

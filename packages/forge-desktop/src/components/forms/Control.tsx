@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import layouts from '../../styles/layouts';
 import words from '../../styles/words';
+import SimpleInput from '../inputs/SimpleInput';
 
 const Wrap = styled('div')`
   ${layouts.columns}
@@ -22,7 +23,7 @@ interface IControlProps {
   label: string;
   help: string;
   error?: string;
-  component: any;
+  component?: any;
   [name: string]: any;
 }
 
@@ -30,7 +31,7 @@ const Control: FunctionComponent<IControlProps> = ({
   label,
   help,
   error,
-  component,
+  component = SimpleInput,
   ...args
 }) => {
   const InputComponent = component;

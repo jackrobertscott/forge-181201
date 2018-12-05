@@ -15,7 +15,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
   const sidebar: ReactNode = (
     <List>
       <SimpleInput placeholder="Search..." />
-      <GoodButton>Create</GoodButton>
+      <GoodButton auto="left">Create</GoodButton>
       {results.map(mapResuts)}
     </List>
   );

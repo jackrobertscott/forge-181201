@@ -20,6 +20,13 @@ const Sidebar = styled('div')`
   width: 35%;
   min-width: 35%;
   margin-right: 15px;
+  ${({ reverse }: { reverse?: boolean | string }) =>
+    reverse &&
+    css`
+      margin-right: 0;
+      margin-left: 15px;
+      order: 1;
+    `}
 `;
 
 const Main = styled('div')`
@@ -30,16 +37,18 @@ const Main = styled('div')`
 interface ISplitProps {
   children: ReactNode;
   sidebar: any;
+  reverse?: boolean;
   [name: string]: any;
 }
 
 const Split: FunctionComponent<ISplitProps> = ({
   sidebar,
   children,
+  reverse,
   ...args
 }: ISplitProps) => (
   <Wrap {...args}>
-    <Sidebar>{sidebar}</Sidebar>
+    <Sidebar reverse={reverse}>{sidebar}</Sidebar>
     <Main>{children}</Main>
   </Wrap>
 );
