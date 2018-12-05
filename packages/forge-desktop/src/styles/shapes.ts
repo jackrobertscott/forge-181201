@@ -10,6 +10,12 @@ export default {
   /**
    * Used for most regular info components.
    */
+  thin: () => css`
+    padding: 11px 15px;
+  `,
+  /**
+   * Used for most regular info components.
+   */
   simple: () => css`
     padding: 15px;
     border-radius: 5px;
@@ -18,7 +24,7 @@ export default {
    * Used for most regular info components.
    */
   narrow: () => css`
-    padding: 12px 15px;
+    padding: 11px 15px;
     border-radius: 5px;
   `,
   /**

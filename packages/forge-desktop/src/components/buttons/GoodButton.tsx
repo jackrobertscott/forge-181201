@@ -8,6 +8,6 @@ export default styled('button')`
   ${bgs.marine}
   ${shapes.narrow}
   ${shadows.simple}
-  ${states.clickable(bgs.marineLight)}
+  ${states.hovered(bgs.marineLight)}
   ${states.clicked([bgs.marine, shadows.none])}
 `;

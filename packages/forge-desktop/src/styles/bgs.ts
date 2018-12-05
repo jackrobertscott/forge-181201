@@ -14,6 +14,13 @@ export default {
   /**
    * Regular components used on most pages.
    */
+  darker: ({ borderless }: IBgsConfig = {}) => css`
+    color: ${colors.white};
+    background-color: ${Color(colors.night)
+      .darken(0.3)
+      .string()};
+    ${!borderless && `border: 1px solid ${colors.nightDark};`}
+  `,
   dark: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.white};
     background-color: ${colors.night};

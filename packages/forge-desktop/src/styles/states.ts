@@ -4,7 +4,7 @@ export default {
   /**
    * Hover with a transition.
    */
-  clickable: (hoverCss: any) => () => css`
+  hovered: (hoverCss: any) => () => css`
     transition: 0.2s;
     cursor: pointer;
     &:hover {

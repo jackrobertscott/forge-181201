@@ -8,6 +8,6 @@ export default styled('button')`
   ${bgs.dark}
   ${shapes.narrow}
   ${shadows.simple}
-  ${states.clickable(bgs.darkLight)}
+  ${states.hovered(bgs.darkLight)}
   ${states.clicked([bgs.dark, shadows.none])}
 `;

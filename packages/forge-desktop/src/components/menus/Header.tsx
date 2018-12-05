@@ -8,6 +8,7 @@ import shapes from '../../styles/shapes';
 import words from '../../styles/words';
 import states from '../../styles/states';
 import Circles from '../buttons/Circles';
+import PopupMenu from './PopupMenu';
 
 const Header = styled('div').attrs({ borderless: 'true' })`
   ${bgs.dark}
@@ -26,18 +27,29 @@ const MiniButton = styled('button')`
   ${bgs.darkLight}
   ${shapes.mini}
   ${shadows.simple}
-  ${states.clickable(bgs.darkLighter)}
+  ${states.hovered(bgs.darkLighter)}
   ${states.clicked([bgs.darkLight, shadows.none])}
   ${words.small}
   margin-left: 10px;
 `;
 
+const menu = (
+  <PopupMenu.List>
+    <PopupMenu.Item>Profile</PopupMenu.Item>
+    <PopupMenu.Item>Preferences</PopupMenu.Item>
+    <PopupMenu.Item>Account</PopupMenu.Item>
+    <PopupMenu.Item>Membership</PopupMenu.Item>
+  </PopupMenu.List>
+);
+
 export default () => (
   <Header>
     <MiniButton>Dashboard</MiniButton>
     <MiniButton>Market</MiniButton>
-    <MiniButton>
-      <Circles height="15px" />
-    </MiniButton>
+    <PopupMenu items={menu}>
+      <MiniButton>
+        <Circles height="15px" />
+      </MiniButton>
+    </PopupMenu>
   </Header>
 );

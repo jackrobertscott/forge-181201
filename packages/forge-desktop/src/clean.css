@@ -68,7 +68,7 @@
   content: normal;
   counter-increment: none;
   counter-reset: none;
-  cursor: auto;
+  cursor: inherit;
   direction: ltr;
   display: block;
   empty-cells: show;
