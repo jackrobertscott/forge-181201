@@ -1,13 +1,14 @@
 import { ReactNode, Component } from 'react';
 
-export interface IToggleBag {
+export interface IToggle {
   active: boolean;
-  toggle: (override?: boolean) => void;
+  toggle: (override?: boolean) => any;
+  open: () => any;
+  close: () => any;
 }
 
 interface IToggleProps {
-  children: (props: IToggleBag) => ReactNode;
-  [name: string]: any;
+  children: (props: IToggle) => ReactNode;
 }
 
 interface IToggleState {
@@ -25,7 +26,12 @@ export default class Toggle extends Component<IToggleProps, IToggleState> {
   public render() {
     const { active } = this.state;
     const { children } = this.props;
-    return children({ active, toggle: this.toggle });
+    return children({
+      active,
+      toggle: this.toggle,
+      open: () => this.toggle(true),
+      close: () => this.toggle(false),
+    });
   }
 
   private toggle = (override?: boolean) => {

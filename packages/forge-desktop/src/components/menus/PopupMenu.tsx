@@ -1,10 +1,11 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
+import OutsideClickHandler from 'react-outside-click-handler';
 import layouts from '../../styles/layouts';
 import bgs from '../../styles/bgs';
 import shadows from '../../styles/shadows';
 import shapes from '../../styles/shapes';
-import Toggle, { IToggleBag } from '../statefuls/Toggle';
+import Toggle, { IToggle } from '../statefuls/Toggle';
 import states from '../../styles/states';
 import words from '../../styles/words';
 
@@ -33,16 +34,20 @@ const PopupMenu: FunctionComponent<IPopupMenuProps> & {
   Item: FunctionComponent;
   List: FunctionComponent;
 } = ({ children, items }) => {
-  const Toggleable = ({ active, toggle }: IToggleBag) => {
-    const onClick = () => toggle();
+  const toggleable = ({ active, open, close }: IToggle) => {
+    const popup = (
+      <OutsideClickHandler onOutsideClick={close}>
+        <Wrap>{items}</Wrap>
+      </OutsideClickHandler>
+    );
     return (
-      <Container onClick={onClick}>
+      <Container onClick={open}>
         {children}
-        {active && <Wrap>{items}</Wrap>}
+        {active && popup}
       </Container>
     );
   };
-  return <Toggle>{Toggleable}</Toggle>;
+  return <Toggle>{toggleable}</Toggle>;
 };
 
 PopupMenu.Item = styled('div').attrs({ borderless: 'true' })`

@@ -10,6 +10,8 @@ import StatusEditor from '../components/editors/StatusEditor';
 import SimpleInput from '../components/inputs/SimpleInput';
 import Control from '../components/forms/Control';
 import LargeInput from '../components/inputs/LargeInput';
+import Modal from '../components/layouts/Modal';
+import { IToggle } from '../components/statefuls/Toggle';
 
 class App extends Component {
   public render() {
@@ -26,13 +28,17 @@ class App extends Component {
    * Must be in function or warning thrown.
    */
   private renderSidebar = (): ReactNode => {
+    const popup = <Card>Hello world</Card>;
+    const modalPopup = ({ open }: IToggle) => (
+      <Button onClick={open}>Hello</Button>
+    );
     return (
       <Card>
         <Control
           label="Name"
           help="Your full name."
           placeholder="E.g. Fred Blogs"
-          input={LargeInput}
+          component={LargeInput}
         />
         <br />
         <Control
@@ -41,10 +47,10 @@ class App extends Component {
           error="Your password is not correct."
           placeholder="*********"
           type="password"
-          input={SimpleInput}
+          component={SimpleInput}
         />
         <br />
-        <Button>Hello</Button>
+        <Modal component={popup}>{modalPopup}</Modal>
         <br />
         <GoodButton>Hello</GoodButton>
         <br />

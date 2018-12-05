@@ -6,6 +6,7 @@ import shadows from '../../styles/shadows';
 import Editor from './Editor';
 import layouts from '../../styles/layouts';
 import colors from '../../styles/colors';
+import words from '../../styles/words';
 
 const Wrap = styled('div')`
   ${bgs.dark}
@@ -14,17 +15,18 @@ const Wrap = styled('div')`
 `;
 
 const Status = styled('div')`
-  ${({ active }: { active?: boolean | string; space?: string | string[] }) =>
-    active
-      ? bgs.marine
-      : css`
-        ${bgs.darkLight}
-        color: ${colors.shade};
-      `}
   ${shapes.narrow}
   ${shadows.simple}
   ${layouts.rowsCenter}
   ${layouts.space}
+  ${bgs.darkLight}
+  ${words.secondary}
+  ${({ active }: { active?: boolean | string; space?: string | string[] }) =>
+    active &&
+    css`
+      ${bgs.marine}
+      ${words.primary}
+    `}
 `;
 
 const Title = styled('span')``;

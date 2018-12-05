@@ -3,12 +3,6 @@ import colors from './colors';
 
 export default {
   /**
-   * Shaded text for secondary items.
-   */
-  secondary: () => css`
-    color: ${colors.shade};
-  `,
-  /**
    * Regular text throughout the app.
    */
   normal: () => css`
@@ -31,6 +25,18 @@ export default {
    */
   danger: () => css`
     color: ${colors.dangerLighter};
+  `,
+  /**
+   * Bold white text.
+   */
+  primary: () => css`
+    color: ${colors.white};
+  `,
+  /**
+   * Shaded text for secondary items.
+   */
+  secondary: () => css`
+    color: ${colors.shade};
   `,
   /**
    * For multi-line areas.

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import layouts from '../../styles/layouts';
 import words from '../../styles/words';
 
@@ -22,7 +22,7 @@ interface IControlProps {
   label: string;
   help: string;
   error?: string;
-  input: any;
+  component: any;
   [name: string]: any;
 }
 
@@ -30,10 +30,10 @@ const Control: FunctionComponent<IControlProps> = ({
   label,
   help,
   error,
-  input,
+  component,
   ...args
 }) => {
-  const InputComponent = input;
+  const InputComponent = component;
   return (
     <Wrap>
       <Label>{label}</Label>

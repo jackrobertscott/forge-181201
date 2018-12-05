@@ -34,4 +34,12 @@ export default {
     ${space.indexOf('left') !== -1 && 'margin-left: 10px;'}
     ${space.indexOf('right') !== -1 && 'margin-right: 10px;'}
   `,
+  /**
+   * Center all children.
+   */
+  center: () => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
 };
