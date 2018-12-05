@@ -10,8 +10,8 @@ import StatusEditor from '../components/editors/StatusEditor';
 import SimpleInput from '../components/inputs/SimpleInput';
 import Control from '../components/forms/Control';
 import LargeInput from '../components/inputs/LargeInput';
-import Modal from '../components/layouts/Modal';
 import { IToggle } from '../components/statefuls/Toggle';
+import Settings from '../components/layouts/Settings';
 
 class App extends Component {
   public render() {
@@ -28,12 +28,6 @@ class App extends Component {
    * Must be in function or warning thrown.
    */
   private renderSidebar = (): ReactNode => {
-    const sidebar = <Card>Hello world</Card>;
-    const popup = (
-      <Split modal={true} sidebar={sidebar}>
-        <Card>Hello world</Card>
-      </Split>
-    );
     const modalPopup = ({ open }: IToggle) => (
       <Button onClick={open}>Hello</Button>
     );
@@ -55,7 +49,12 @@ class App extends Component {
           component={SimpleInput}
         />
         <br />
-        <Modal component={popup}>{modalPopup}</Modal>
+        <Settings
+          sidebar={<Card>Sidebar</Card>}
+          component={<Card>Hello world!</Card>}
+        >
+          {modalPopup}
+        </Settings>
         <br />
         <GoodButton>Hello</GoodButton>
         <br />

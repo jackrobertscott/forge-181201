@@ -23,4 +23,26 @@ export default {
       opacity: 0;
     }
   `,
+  /**
+   * Slide in from left.
+   */
+  slideRight: keyframes`
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  `,
+  /**
+   * Slide in from left.
+   */
+  slideLeft: keyframes`
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  `,
 };
