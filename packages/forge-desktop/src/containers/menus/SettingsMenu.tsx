@@ -1,25 +1,24 @@
 import React, { FunctionComponent } from 'react';
-import List from '../../components/layouts/List';
-import Card from '../../components/cards/Card';
 import { Link } from 'lumbridge';
+import CardMenu from '../../components/menus/CardMenu';
 
 interface ISettingsMenuProps {}
 
 const SettingsMenu: FunctionComponent<ISettingsMenuProps> = () => (
-  <List>
-    <Card slim="true" as={Link} to="/settings/profile">
+  <CardMenu>
+    <CardMenu.Item slim="true" as={Link} to="/settings/profile">
       Profile
-    </Card>
-    <Card slim="true" as={Link} to="/settings/preferences">
+    </CardMenu.Item>
+    <CardMenu.Item slim="true" as={Link} to="/settings/preferences">
       Preferences
-    </Card>
-    <Card slim="true" as={Link} to="/settings/accounts">
+    </CardMenu.Item>
+    <CardMenu.Item slim="true" as={Link} to="/settings/accounts">
       Accounts
-    </Card>
-    <Card slim="true" as={Link} to="/settings/membership">
+    </CardMenu.Item>
+    <CardMenu.Item slim="true" as={Link} to="/settings/membership">
       Membership
-    </Card>
-  </List>
+    </CardMenu.Item>
+  </CardMenu>
 );
 
 export default SettingsMenu;
