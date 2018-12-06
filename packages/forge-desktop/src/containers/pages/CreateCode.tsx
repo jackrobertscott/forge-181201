@@ -4,7 +4,7 @@ import List from '../../components/layouts/List';
 import Button from '../../components/buttons/Button';
 import GoodButton from '../../components/buttons/GoodButton';
 import Title from '../../components/texts/Title';
-import Control from '../../components/forms/Control';
+import Control from '../../components/inputs/Control';
 import RegularEditor from '../../components/editors/RegularEditor';
 
 interface ICreateCodeProps {}

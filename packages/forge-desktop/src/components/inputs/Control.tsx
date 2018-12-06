@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import layouts from '../../styles/layouts';
 import words from '../../styles/words';
-import SimpleInput from '../inputs/SimpleInput';
+import SimpleInput from './SimpleInput';
 
 const Wrap = styled('div')`
   ${layouts.columns}
