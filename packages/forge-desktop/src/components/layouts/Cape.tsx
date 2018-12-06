@@ -14,12 +14,19 @@ const Wrap = styled('div')`
 
 const Sidebar = styled('div')`
   ${shapes.padded}
+  ${layouts.columns}
+  align-items: flex-end;
   width: 35%;
   min-width: 35%;
   background-color: ${colors.nightLighter};
   animation: ${animate.slideRight} 0.2s linear;
   padding-top: 100px;
-  padding-left: 45px;
+  padding-left: 30px;
+  padding-right: 30px;
+  & > * {
+    width: 100%;
+    max-width: 240px;
+  }
 `;
 
 const Main = styled('div')`
@@ -29,7 +36,11 @@ const Main = styled('div')`
   border-left: 1px solid ${colors.night};
   animation: ${animate.slideLeft} 0.2s linear;
   padding-top: 100px;
-  padding-right: 45px;
+  padding-left: 30px;
+  padding-right: 30px;
+  & > * {
+    max-width: 640px;
+  }
 `;
 
 interface ICapeProps {
