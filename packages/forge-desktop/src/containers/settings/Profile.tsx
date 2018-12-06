@@ -1,22 +1,19 @@
 import React, { FunctionComponent } from 'react';
-import List from '../../components/layouts/List';
-import Title from '../../components/texts/Title';
-import Control from '../../components/inputs/Control';
-import GoodButton from '../../components/buttons/GoodButton';
+import ProfileForm from '../../components/forms/ProfileForm';
 
 interface IProfileProps {}
 
-const Profile: FunctionComponent<IProfileProps> = () => (
-  <List>
-    <Title>Profile</Title>
-    <br />
-    <Control
-      label="Name"
-      help="Your full name."
-      placeholder="E.g. Fred Blogs"
-    />
-    <GoodButton auto="right">Save</GoodButton>
-  </List>
-);
+const Profile: FunctionComponent<IProfileProps> = () => {
+  const data = {
+    profile: {
+      name: '',
+    },
+    loading: false,
+  };
+  const handlers = {
+    submit: () => null,
+  };
+  return <ProfileForm data={data} handlers={handlers} />;
+};
 
 export default Profile;

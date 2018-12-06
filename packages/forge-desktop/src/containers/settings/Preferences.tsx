@@ -1,22 +1,19 @@
 import React, { FunctionComponent } from 'react';
-import List from '../../components/layouts/List';
-import Title from '../../components/texts/Title';
-import Control from '../../components/inputs/Control';
-import GoodButton from '../../components/buttons/GoodButton';
+import PreferencesForm from '../../components/forms/PreferencesForm';
 
 interface IPreferencesProps {}
 
-const Preferences: FunctionComponent<IPreferencesProps> = () => (
-  <List>
-    <Title>Preferences</Title>
-    <br />
-    <Control
-      label="Name"
-      help="Your full name."
-      placeholder="E.g. Fred Blogs"
-    />
-    <GoodButton auto="right">Save</GoodButton>
-  </List>
-);
+const Preferences: FunctionComponent<IPreferencesProps> = () => {
+  const data = {
+    preferences: {
+      shortcutOpen: '',
+    },
+    loading: false,
+  };
+  const handlers = {
+    submit: () => null,
+  };
+  return <PreferencesForm data={data} handlers={handlers} />;
+};
 
 export default Preferences;
