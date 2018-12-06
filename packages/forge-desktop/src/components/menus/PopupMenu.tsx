@@ -34,14 +34,17 @@ const PopupMenu: FunctionComponent<IPopupMenuProps> & {
   Item: any;
   List: any;
 } = ({ children, items }) => {
-  const toggleable = ({ active, open, close }: IToggle) => {
+  const toggleable = ({ active, open, close, ...args }: IToggle) => {
     const popup = (
       <OutsideClickHandler onOutsideClick={close}>
-        <Wrap>{items}</Wrap>
+        <Wrap>
+          <div onClick={close}>{items}</div>
+        </Wrap>
       </OutsideClickHandler>
     );
+    const openClose = () => !active && open();
     return (
-      <Container onClick={open}>
+      <Container onClick={openClose}>
         {children}
         {active && popup}
       </Container>

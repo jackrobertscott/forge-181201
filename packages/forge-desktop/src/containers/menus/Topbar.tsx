@@ -11,13 +11,13 @@ const Topbar: FunctionComponent<ITopbarProps> = () => {
       <PopupMenu.Item as={Link} to="/settings/profile">
         Profile
       </PopupMenu.Item>
-      <PopupMenu.Item as={Link} to="/settings/profile">
+      <PopupMenu.Item as={Link} to="/settings/preferences">
         Preferences
       </PopupMenu.Item>
-      <PopupMenu.Item as={Link} to="/settings/profile">
-        Account
+      <PopupMenu.Item as={Link} to="/settings/accounts">
+        Accounts
       </PopupMenu.Item>
-      <PopupMenu.Item as={Link} to="/settings/profile">
+      <PopupMenu.Item as={Link} to="/settings/membership">
         Membership
       </PopupMenu.Item>
     </PopupMenu.List>
