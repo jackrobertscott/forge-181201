@@ -35,21 +35,19 @@ const Main = styled('div')`
 `;
 
 interface ISplitProps {
-  children: ReactNode;
-  sidebar: any;
+  children: ReactNode[];
   reverse?: boolean;
   [name: string]: any;
 }
 
 const Split: FunctionComponent<ISplitProps> = ({
-  sidebar,
   children,
   reverse,
   ...args
 }: ISplitProps) => (
   <Wrap {...args}>
-    <Sidebar reverse={reverse}>{sidebar}</Sidebar>
-    <Main>{children}</Main>
+    <Sidebar reverse={reverse}>{children[0]}</Sidebar>
+    <Main>{children[1]}</Main>
   </Wrap>
 );
 

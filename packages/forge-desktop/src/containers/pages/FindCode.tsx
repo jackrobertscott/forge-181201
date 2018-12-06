@@ -8,19 +8,30 @@ import Result from '../../components/cards/Result';
 
 interface IFindCodeProps {}
 
-const results = ['React', 'Vue.js', 'Angular', 'Console'];
-const mapResuts = (name: string) => <Result note="10 Snippets">{name}</Result>;
+const results = [
+  'React',
+  'Vue.js',
+  'Angular',
+  'Console',
+  'React',
+  'Vue.js',
+  'Angular',
+  'Console',
+];
+const mapResuts = (name: string, index: number) => (
+  <Result key={`${name}${index}`} note="10 Snippets">
+    {name}
+  </Result>
+);
 
 const FindCode: FunctionComponent<IFindCodeProps> = () => {
-  const sidebar: ReactNode = (
-    <List>
-      <SimpleInput placeholder="Search..." />
-      <GoodButton auto="left">Create</GoodButton>
-      {results.map(mapResuts)}
-    </List>
-  );
   return (
-    <Split sidebar={sidebar}>
+    <Split>
+      <List>
+        <SimpleInput placeholder="Search..." />
+        <GoodButton auto="left">Create</GoodButton>
+        {results.map(mapResuts)}
+      </List>
       <StatusEditor active={false} />
     </Split>
   );

@@ -15,7 +15,7 @@ const Label = styled('label')`
 const Status = styled('div')`
   ${words.small}
   ${words.secondary}
-  ${({ error }: { error: boolean }) => error && words.danger}
+  ${({ problem }: { problem: boolean }) => problem && words.danger}
   margin: 0.2em 0 0.5em;
 `;
 
@@ -24,22 +24,24 @@ interface IControlProps {
   help: string;
   error?: string;
   component?: any;
+  field?: any;
   [name: string]: any;
 }
 
 const Control: FunctionComponent<IControlProps> = ({
   label,
   help,
-  error,
+  problem,
   component = SimpleInput,
+  field,
   ...args
 }) => {
   const InputComponent = component;
   return (
     <Wrap>
       <Label>{label}</Label>
-      <Status error={!!error}>{error || help}</Status>
-      <InputComponent {...args} />
+      <Status problem={!!problem}>{problem || help}</Status>
+      <InputComponent {...args} {...field} />
     </Wrap>
   );
 };
