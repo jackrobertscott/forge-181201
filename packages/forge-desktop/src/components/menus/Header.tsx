@@ -10,19 +10,21 @@ import states from '../../styles/states';
 import Circles from '../buttons/Circles';
 import PopupMenu from './PopupMenu';
 import { Link } from 'lumbridge';
-import { boolean } from 'yup';
 
 const Wrap = styled('div').attrs({ borderless: 'true' })`
   ${bgs.dark}
   ${shadows.simple}
+  border-bottom: 1px solid ${colors.nightDark};
+  flex-shrink: 0;
+`;
+
+const Forward = styled('div')`
   ${layouts.rowsCenter}
   justify-content: flex-end;
-  border-bottom: 1px solid ${colors.nightDark};
+  position: relative;
+  z-index: 100;
   height: 40px;
-  max-height: 40px;
   padding: 0 15px;
-  flex-grow: 1;
-  flex-shrink: 0;
 `;
 
 const MiniButton = styled('button')`
@@ -42,15 +44,17 @@ interface IHeaderProps {
 
 const Header: FunctionComponent<IHeaderProps> = ({ menu }) => (
   <Wrap>
-    <MiniButton as={Link} to="/">
-      Dashboard
-    </MiniButton>
-    <MiniButton>Market</MiniButton>
-    <PopupMenu items={menu}>
-      <MiniButton>
-        <Circles height="15px" />
+    <Forward>
+      <MiniButton as={Link} to="/">
+        Dashboard
       </MiniButton>
-    </PopupMenu>
+      <MiniButton>Market</MiniButton>
+      <PopupMenu items={menu}>
+        <MiniButton>
+          <Circles height="15px" />
+        </MiniButton>
+      </PopupMenu>
+    </Forward>
   </Wrap>
 );
 

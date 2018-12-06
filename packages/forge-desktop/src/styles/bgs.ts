@@ -16,9 +16,7 @@ export default {
    */
   darker: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.white};
-    background-color: ${Color(colors.night)
-      .darken(0.3)
-      .string()};
+    background-color: ${colors.nightDarker};
     ${!borderless && `border: 1px solid ${colors.nightDark};`}
   `,
   dark: ({ borderless }: IBgsConfig = {}) => css`
@@ -33,9 +31,7 @@ export default {
   `,
   darkLighter: ({ borderless }: IBgsConfig = {}) => css`
     color: ${colors.white};
-    background-color: ${Color(colors.nightLight)
-      .lighten(0.3)
-      .string()};
+    background-color: ${colors.nightLighter};
     ${!borderless && `border: 1px solid ${colors.nightDark};`}
   `,
   /**
