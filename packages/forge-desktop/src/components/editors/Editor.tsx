@@ -1,6 +1,7 @@
 import React, { Component, RefObject } from 'react';
 import styled from 'styled-components';
 import { throttle } from 'throttle-debounce';
+import Color from 'color';
 import * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import 'monaco-editor/esm/vs/basic-languages/monaco.contribution';
 import 'monaco-editor/esm/vs/editor/contrib/snippet/snippetController2';
@@ -20,6 +21,9 @@ Monaco.editor.defineTheme('phantom', {
   colors: {
     'editor.foreground': colors.white,
     'editor.background': colors.night,
+    'editor.lineHighlightBackground': Color(colors.night)
+      .lighten(0.3)
+      .hex(),
   },
 });
 
