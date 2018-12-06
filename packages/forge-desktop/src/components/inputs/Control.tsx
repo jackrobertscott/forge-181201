@@ -24,6 +24,7 @@ interface IControlProps {
   help: string;
   error?: string;
   component?: any;
+  input?: any;
   field?: any;
   [name: string]: any;
 }
@@ -32,11 +33,12 @@ const Control: FunctionComponent<IControlProps> = ({
   label,
   help,
   problem,
-  component = SimpleInput,
+  component,
+  input = SimpleInput,
   field,
   ...args
 }) => {
-  const InputComponent = component;
+  const InputComponent = component || input;
   return (
     <Wrap>
       <Label>{label}</Label>

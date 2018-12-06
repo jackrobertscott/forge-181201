@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState, ReactNode } from 'react';
+import React, { FunctionComponent } from 'react';
+import { Link } from 'lumbridge';
 import Split from '../../components/layouts/Split';
 import SimpleInput from '../../components/inputs/SimpleInput';
 import StatusEditor from '../../components/editors/StatusEditor';
@@ -29,7 +30,9 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     <Split>
       <List>
         <SimpleInput placeholder="Search..." />
-        <GoodButton auto="left">Create</GoodButton>
+        <GoodButton as={Link} to="/create" auto="left">
+          Create
+        </GoodButton>
         {results.map(mapResuts)}
       </List>
       <StatusEditor active={false} />

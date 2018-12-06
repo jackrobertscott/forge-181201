@@ -9,6 +9,7 @@ import words from '../../styles/words';
 import states from '../../styles/states';
 import Circles from '../buttons/Circles';
 import PopupMenu from './PopupMenu';
+import { Link } from 'lumbridge';
 
 const Header = styled('div').attrs({ borderless: 'true' })`
   ${bgs.dark}
@@ -24,6 +25,7 @@ const Header = styled('div').attrs({ borderless: 'true' })`
 `;
 
 const MiniButton = styled('button')`
+  ${({ to }: { to?: string }) => null}
   ${bgs.darkLight}
   ${shapes.mini}
   ${shadows.simple}
@@ -44,7 +46,9 @@ const menu = (
 
 export default () => (
   <Header>
-    <MiniButton>Dashboard</MiniButton>
+    <MiniButton as={Link} to="/">
+      Dashboard
+    </MiniButton>
     <MiniButton>Market</MiniButton>
     <PopupMenu items={menu}>
       <MiniButton>

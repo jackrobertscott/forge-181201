@@ -18,6 +18,11 @@ code {
     monospace;
 }
 
+form {
+  flex-grow: 1;
+  display: flex;
+}
+
 #root {
   width: 100%;
   flex-grow: 1;

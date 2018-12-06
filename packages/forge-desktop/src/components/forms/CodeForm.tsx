@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FormikProps, Field } from 'formik';
+import { Formik, FormikProps, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import Split from '../layouts/Split';
 import List from '../layouts/List';
@@ -21,7 +21,7 @@ interface ICode {
 interface ICodeFormProps extends IComponentProps {
   handlers: {
     goback: () => void;
-    submit: () => void;
+    submit: (data: any) => void;
   };
   data: {
     title: string;
@@ -31,7 +31,7 @@ interface ICodeFormProps extends IComponentProps {
 }
 
 const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
-  const prefill = {
+  const prefill: ICode = {
     name: '',
     shortcut: '',
     bundleId: '',
@@ -69,42 +69,44 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
       }
     };
     return (
-      <Split reverse={true}>
-        <List>
-          <Button auto="right" onClick={handlers.goback}>
-            Back
-          </Button>
-          <br />
-          <Title>{data.title}</Title>
-          <br />
-          <Field
-            name="name"
-            label="Name"
-            help="The name of your snippet."
-            placeholder="E.g. React Component"
-            component={Control}
-            onChange={nameChange}
-            problem={touched.name && errors.name}
-          />
-          <Field
-            name="shortcut"
-            label="Shortcut"
-            help="Used to quickly find snippet."
-            placeholder="E.g. abc"
-            component={Control}
-          />
-          <Control
-            name="bundleId"
-            label="Bundle"
-            help="The group of snippets."
-            placeholder="E.g. React"
-          />
-          <GoodButton type="submit" loading={data.loading}>
-            Create
-          </GoodButton>
-        </List>
-        <RegularEditor />
-      </Split>
+      <Form>
+        <Split reverse={true}>
+          <List>
+            <Button auto="right" onClick={handlers.goback}>
+              Back
+            </Button>
+            <br />
+            <Title>{data.title}</Title>
+            <br />
+            <Field
+              name="name"
+              label="Name"
+              help="The name of your snippet."
+              placeholder="E.g. React Component"
+              component={Control}
+              onChange={nameChange}
+              problem={touched.name && errors.name}
+            />
+            <Field
+              name="shortcut"
+              label="Shortcut"
+              help="Used to quickly find snippet."
+              placeholder="E.g. abc"
+              component={Control}
+            />
+            <Control
+              name="bundleId"
+              label="Bundle"
+              help="The group of snippets."
+              placeholder="E.g. React"
+            />
+            <GoodButton type="submit" loading={data.loading}>
+              Create
+            </GoodButton>
+          </List>
+          <RegularEditor />
+        </Split>
+      </Form>
     );
   };
   return (
