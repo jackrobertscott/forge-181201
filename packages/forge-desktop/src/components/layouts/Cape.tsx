@@ -1,8 +1,6 @@
 import React, { ReactNode, FunctionComponent } from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
 import styled from 'styled-components';
 import layouts from '../../styles/layouts';
-import Toggle, { IToggle } from '../statefuls/Toggle';
 import animate from '../../styles/animate';
 import colors from '../../styles/colors';
 import shapes from '../../styles/shapes';
@@ -31,32 +29,15 @@ const Main = styled('div')`
   animation: ${animate.slideLeft} 0.2s linear;
 `;
 
-interface ISettingsProps {
-  sidebar: ReactNode;
-  component: ReactNode;
-  children: (bag: IToggle) => ReactNode;
+interface ICapeProps {
+  children: ReactNode[];
 }
 
-const Settings: FunctionComponent<ISettingsProps> = ({
-  sidebar,
-  component,
-  children,
-}) => {
-  const toggleable = ({ toggle, active, close, ...others }: IToggle) => {
-    const popup = (
-      <Wrap>
-        <Sidebar>{sidebar}</Sidebar>
-        <Main>{component}</Main>
-      </Wrap>
-    );
-    return (
-      <>
-        {children({ toggle, active, close, ...others })}
-        {active && popup}
-      </>
-    );
-  };
-  return <Toggle>{toggleable}</Toggle>;
-};
+const Cape: FunctionComponent<ICapeProps> = ({ children }) => (
+  <Wrap>
+    <Sidebar>{children[0]}</Sidebar>
+    <Main>{children[1]}</Main>
+  </Wrap>
+);
 
-export default Settings;
+export default Cape;

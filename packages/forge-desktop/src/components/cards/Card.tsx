@@ -9,4 +9,5 @@ export default styled('div')`
   ${shapes.simple}
   ${shadows.simple}
   ${layouts.space}
+  ${({ slim }: any) => slim && shapes.thin}
 `;

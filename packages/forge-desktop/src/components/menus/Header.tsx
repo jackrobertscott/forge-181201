@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import bgs from '../../styles/bgs';
 import colors from '../../styles/colors';
@@ -10,8 +10,9 @@ import states from '../../styles/states';
 import Circles from '../buttons/Circles';
 import PopupMenu from './PopupMenu';
 import { Link } from 'lumbridge';
+import { boolean } from 'yup';
 
-const Header = styled('div').attrs({ borderless: 'true' })`
+const Wrap = styled('div').attrs({ borderless: 'true' })`
   ${bgs.dark}
   ${shadows.simple}
   ${layouts.rowsCenter}
@@ -25,7 +26,7 @@ const Header = styled('div').attrs({ borderless: 'true' })`
 `;
 
 const MiniButton = styled('button')`
-  ${({ to }: { to?: string }) => null}
+  ${({ ...args }: { to?: boolean | string; [name: string]: any }) => null}
   ${bgs.darkLight}
   ${shapes.mini}
   ${shadows.simple}
@@ -35,17 +36,12 @@ const MiniButton = styled('button')`
   margin-left: 10px;
 `;
 
-const menu = (
-  <PopupMenu.List>
-    <PopupMenu.Item>Profile</PopupMenu.Item>
-    <PopupMenu.Item>Preferences</PopupMenu.Item>
-    <PopupMenu.Item>Account</PopupMenu.Item>
-    <PopupMenu.Item>Membership</PopupMenu.Item>
-  </PopupMenu.List>
-);
+interface IHeaderProps {
+  menu: ReactNode;
+}
 
-export default () => (
-  <Header>
+const Header: FunctionComponent<IHeaderProps> = ({ menu }) => (
+  <Wrap>
     <MiniButton as={Link} to="/">
       Dashboard
     </MiniButton>
@@ -55,5 +51,7 @@ export default () => (
         <Circles height="15px" />
       </MiniButton>
     </PopupMenu>
-  </Header>
+  </Wrap>
 );
+
+export default Header;

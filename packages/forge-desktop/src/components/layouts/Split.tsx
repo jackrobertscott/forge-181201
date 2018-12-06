@@ -2,11 +2,12 @@ import React, { ReactNode, FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
 import layouts from '../../styles/layouts';
 import shapes from '../../styles/shapes';
+import { string } from 'yup';
 
 const Wrap = styled('div')`
   ${layouts.rows}
   ${shapes.padded}
-  ${({ modal }: { modal?: boolean | string }) =>
+  ${({ modal }: { modal?: boolean | string; [name: string]: any }) =>
     modal &&
     css`
       width: 800px;
@@ -20,7 +21,7 @@ const Sidebar = styled('div')`
   width: 35%;
   min-width: 35%;
   margin-right: 15px;
-  ${({ reverse }: { reverse?: boolean | string }) =>
+  ${({ reverse }: { reverse?: boolean | string; [name: string]: any }) =>
     reverse &&
     css`
       margin-right: 0;

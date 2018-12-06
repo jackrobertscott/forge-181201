@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react';
 import Background from '../components/layouts/Background';
-import Header from '../components/menus/Header';
-import MainRoutes from './routes/MainRoutes';
-import ErrorCatch from './pages/ErrorCatch';
+import mainRoutes from '../routes/mainRoutes';
+import Topbar from './menus/Topbar';
 
-class App extends Component {
-  public render() {
-    return (
-      <ErrorCatch>
-        <Background>
-          <Header />
-          <MainRoutes />
-        </Background>
-      </ErrorCatch>
-    );
-  }
-}
+const Routes = mainRoutes.render();
+
+interface IAppProps {}
+
+const App: FunctionComponent<IAppProps> = () => (
+  <Background>
+    <Topbar />
+    <Routes />
+  </Background>
+);
 
 export default App;

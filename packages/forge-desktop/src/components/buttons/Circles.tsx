@@ -5,7 +5,7 @@ import layouts from '../../styles/layouts';
 
 const Wrap = styled('div')`
   ${layouts.rowsCenter}
-  ${({ height }: any) =>
+  ${({ height }: { height?: string; [name: string]: any }) =>
     height &&
     css`
       height: ${height};

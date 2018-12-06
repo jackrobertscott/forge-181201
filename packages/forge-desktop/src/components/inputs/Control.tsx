@@ -13,9 +13,10 @@ const Label = styled('label')`
 `;
 
 const Status = styled('div')`
+  ${({ problem }: { problem?: boolean | string; [name: string]: any }) =>
+    problem && words.danger}
   ${words.small}
   ${words.secondary}
-  ${({ problem }: { problem: boolean }) => problem && words.danger}
   margin: 0.2em 0 0.5em;
 `;
 

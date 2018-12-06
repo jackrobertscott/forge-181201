@@ -3,10 +3,25 @@ import './index.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App';
+import * as Sentry from '@sentry/browser';
 import * as serviceWorker from './serviceWorker';
+import config from './config';
+import ErrorCatch from './containers/pages/ErrorCatch';
+import App from './containers/App';
 
-const app = <App />;
+/**
+ * Register error reporter before app rendering starts.
+ */
+Sentry.init({
+  dsn: config.sentryDSN,
+  environment: config.environment,
+});
+
+const app = (
+  <ErrorCatch>
+    <App />
+  </ErrorCatch>
+);
 
 ReactDOM.render(app, document.getElementById('root'));
 

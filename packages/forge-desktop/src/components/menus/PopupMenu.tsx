@@ -31,8 +31,8 @@ interface IPopupMenuProps {
 }
 
 const PopupMenu: FunctionComponent<IPopupMenuProps> & {
-  Item: FunctionComponent;
-  List: FunctionComponent;
+  Item: any;
+  List: any;
 } = ({ children, items }) => {
   const toggleable = ({ active, open, close }: IToggle) => {
     const popup = (
@@ -51,6 +51,13 @@ const PopupMenu: FunctionComponent<IPopupMenuProps> & {
 };
 
 PopupMenu.Item = styled('div').attrs({ borderless: 'true' })`
+  ${({
+    ...args
+  }: {
+    as?: boolean | string;
+    to?: boolean | string;
+    [name: string]: any;
+  }) => null}
   ${bgs.darkLight}
   ${states.hovered(bgs.dark)}
   ${shapes.thin}

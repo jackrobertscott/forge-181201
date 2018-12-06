@@ -22,12 +22,7 @@ const Status = styled('div')`
   ${layouts.space}
   ${bgs.darkLight}
   ${words.secondary}
-  ${({ active }: { active?: boolean | string; space?: string | string[] }) =>
-    active &&
-    css`
-      ${bgs.marine}
-      ${words.primary}
-    `}
+  ${({ active }: any) => active && [bgs.marine, words.primary]}
   margin-bottom: 20px;
 `;
 

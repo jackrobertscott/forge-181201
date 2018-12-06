@@ -13,7 +13,7 @@ const Wrap = styled('button').attrs({ type: 'button' })`
   ${layouts.space}
   ${states.hovered(bgs.dangerLight)}
   ${states.clicked([bgs.danger, shadows.none])}
-  ${({ auto }: any) =>
+  ${({ auto }: { auto?: string; [name: string]: any }) =>
     auto &&
     css`
     margin-${auto}: auto;
