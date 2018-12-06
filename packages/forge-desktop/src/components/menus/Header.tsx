@@ -25,6 +25,7 @@ const Forward = styled('div')`
   z-index: 100;
   height: 40px;
   padding: 0 15px;
+  -webkit-app-region: drag;
 `;
 
 const MiniButton = styled('button')`
@@ -36,6 +37,7 @@ const MiniButton = styled('button')`
   ${states.clicked([bgs.darkLight, shadows.none])}
   ${words.small}
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 interface IHeaderProps {

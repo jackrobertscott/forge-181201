@@ -8,7 +8,6 @@ import colors from '../../styles/colors';
 
 const Container = styled('div')`
   flex-grow: 1;
-  height: 100%;
 `;
 
 Monaco.editor.defineTheme('phantom', {
@@ -51,8 +50,9 @@ export default class Editor extends Component<IEditorProps> {
   /**
    * Resize editor to fit screen.
    */
-  private resize = throttle(500, () => {
+  private resize = throttle(300, () => {
     if (this.editor) {
+      this.editor.layout({ height: 0, width: 0 });
       this.editor.layout();
     }
   });
