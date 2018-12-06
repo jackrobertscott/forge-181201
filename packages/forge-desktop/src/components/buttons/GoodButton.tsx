@@ -11,6 +11,7 @@ const Wrap = styled('button').attrs({ type: 'button' })`
   ${shapes.narrow}
   ${shadows.simple}
   ${layouts.space}
+  ${layouts.noshrink}
   ${states.hovered(bgs.marineLight)}
   ${states.clicked([bgs.marine, shadows.none])}
   ${({ auto }: { auto?: string; [name: string]: any }) =>

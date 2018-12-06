@@ -6,6 +6,7 @@ import SimpleInput from './SimpleInput';
 
 const Wrap = styled('div')`
   ${layouts.columns}
+  ${layouts.noshrink}
 `;
 
 const Label = styled('label')`

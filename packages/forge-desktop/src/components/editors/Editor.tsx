@@ -80,6 +80,7 @@ export default class Editor extends Component<IEditorProps> {
       },
     });
     window.addEventListener('resize', this.resize);
+    this.resize();
     this.configureEditor();
     this.handleEvents();
     if (command) {

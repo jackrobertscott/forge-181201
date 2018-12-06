@@ -52,4 +52,10 @@ export default {
     bottom: 0;
     left: 0;
   `,
+  /**
+   * Don't shrink when flexed.
+   */
+  noshrink: () => css`
+    flex-shrink: 0;
+  `,
 };

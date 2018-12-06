@@ -18,6 +18,14 @@ const fakeBundles = [
   { id: '243', name: 'Vue.js', codeCount: 8 },
   { id: '563', name: 'Angular', codeCount: 8 },
   { id: '654', name: 'Console', codeCount: 8 },
+  { id: '123a', name: 'React', codeCount: 8 },
+  { id: '324a', name: 'Vue.js', codeCount: 8 },
+  { id: '345a', name: 'Angular', codeCount: 8 },
+  { id: '645a', name: 'Console', codeCount: 8 },
+  { id: '276a', name: 'React', codeCount: 8 },
+  { id: '243a', name: 'Vue.js', codeCount: 8 },
+  { id: '563a', name: 'Angular', codeCount: 8 },
+  { id: '654a', name: 'Console', codeCount: 8 },
 ];
 
 const FindCode: FunctionComponent<IFindCodeProps> = () => {

@@ -10,7 +10,6 @@ const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
     loading: false,
   };
   const handlers = {
-    goback: () => null,
     submit: () => null,
   };
   return <CodeForm data={data} handlers={handlers} />;

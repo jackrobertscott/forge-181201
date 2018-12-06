@@ -1,6 +1,13 @@
 import React, { FunctionComponent } from 'react';
+import styled from 'styled-components';
 import { IComponentProps } from '../../utils/components';
 import Result from '../cards/Result';
+import List from '../layouts/List';
+
+const Wrap = styled('div')`
+  flex-grow: 1;
+  overflow: auto;
+`;
 
 interface IBundleFragment {
   id: string;
@@ -35,11 +42,13 @@ const SearchList: FunctionComponent<ISearchListProps> = ({ data }) => {
     </Result>
   ));
   return (
-    <>
-      {bundles}
-      <br />
-      {codes}
-    </>
+    <Wrap>
+      <List>
+        {bundles}
+        <br />
+        {codes}
+      </List>
+    </Wrap>
   );
 };
 

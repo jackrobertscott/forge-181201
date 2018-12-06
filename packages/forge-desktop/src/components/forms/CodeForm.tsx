@@ -9,6 +9,7 @@ import Title from '../texts/Title';
 import Control from '../inputs/Control';
 import RegularEditor from '../editors/RegularEditor';
 import { IComponentProps } from '../../utils/components';
+import { Link } from 'lumbridge';
 
 interface ICodeFragment {
   id?: string;
@@ -20,7 +21,6 @@ interface ICodeFragment {
 
 interface ICodeFormProps extends IComponentProps {
   handlers: {
-    goback: () => void;
     submit: (data: any) => void;
   };
   data: {
@@ -72,7 +72,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
       <Form>
         <Split reverse={true}>
           <List>
-            <Button auto="right" onClick={handlers.goback}>
+            <Button auto="right" as={Link} to="/">
               Back
             </Button>
             <br />
