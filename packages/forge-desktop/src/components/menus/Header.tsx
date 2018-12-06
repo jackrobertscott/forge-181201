@@ -50,7 +50,9 @@ const Header: FunctionComponent<IHeaderProps> = ({ menu }) => (
       <MiniButton as={Link} to="/">
         Dashboard
       </MiniButton>
-      <MiniButton>Market</MiniButton>
+      <MiniButton as={Link} to="/market">
+        Market
+      </MiniButton>
       <PopupMenu items={menu}>
         <MiniButton>
           <Circles height="15px" />

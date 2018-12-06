@@ -6,7 +6,7 @@ export default {
    * Regular text throughout the app.
    */
   normal: () => css`
-    font-size: 16px;
+    font-size: 1em;
   `,
   /**
    * Big titles.
@@ -18,7 +18,7 @@ export default {
    * Smaller text areas.
    */
   small: () => css`
-    font-size: 0.8em;
+    font-size: 0.9em;
   `,
   /**
    * Bad things...

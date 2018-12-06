@@ -14,14 +14,14 @@ interface ICodeFragment {
   shortcut: string;
 }
 
-interface IFindCodeProps extends IComponentProps {
+interface ISearchListProps extends IComponentProps {
   data: {
     bundles: IBundleFragment[];
     codes: ICodeFragment[];
   };
 }
 
-const SearchList: FunctionComponent<IFindCodeProps> = ({ data }) => {
+const SearchList: FunctionComponent<ISearchListProps> = ({ data }) => {
   const bundles = data.bundles.map(
     ({ id, name, codeCount }: IBundleFragment) => (
       <Result key={id} note={`${codeCount} Snippets`}>

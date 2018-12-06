@@ -2,7 +2,6 @@ import React, { ReactNode, FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
 import layouts from '../../styles/layouts';
 import shapes from '../../styles/shapes';
-import { string } from 'yup';
 
 const Wrap = styled('div')`
   ${layouts.rows}
