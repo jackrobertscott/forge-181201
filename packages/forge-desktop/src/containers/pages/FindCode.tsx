@@ -5,27 +5,26 @@ import SimpleInput from '../../components/inputs/SimpleInput';
 import StatusEditor from '../../components/editors/StatusEditor';
 import GoodButton from '../../components/buttons/GoodButton';
 import List from '../../components/layouts/List';
-import Result from '../../components/cards/Result';
+import SearchList from '../../components/lists/SearchList';
 
 interface IFindCodeProps {}
 
-const results = [
-  'React',
-  'Vue.js',
-  'Angular',
-  'Console',
-  'React',
-  'Vue.js',
-  'Angular',
-  'Console',
+const fakeBundles = [
+  { id: '123', name: 'React', codeCount: 8 },
+  { id: '324', name: 'Vue.js', codeCount: 8 },
+  { id: '345', name: 'Angular', codeCount: 8 },
+  { id: '645', name: 'Console', codeCount: 8 },
+  { id: '276', name: 'React', codeCount: 8 },
+  { id: '243', name: 'Vue.js', codeCount: 8 },
+  { id: '563', name: 'Angular', codeCount: 8 },
+  { id: '654', name: 'Console', codeCount: 8 },
 ];
-const mapResuts = (name: string, index: number) => (
-  <Result key={`${name}${index}`} note="10 Snippets">
-    {name}
-  </Result>
-);
 
 const FindCode: FunctionComponent<IFindCodeProps> = () => {
+  const data = {
+    bundles: fakeBundles,
+    codes: [],
+  };
   return (
     <Split>
       <List>
@@ -33,7 +32,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
         <GoodButton as={Link} to="/create" auto="left">
           Create
         </GoodButton>
-        {results.map(mapResuts)}
+        <SearchList data={data} />
       </List>
       <StatusEditor active={false} />
     </Split>

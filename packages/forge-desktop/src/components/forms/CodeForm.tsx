@@ -10,7 +10,7 @@ import Control from '../inputs/Control';
 import RegularEditor from '../editors/RegularEditor';
 import { IComponentProps } from '../../utils/components';
 
-interface ICode {
+interface ICodeFragment {
   id?: string;
   name?: string;
   shortcut?: string;
@@ -26,12 +26,12 @@ interface ICodeFormProps extends IComponentProps {
   data: {
     title: string;
     loading: boolean;
-    code: ICode;
+    code: ICodeFragment;
   };
 }
 
 const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
-  const prefill: ICode = {
+  const prefill: ICodeFragment = {
     name: '',
     shortcut: '',
     bundleId: '',
@@ -55,7 +55,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     handleChange,
     errors,
     touched,
-  }: FormikProps<ICode>) => {
+  }: FormikProps<ICodeFragment>) => {
     const nameChange = (event: any) => {
       handleChange(event);
       if (!prefill.shortcut && !touched.shortcut) {
