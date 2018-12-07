@@ -102,7 +102,12 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               help="The group of snippets."
               component={ChooseBundle}
             />
-            <GoodButton type="submit" loading={data.loading}>
+            <GoodButton
+              type="submit"
+              auto="right"
+              min="true"
+              loading={data.loading}
+            >
               Create
             </GoodButton>
           </List>

@@ -11,6 +11,7 @@ import shapes from '../../styles/shapes';
 import Toggle, { IToggle } from '../statefuls/Toggle';
 import animate from '../../styles/animate';
 import words from '../../styles/words';
+import Portal from '../statefuls/Portal';
 
 const Wrap = styled('div')`
   ${layouts.center}
@@ -56,14 +57,14 @@ const Modal: FunctionComponent<IModalProps> = ({ component, children }) => {
       }
     };
     const popup = (
-      <Wrap>
-        <div>
+      <Portal>
+        <Wrap>
           <Close onClick={close}>x close.</Close>
           <OutsideClickHandler onOutsideClick={closeNoFocus}>
             {component}
           </OutsideClickHandler>
-        </div>
-      </Wrap>
+        </Wrap>
+      </Portal>
     );
     return (
       <>

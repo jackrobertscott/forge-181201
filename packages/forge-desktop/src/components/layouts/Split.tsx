@@ -11,9 +11,9 @@ const Wrap = styled('div')`
     css`
       width: 800px;
       max-width: 100%;
+      max-height: 600px;
     `}
   flex-grow: 1;
-  max-height: 80vh;
 `;
 
 const Sidebar = styled('div')`
