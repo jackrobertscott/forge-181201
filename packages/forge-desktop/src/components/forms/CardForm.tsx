@@ -1,36 +1,55 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, Field } from 'formik';
-import { injectStripe } from 'react-stripe-elements';
+import { Formik, Field, FormikProps } from 'formik';
+import { injectStripe, CardElement } from 'react-stripe-elements';
 import * as Yup from 'yup';
 import GoodButton from '../buttons/GoodButton';
 import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
+import colors from '../../styles/colors';
+import CardInput from '../inputs/CardInput';
 
-interface ICardFragment {}
+interface ICardFragment {
+  name?: string;
+}
 
 interface ICardFormProps extends IComponentProps {
   handlers: {
     submit: (data: any) => void;
   };
   data: {
+    prefill: ICardFragment;
     loading: boolean;
   };
   stripe?: any;
 }
 
 const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
-  const prefill: ICardFragment = {};
-  const validation = Yup.object().shape({});
-  const form = () => (
+  const prefill: ICardFragment = {
+    name: '',
+    ...(data.prefill || {}),
+  };
+  const validation = Yup.object().shape({
+    name: Yup.string()
+      .trim()
+      .required(),
+    coupon: Yup.string().trim(),
+  });
+  const form = ({ errors, touched }: FormikProps<ICardFragment>) => (
     <FormList>
       <Field
-        name="shortcutOpen"
-        label="App Shortcut"
-        help="The keyboard shortcut used to open this app."
-        placeholder="CommandOrControl+D"
+        name="name"
+        label="Name"
+        help="The name on the card."
+        placeholder="E.g. MR HAROLD POTTER"
         component={Control}
-        // problem={touched.shortcutOpen && errors.shortcutOpen}
+        problem={touched.name && errors.name}
+      />
+      <Control
+        label="Card"
+        help="The card details."
+        input={CardInput}
+        hidePostalCode={true}
       />
       <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
         Save

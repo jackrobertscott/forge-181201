@@ -72,7 +72,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     return (
       <FormList>
         <Split reverse={true}>
-          <List>
+          <List wide={true}>
             <Button auto="right" as={Link} to="/">
               Back
             </Button>
@@ -91,7 +91,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
             <Field
               name="shortcut"
               label="Shortcut"
-              help="Used to quickly find snippet."
+              help="Find the snippet quickly with this shortcut."
               placeholder="E.g. abc"
               component={Control}
             />

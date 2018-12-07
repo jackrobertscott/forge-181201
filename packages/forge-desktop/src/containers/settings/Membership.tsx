@@ -9,6 +9,9 @@ interface IMembershipProps {}
 const Membership: FunctionComponent<IMembershipProps> = () => {
   const data = {
     loading: false,
+    prefill: {
+      name: '',
+    },
   };
   const handlers = {
     submit: () => null,
