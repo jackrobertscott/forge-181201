@@ -9,7 +9,7 @@ import List from '../layouts/List';
 
 const Wrap = styled('div')``;
 
-interface ICardMenuProps {
+export interface ICardMenuProps {
   children: ReactNode;
 }
 

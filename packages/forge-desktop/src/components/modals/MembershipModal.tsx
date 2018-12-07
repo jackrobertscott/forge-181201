@@ -7,7 +7,7 @@ import Modal from '../layouts/Modal';
 import { IToggle } from '../statefuls/Toggle';
 import Button from '../buttons/Button';
 
-interface IMembershipModalProps extends IComponentProps {
+export interface IMembershipModalProps extends IComponentProps {
   children: ReactNode;
 }
 

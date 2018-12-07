@@ -11,4 +11,5 @@ export default styled('div')`
   ${layouts.space}
   ${({ slim }: any) => slim && shapes.thin}
   flex-grow: 1;
+  flex-shrink: 0;
 `;

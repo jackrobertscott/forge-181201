@@ -7,11 +7,11 @@ export interface IToggle {
   close: () => any;
 }
 
-interface IToggleProps {
+export interface IToggleProps {
   children: (props: IToggle) => ReactNode;
 }
 
-interface IToggleState {
+export interface IToggleState {
   active: boolean;
 }
 

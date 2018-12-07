@@ -23,13 +23,18 @@ const Note = styled('div')`
   ${words.secondary}
 `;
 
-interface IResultProps {
+export interface IResultProps {
   children: ReactNode;
   note: ReactNode;
+  [name: string]: any;
 }
 
-const Result: FunctionComponent<IResultProps> = ({ children, note }) => (
-  <Wrap>
+const Result: FunctionComponent<IResultProps> = ({
+  children,
+  note,
+  ...args
+}) => (
+  <Wrap {...args}>
     <Name>{children}</Name>
     <Note>{note}</Note>
   </Wrap>

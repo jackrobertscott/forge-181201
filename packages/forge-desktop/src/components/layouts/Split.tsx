@@ -13,6 +13,7 @@ const Wrap = styled('div')`
       max-width: 100%;
     `}
   flex-grow: 1;
+  max-height: 80vh;
 `;
 
 const Sidebar = styled('div')`
@@ -20,12 +21,24 @@ const Sidebar = styled('div')`
   width: 35%;
   min-width: 35%;
   margin-right: 15px;
-  ${({ reverse }: { reverse?: boolean | string; [name: string]: any }) =>
+  ${({
+    reverse,
+  }: {
+    reverse?: boolean | string;
+    middle?: boolean | string;
+    [name: string]: any;
+  }) =>
     reverse &&
     css`
       margin-right: 0;
       margin-left: 15px;
       order: 1;
+    `}
+  ${({ middle }: any) =>
+    middle &&
+    css`
+      width: 50%;
+      min-width: 50%;
     `}
 `;
 
@@ -34,19 +47,23 @@ const Main = styled('div')`
   flex-grow: 1;
 `;
 
-interface ISplitProps {
+export interface ISplitProps {
   children: ReactNode[];
   reverse?: boolean;
+  middle?: boolean;
   [name: string]: any;
 }
 
 const Split: FunctionComponent<ISplitProps> = ({
   children,
   reverse,
+  middle,
   ...args
 }: ISplitProps) => (
   <Wrap {...args}>
-    <Sidebar reverse={reverse}>{children[0]}</Sidebar>
+    <Sidebar reverse={reverse} middle={middle}>
+      {children[0]}
+    </Sidebar>
     <Main>{children[1]}</Main>
   </Wrap>
 );

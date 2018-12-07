@@ -1,11 +1,11 @@
-interface IGlobalConfigDefaults {
+export interface IGlobalConfigDefaults {
   environment: string;
   appName: string;
   website: string;
   intercom: string;
 }
 
-interface IGlobalConfig extends IGlobalConfigDefaults {
+export interface IGlobalConfig extends IGlobalConfigDefaults {
   debug: boolean;
   assetPath: string;
   urls: {

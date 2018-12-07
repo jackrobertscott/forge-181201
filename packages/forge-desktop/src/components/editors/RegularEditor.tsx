@@ -15,7 +15,7 @@ const Wrap = styled('div')`
   padding-top: 25px;
 `;
 
-interface IRegularEditorProps {}
+export interface IRegularEditorProps {}
 
 const RegularEditor: FunctionComponent<IRegularEditorProps> = ({ ...args }) => (
   <Wrap>

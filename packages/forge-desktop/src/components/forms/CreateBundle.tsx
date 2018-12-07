@@ -1,58 +1,65 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, Field, FormikProps } from 'formik';
-import { injectStripe, CardElement } from 'react-stripe-elements';
+import { Formik, FormikProps, Field } from 'formik';
 import * as Yup from 'yup';
 import GoodButton from '../buttons/GoodButton';
 import Control from '../inputs/Control';
+import LargeInput from '../inputs/LargeInput';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
-import colors from '../../styles/colors';
-import CardInput from '../inputs/CardInput';
 
-export interface ICardFragment {
+export interface IBundleFragment {
   name?: string;
+  readme?: string;
 }
 
-export interface ICardFormProps extends IComponentProps {
+export interface IBundleFormProps extends IComponentProps {
   handlers: {
     submit: (data: any) => void;
   };
   data: {
-    prefill: ICardFragment;
     loading: boolean;
+    prefill: IBundleFragment;
   };
-  stripe?: any;
 }
 
-const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
-  const prefill: ICardFragment = {
+const BundleForm: FunctionComponent<IBundleFormProps> = ({
+  data,
+  handlers,
+}) => {
+  const prefill: IBundleFragment = {
     name: '',
+    readme: '',
     ...(data.prefill || {}),
   };
   const validation = Yup.object().shape({
     name: Yup.string()
       .trim()
       .required(),
-    coupon: Yup.string().trim(),
+    readme: Yup.string()
+      .trim()
+      .required(),
   });
-  const form = ({ errors, touched }: FormikProps<ICardFragment>) => (
+  const form = ({ errors, touched }: FormikProps<IBundleFragment>) => (
     <FormList>
       <Field
         name="name"
         label="Name"
-        help="The name on the card."
-        placeholder="E.g. MR HAROLD POTTER"
+        help="The bundle name."
+        placeholder="E.g. React Forms"
         component={Control}
         problem={touched.name && errors.name}
       />
-      <Control
-        label="Card"
-        help="The card details."
-        input={CardInput}
-        hidePostalCode={true}
+      <Field
+        name="readme"
+        label="Description"
+        help="A brief description what the bundle contains."
+        placeholder="E.g. i-dont-like-spiders"
+        component={Control}
+        input={LargeInput}
+        problem={touched.readme && errors.readme}
       />
       <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
-        Save
+        Create
       </GoodButton>
     </FormList>
   );
@@ -66,4 +73,4 @@ const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
   );
 };
 
-export default injectStripe(CardForm);
+export default BundleForm;

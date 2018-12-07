@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Link } from 'lumbridge';
 import CardMenu from '../../components/menus/CardMenu';
 
-interface ISettingsMenuProps {}
+export interface ISettingsMenuProps {}
 
 const SettingsMenu: FunctionComponent<ISettingsMenuProps> = () => (
   <CardMenu>

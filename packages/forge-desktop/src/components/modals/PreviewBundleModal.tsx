@@ -7,7 +7,7 @@ import Modal from '../layouts/Modal';
 import { IToggle } from '../statefuls/Toggle';
 import Button from '../buttons/Button';
 
-interface IPreviewBundleModalProps extends IComponentProps {
+export interface IPreviewBundleModalProps extends IComponentProps {
   children: ReactNode;
 }
 

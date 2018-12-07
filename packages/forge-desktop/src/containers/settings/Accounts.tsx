@@ -4,7 +4,7 @@ import Title from '../../components/texts/Title';
 import Control from '../../components/inputs/Control';
 import Button from '../../components/buttons/Button';
 
-interface IAccountsProps {}
+export interface IAccountsProps {}
 
 const Accounts: FunctionComponent<IAccountsProps> = () => {
   const GitHub = ({ ...args }) => <Button {...args}>Connect to GitHub</Button>;

@@ -3,7 +3,7 @@ import SignInModal from '../../components/modals/SignInModal';
 import { IToggle } from '../../components/statefuls/Toggle';
 import Button from '../../components/buttons/Button';
 
-interface ISignInProps {}
+export interface ISignInProps {}
 
 const SignIn: FunctionComponent<ISignInProps> = () => {
   const button = ({ open }: IToggle) => <Button onClick={open}>Choose</Button>;

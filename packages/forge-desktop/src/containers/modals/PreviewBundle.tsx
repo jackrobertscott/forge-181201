@@ -3,7 +3,7 @@ import PreviewBundleModal from '../../components/modals/PreviewBundleModal';
 import { IToggle } from '../../components/statefuls/Toggle';
 import Button from '../../components/buttons/Button';
 
-interface IPreviewBundleProps {}
+export interface IPreviewBundleProps {}
 
 const PreviewBundle: FunctionComponent<IPreviewBundleProps> = () => {
   const button = ({ open }: IToggle) => <Button onClick={open}>Choose</Button>;

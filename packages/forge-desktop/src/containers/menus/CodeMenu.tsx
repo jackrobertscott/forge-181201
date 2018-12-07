@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 
-interface ICodeMenuProps {}
+export interface ICodeMenuProps {}
 
 const CodeMenu: FunctionComponent = () => {
   const [count, setCount] = useState(0);

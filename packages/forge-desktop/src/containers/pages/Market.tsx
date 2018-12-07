@@ -52,7 +52,7 @@ const fakeBundles = [
   },
 ];
 
-interface IMarketProps {}
+export interface IMarketProps {}
 
 const Market: FunctionComponent<IMarketProps> = () => {
   const data = {

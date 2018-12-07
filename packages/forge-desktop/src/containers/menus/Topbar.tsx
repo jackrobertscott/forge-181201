@@ -3,7 +3,7 @@ import Header from '../../components/menus/Header';
 import PopupMenu from '../../components/menus/PopupMenu';
 import { Link } from 'lumbridge';
 
-interface ITopbarProps {}
+export interface ITopbarProps {}
 
 const Topbar: FunctionComponent<ITopbarProps> = () => {
   const menu = (

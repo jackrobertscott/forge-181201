@@ -26,7 +26,7 @@ const Wrap = styled('button').attrs({ type: 'button' })`
     `}
 `;
 
-interface IGoodButton {
+export interface IGoodButton {
   children: ReactNode;
   loading?: boolean;
   [property: string]: any;

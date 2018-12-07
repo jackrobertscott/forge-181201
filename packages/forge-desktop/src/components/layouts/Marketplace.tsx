@@ -41,13 +41,13 @@ const Readme = styled('div')`
   ${words.small}
 `;
 
-interface IBundleFragment {
+export interface IBundleFragment {
   id: string;
   name: string;
   readme: string;
 }
 
-interface IMarketplaceProps extends IComponentProps {
+export interface IMarketplaceProps extends IComponentProps {
   data: {
     bundles: IBundleFragment[];
   };

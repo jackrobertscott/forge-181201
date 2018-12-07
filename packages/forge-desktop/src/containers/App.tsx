@@ -5,7 +5,7 @@ import Topbar from './menus/Topbar';
 
 const Routes = mainRoutes.render();
 
-interface IAppProps {}
+export interface IAppProps {}
 
 const App: FunctionComponent<IAppProps> = () => (
   <Background>

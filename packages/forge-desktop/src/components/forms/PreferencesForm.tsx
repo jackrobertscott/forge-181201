@@ -6,11 +6,11 @@ import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
 
-interface IPreferencesFragment {
+export interface IPreferencesFragment {
   shortcutOpen?: string;
 }
 
-interface IPreferencesFormProps extends IComponentProps {
+export interface IPreferencesFormProps extends IComponentProps {
   handlers: {
     submit: (data: any) => void;
   };

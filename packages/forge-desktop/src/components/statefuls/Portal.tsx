@@ -1,11 +1,11 @@
 import { ReactNode, Component } from 'react';
 import ReactDOM from 'react-dom';
 
-interface IPortalProps {
+export interface IPortalProps {
   children: ReactNode;
 }
 
-interface IPortalState {}
+export interface IPortalState {}
 
 export default class Portal extends Component<IPortalProps, IPortalState> {
   private root: HTMLElement | null;

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import CodeForm from '../../components/forms/CodeForm';
 
-interface ICreateCodeProps {}
+export interface ICreateCodeProps {}
 
 const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
   const data = {

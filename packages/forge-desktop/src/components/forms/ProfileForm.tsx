@@ -6,13 +6,13 @@ import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
 
-interface IProfileFragment {
+export interface IProfileFragment {
   name?: string;
   username?: string;
   email?: string;
 }
 
-interface IProfileFormProps extends IComponentProps {
+export interface IProfileFormProps extends IComponentProps {
   handlers: {
     submit: (data: any) => void;
   };

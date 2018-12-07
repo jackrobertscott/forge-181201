@@ -4,7 +4,7 @@ import Title from '../../components/texts/Title';
 import CardForm from '../../components/forms/CardForm';
 import { Elements } from 'react-stripe-elements';
 
-interface IMembershipProps {}
+export interface IMembershipProps {}
 
 const Membership: FunctionComponent<IMembershipProps> = () => {
   const data = {

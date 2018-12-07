@@ -3,7 +3,7 @@ import ProfileForm from '../../components/forms/ProfileForm';
 import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
 
-interface IProfileProps {}
+export interface IProfileProps {}
 
 const Profile: FunctionComponent<IProfileProps> = () => {
   const data = {

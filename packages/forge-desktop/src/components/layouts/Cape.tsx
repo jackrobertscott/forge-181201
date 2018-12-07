@@ -43,7 +43,7 @@ const Main = styled('div')`
   }
 `;
 
-interface ICapeProps {
+export interface ICapeProps {
   children: ReactNode[];
 }
 

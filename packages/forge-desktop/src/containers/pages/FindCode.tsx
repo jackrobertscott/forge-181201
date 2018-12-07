@@ -5,9 +5,9 @@ import SimpleInput from '../../components/inputs/SimpleInput';
 import StatusEditor from '../../components/editors/StatusEditor';
 import GoodButton from '../../components/buttons/GoodButton';
 import List from '../../components/layouts/List';
-import SearchList from '../../components/lists/SearchList';
+import ChooseBundle from '../../components/lists/ChooseBundle';
 
-interface IFindCodeProps {}
+export interface IFindCodeProps {}
 
 const fakeBundles = [
   { id: '123', name: 'React', codeCount: 8 },
@@ -33,6 +33,9 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     bundles: fakeBundles,
     codes: [],
   };
+  const handlers = {
+    choose: () => null,
+  };
   return (
     <Split>
       <List>
@@ -40,7 +43,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
         <GoodButton as={Link} to="/create" auto="left">
           Create
         </GoodButton>
-        <SearchList data={data} />
+        <ChooseBundle data={data} handlers={handlers} />
       </List>
       <StatusEditor active={false} />
     </Split>

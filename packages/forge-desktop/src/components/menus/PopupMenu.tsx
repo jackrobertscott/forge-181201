@@ -25,7 +25,7 @@ const Wrap = styled('div')`
   z-index: 20;
 `;
 
-interface IPopupMenuProps {
+export interface IPopupMenuProps {
   children: ReactNode;
   items: ReactNode;
 }

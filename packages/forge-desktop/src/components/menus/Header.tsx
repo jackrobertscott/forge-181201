@@ -40,7 +40,7 @@ const MiniButton = styled('button')`
   cursor: pointer;
 `;
 
-interface IHeaderProps {
+export interface IHeaderProps {
   menu: ReactNode;
 }
 

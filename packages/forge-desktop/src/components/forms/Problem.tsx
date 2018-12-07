@@ -24,11 +24,11 @@ const Wrap = styled('div')`
   }
 `;
 
-interface IReport {
+export interface IReport {
   message?: string;
 }
 
-interface IProblemProps extends IComponentProps {
+export interface IProblemProps extends IComponentProps {
   handlers: {
     submit: (data: any) => void;
   };

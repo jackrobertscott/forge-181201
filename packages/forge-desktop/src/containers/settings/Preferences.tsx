@@ -3,7 +3,7 @@ import PreferencesForm from '../../components/forms/PreferencesForm';
 import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
 
-interface IPreferencesProps {}
+export interface IPreferencesProps {}
 
 const Preferences: FunctionComponent<IPreferencesProps> = () => {
   const data = {

@@ -43,7 +43,7 @@ const Sidepop = styled('div')`
     `}
 `;
 
-interface IControlProps {
+export interface IControlProps {
   label: string;
   help: string;
   error?: string;

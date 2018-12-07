@@ -27,7 +27,7 @@ Monaco.editor.defineTheme('phantom', {
   },
 });
 
-interface IEditorProps {
+export interface IEditorProps {
   onChange?: (...args: any[]) => any;
   onBlur?: (...args: any[]) => any;
   initialValue?: string;

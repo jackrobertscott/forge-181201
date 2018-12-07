@@ -32,7 +32,7 @@ const Subtitle = styled('span')`
   margin-left: auto;
 `;
 
-interface IStatusEditorProps {
+export interface IStatusEditorProps {
   active: boolean;
   [name: string]: any;
 }

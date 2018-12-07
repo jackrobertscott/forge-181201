@@ -31,7 +31,7 @@ const Close = styled('div')`
   cursor: pointer;
 `;
 
-interface IModalProps {
+export interface IModalProps {
   component: ReactNode;
   children: (bag: IToggle) => ReactNode;
 }

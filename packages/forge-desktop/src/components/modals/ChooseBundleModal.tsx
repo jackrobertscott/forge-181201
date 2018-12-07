@@ -4,20 +4,49 @@ import Split from '../layouts/Split';
 import Card from '../cards/Card';
 import Modal from '../layouts/Modal';
 import { IToggle } from '../statefuls/Toggle';
-import Control from '../inputs/Control';
+import Title from '../texts/Title';
+import Subtitle from '../texts/Subtitle';
+import List from '../layouts/List';
+import BundleForm, { IBundleFragment } from '../forms/CreateBundle';
+import ChooseBundle from '../../components/lists/ChooseBundle';
 
-interface IChooseBundleModalProps extends IComponentProps {
+export interface IBundle {
+  id: string;
+  name: string;
+  codeCount: number;
+}
+
+export interface IChooseBundleModalProps extends IComponentProps {
   children: (bag: IToggle) => ReactNode;
+  data: {
+    loading: boolean;
+    prefill: IBundleFragment;
+    bundles: IBundle[];
+  };
+  handlers: {
+    submit: (...args: any[]) => any;
+    choose: (bundle: IBundle) => any;
+  };
 }
 
 const ChooseBundleModal: FunctionComponent<IChooseBundleModalProps> = ({
   children,
+  data,
+  handlers,
 }) => {
   const modal = (
-    <Split modal={true}>
-      <Card>LALALALA</Card>
+    <Split modal={true} middle={true}>
+      <List>
+        <Card>
+          <Title>Select Bundle</Title>
+          <Subtitle>Create or select a bundle.</Subtitle>
+        </Card>
+        <ChooseBundle data={data} handlers={handlers} />
+      </List>
       <Card>
-        <Control label="hello" help="adsf" />
+        <Title>Create Bundle</Title>
+        <br />
+        <BundleForm data={data} handlers={handlers} />
       </Card>
     </Split>
   );

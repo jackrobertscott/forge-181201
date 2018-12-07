@@ -5,7 +5,7 @@ import SettingsRoutes from '../../routes/settingsRoutes';
 
 const Routes = SettingsRoutes.render();
 
-interface ISettingsProps {}
+export interface ISettingsProps {}
 
 const Settings: FunctionComponent<ISettingsProps> = () => {
   return (

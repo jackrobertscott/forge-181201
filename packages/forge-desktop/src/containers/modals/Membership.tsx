@@ -3,7 +3,7 @@ import MembershipModal from '../../components/modals/MembershipModal';
 import { IToggle } from '../../components/statefuls/Toggle';
 import Button from '../../components/buttons/Button';
 
-interface IMembershipProps {}
+export interface IMembershipProps {}
 
 const Membership: FunctionComponent<IMembershipProps> = () => {
   const button = ({ open }: IToggle) => <Button onClick={open}>Choose</Button>;

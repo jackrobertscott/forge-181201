@@ -3,11 +3,11 @@ import * as Sentry from '@sentry/browser';
 import config from '../../config';
 import Problem from '../../components/forms/Problem';
 
-interface IErrorCatchProps {
+export interface IErrorCatchProps {
   children: ReactNode;
 }
 
-interface IErrorCatchState {
+export interface IErrorCatchState {
   error: any;
 }
 
