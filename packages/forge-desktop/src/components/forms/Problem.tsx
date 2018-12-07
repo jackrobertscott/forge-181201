@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import Background from '../layouts/Background';
 import Control from '../inputs/Control';
@@ -13,6 +13,7 @@ import layouts from '../../styles/layouts';
 import shapes from '../../styles/shapes';
 import Title from '../texts/Title';
 import Subtitle from '../texts/Subtitle';
+import FormList from '../layouts/FormList';
 
 const Wrap = styled('div')`
   ${layouts.center}
@@ -48,7 +49,7 @@ const Problem: FunctionComponent<IProblemProps> = ({ handlers, data }) => {
       <Background>
         <Wrap>
           <Card>
-            <Form>
+            <FormList>
               <List>
                 <div>
                   <Title>Ooooooops...</Title>
@@ -67,7 +68,7 @@ const Problem: FunctionComponent<IProblemProps> = ({ handlers, data }) => {
                   Relaunch App
                 </BadButton>
               </List>
-            </Form>
+            </FormList>
           </Card>
         </Wrap>
       </Background>

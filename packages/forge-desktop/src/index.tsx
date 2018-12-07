@@ -4,6 +4,7 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
+import { StripeProvider } from 'react-stripe-elements';
 import * as serviceWorker from './serviceWorker';
 import config from './config';
 import ErrorCatch from './containers/pages/ErrorCatch';
@@ -19,7 +20,9 @@ Sentry.init({
 
 const app = (
   <ErrorCatch>
-    <App />
+    <StripeProvider apiKey={config.stripeKey}>
+      <App />
+    </StripeProvider>
   </ErrorCatch>
 );
 

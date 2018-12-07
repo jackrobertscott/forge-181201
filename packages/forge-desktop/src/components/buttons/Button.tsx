@@ -19,6 +19,11 @@ const Wrap = styled('button').attrs({ type: 'button' })`
     css`
     margin-${auto}: auto;
   `}
+  ${({ min }: { min?: string; [name: string]: any }) =>
+    min &&
+    css`
+      min-width: 140px;
+    `}
 `;
 
 interface IButton {

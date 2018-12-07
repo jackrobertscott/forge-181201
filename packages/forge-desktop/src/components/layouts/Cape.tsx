@@ -39,7 +39,7 @@ const Main = styled('div')`
   padding-left: 30px;
   padding-right: 30px;
   & > * {
-    max-width: 640px;
+    max-width: 500px;
   }
 `;
 

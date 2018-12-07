@@ -1,22 +1,27 @@
 import React, { FunctionComponent } from 'react';
 import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
-import Control from '../../components/inputs/Control';
-import GoodButton from '../../components/buttons/GoodButton';
+import CardForm from '../../components/forms/CardForm';
+import { Elements } from 'react-stripe-elements';
 
 interface IMembershipProps {}
 
-const Membership: FunctionComponent<IMembershipProps> = () => (
-  <List>
-    <Title>Membership</Title>
-    <br />
-    <Control
-      label="Name"
-      help="Your full name."
-      placeholder="E.g. Fred Blogs"
-    />
-    <GoodButton auto="right">Save</GoodButton>
-  </List>
-);
+const Membership: FunctionComponent<IMembershipProps> = () => {
+  const data = {
+    loading: false,
+  };
+  const handlers = {
+    submit: () => null,
+  };
+  return (
+    <List>
+      <Title>Membership</Title>
+      <br />
+      <Elements>
+        <CardForm data={data} handlers={handlers} />
+      </Elements>
+    </List>
+  );
+};
 
 export default Membership;

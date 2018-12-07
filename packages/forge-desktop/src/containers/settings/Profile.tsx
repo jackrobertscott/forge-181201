@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import ProfileForm from '../../components/forms/ProfileForm';
+import List from '../../components/layouts/List';
+import Title from '../../components/texts/Title';
 
 interface IProfileProps {}
 
@@ -13,7 +15,13 @@ const Profile: FunctionComponent<IProfileProps> = () => {
   const handlers = {
     submit: () => null,
   };
-  return <ProfileForm data={data} handlers={handlers} />;
+  return (
+    <List>
+      <Title>Profile</Title>
+      <br />
+      <ProfileForm data={data} handlers={handlers} />
+    </List>
+  );
 };
 
 export default Profile;

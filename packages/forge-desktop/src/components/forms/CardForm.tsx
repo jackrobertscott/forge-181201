@@ -1,37 +1,28 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FormikProps, Field } from 'formik';
+import { Formik, Field } from 'formik';
+import { injectStripe } from 'react-stripe-elements';
 import * as Yup from 'yup';
 import GoodButton from '../buttons/GoodButton';
 import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
 
-interface IPreferencesFragment {
-  shortcutOpen?: string;
-}
+interface ICardFragment {}
 
-interface IPreferencesFormProps extends IComponentProps {
+interface ICardFormProps extends IComponentProps {
   handlers: {
     submit: (data: any) => void;
   };
   data: {
     loading: boolean;
-    preferences: IPreferencesFragment;
   };
+  stripe?: any;
 }
 
-const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
-  data,
-  handlers,
-}) => {
-  const prefill: IPreferencesFragment = {
-    shortcutOpen: '',
-    ...(data.preferences || {}),
-  };
-  const validation = Yup.object().shape({
-    shortcutOpen: Yup.string().trim(),
-  });
-  const form = ({ errors, touched }: FormikProps<IPreferencesFragment>) => (
+const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
+  const prefill: ICardFragment = {};
+  const validation = Yup.object().shape({});
+  const form = () => (
     <FormList>
       <Field
         name="shortcutOpen"
@@ -39,7 +30,7 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
         help="The keyboard shortcut used to open this app."
         placeholder="CommandOrControl+D"
         component={Control}
-        problem={touched.shortcutOpen && errors.shortcutOpen}
+        // problem={touched.shortcutOpen && errors.shortcutOpen}
       />
       <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
         Save
@@ -56,4 +47,4 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
   );
 };
 
-export default PreferencesForm;
+export default injectStripe(CardForm);

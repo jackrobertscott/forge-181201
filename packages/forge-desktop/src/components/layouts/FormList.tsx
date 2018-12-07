@@ -1,16 +1,12 @@
 import styled, { css } from 'styled-components';
 import layouts from '../../styles/layouts';
+import { Form } from 'formik';
 
-export default styled('div')`
+export default styled(Form)`
   ${layouts.columns}
   flex-grow: 1;
   & > * {
-    margin-bottom: ${({
-      wide,
-    }: {
-      wide?: string | boolean;
-      [name: string]: any;
-    }) => (wide ? '15px' : '10px')};
+    margin-bottom: 15px;
     &:last-child {
       margin-bottom: 0;
     }

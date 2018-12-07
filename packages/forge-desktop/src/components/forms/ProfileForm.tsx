@@ -1,13 +1,15 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FormikProps, Field, Form } from 'formik';
+import { Formik, FormikProps, Field } from 'formik';
 import * as Yup from 'yup';
-import List from '../layouts/List';
 import GoodButton from '../buttons/GoodButton';
 import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
+import FormList from '../layouts/FormList';
 
 interface IProfileFragment {
-  name: string;
+  name?: string;
+  username?: string;
+  email?: string;
 }
 
 interface IProfileFormProps extends IComponentProps {
@@ -26,29 +28,45 @@ const ProfileForm: FunctionComponent<IProfileFormProps> = ({
 }) => {
   const prefill: IProfileFragment = {
     name: '',
+    username: '',
+    email: '',
     ...(data.profile || {}),
   };
   const validation = Yup.object().shape({
-    name: Yup.string()
-      .trim()
-      .required(),
+    name: Yup.string().trim(),
+    username: Yup.string().trim(),
+    email: Yup.string().trim(),
   });
   const form = ({ errors, touched }: FormikProps<IProfileFragment>) => (
-    <Form>
-      <List>
-        <Field
-          name="name"
-          label="Todo Name"
-          help="The name of your snippet."
-          placeholder="E.g. React Component"
-          component={Control}
-          problem={touched.name && errors.name}
-        />
-        <GoodButton type="submit" loading={data.loading}>
-          Save
-        </GoodButton>
-      </List>
-    </Form>
+    <FormList>
+      <Field
+        name="name"
+        label="Your Name"
+        help="What do you want us to call you?"
+        placeholder="E.g. Ron Weasley"
+        component={Control}
+        problem={touched.name && errors.name}
+      />
+      <Field
+        name="username"
+        label="Username"
+        help="Your own unique identifier."
+        placeholder="E.g. i-dont-like-spiders"
+        component={Control}
+        problem={touched.name && errors.name}
+      />
+      <Field
+        name="email"
+        label="Email"
+        help="Get occasional emails - not more than one per month."
+        placeholder="E.g. ron@hogwartz.edu.org"
+        component={Control}
+        problem={touched.name && errors.name}
+      />
+      <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
+        Save
+      </GoodButton>
+    </FormList>
   );
   return (
     <Formik

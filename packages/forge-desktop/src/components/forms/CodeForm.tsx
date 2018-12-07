@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FormikProps, Field, Form } from 'formik';
+import { Formik, FormikProps, Field } from 'formik';
 import * as Yup from 'yup';
 import Split from '../layouts/Split';
 import List from '../layouts/List';
@@ -10,6 +10,7 @@ import Control from '../inputs/Control';
 import RegularEditor from '../editors/RegularEditor';
 import { IComponentProps } from '../../utils/components';
 import { Link } from 'lumbridge';
+import FormList from '../layouts/FormList';
 
 interface ICodeFragment {
   id?: string;
@@ -69,7 +70,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
       }
     };
     return (
-      <Form>
+      <FormList>
         <Split reverse={true}>
           <List>
             <Button auto="right" as={Link} to="/">
@@ -106,7 +107,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
           </List>
           <RegularEditor />
         </Split>
-      </Form>
+      </FormList>
     );
   };
   return (
