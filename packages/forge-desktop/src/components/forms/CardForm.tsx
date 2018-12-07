@@ -41,7 +41,7 @@ const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
         name="name"
         label="Name"
         help="The name on the card."
-        placeholder="E.g. MR HAROLD POTTER"
+        placeholder="E.g. Mr Harold Potter"
         component={Control}
         problem={touched.name && errors.name}
       />

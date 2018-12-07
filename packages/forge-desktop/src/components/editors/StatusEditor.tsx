@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import bgs from '../../styles/bgs';
 import shapes from '../../styles/shapes';
 import shadows from '../../styles/shadows';
-import Editor from './Editor';
+import Editor, { IEditorProps } from './Editor';
 import layouts from '../../styles/layouts';
 import words from '../../styles/words';
 
@@ -37,7 +37,7 @@ export interface IStatusEditorProps {
   [name: string]: any;
 }
 
-const StatusEditor: FunctionComponent<IStatusEditorProps> = ({
+const StatusEditor: FunctionComponent<IStatusEditorProps & IEditorProps> = ({
   active,
   ...args
 }) => (

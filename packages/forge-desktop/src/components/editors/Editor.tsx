@@ -30,6 +30,7 @@ Monaco.editor.defineTheme('phantom', {
 export interface IEditorProps {
   onChange?: (...args: any[]) => any;
   onBlur?: (...args: any[]) => any;
+  style?: any;
   initialValue?: string;
   value?: string;
   language?: string;
@@ -42,15 +43,6 @@ export interface IEditorProps {
 }
 
 export default class Editor extends Component<IEditorProps> {
-  public static defaultProps = {
-    onChange: () => null,
-    onBlur: () => null,
-    initialValue: null,
-    value: null,
-    language: null,
-    snippeting: false,
-    command: null,
-  };
   /**
    * Resize editor to fit screen.
    */
@@ -80,7 +72,7 @@ export default class Editor extends Component<IEditorProps> {
       },
     });
     window.addEventListener('resize', this.resize);
-    this.resize();
+    setTimeout(() => this.resize()); // push to next tick
     this.configureEditor();
     this.handleEvents();
     if (command) {
@@ -131,7 +123,7 @@ export default class Editor extends Component<IEditorProps> {
    * Editor is wrapped so that it has nice spacing.
    */
   public render() {
-    return <Container ref={this.container} />;
+    return <Container ref={this.container} style={this.props.style} />;
   }
   /**
    * Make sure editor is setup nicely.

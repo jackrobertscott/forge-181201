@@ -22,6 +22,11 @@ const Wrap = styled('div')`
   animation: ${animate.fadeIn} 0.2s linear;
 `;
 
+const Center = styled('div')`
+  ${words.normal}
+  ${words.primary}
+`;
+
 const Close = styled('div')`
   ${words.small}
   ${layouts.rowsCenter}
@@ -59,10 +64,12 @@ const Modal: FunctionComponent<IModalProps> = ({ component, children }) => {
     const popup = (
       <Portal>
         <Wrap>
-          <Close onClick={close}>x close.</Close>
-          <OutsideClickHandler onOutsideClick={closeNoFocus}>
-            {component}
-          </OutsideClickHandler>
+          <Center>
+            <Close onClick={close}>x close.</Close>
+            <OutsideClickHandler onOutsideClick={closeNoFocus}>
+              {component}
+            </OutsideClickHandler>
+          </Center>
         </Wrap>
       </Portal>
     );

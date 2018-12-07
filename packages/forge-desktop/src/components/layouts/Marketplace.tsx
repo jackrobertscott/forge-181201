@@ -8,6 +8,8 @@ import shadows from '../../styles/shadows';
 import layouts from '../../styles/layouts';
 import words from '../../styles/words';
 import states from '../../styles/states';
+import { IToggle } from '../statefuls/Toggle';
+import PreviewBundleModal from '../modals/PreviewBundleModal';
 
 const Wrap = styled('div')`
   ${layouts.rows}
@@ -45,21 +47,37 @@ export interface IBundleFragment {
   id: string;
   name: string;
   readme: string;
+  codeCount: number;
 }
 
 export interface IMarketplaceProps extends IComponentProps {
   data: {
     bundles: IBundleFragment[];
   };
+  handlers: {
+    subscribe: (bundle: IBundleFragment) => any;
+  };
 }
 
-const Marketplace: FunctionComponent<IMarketplaceProps> = ({ data }) => {
-  const bundles = data.bundles.map(({ id, name, readme }: IBundleFragment) => (
-    <Item key={id}>
-      <Name>{name}</Name>
-      <Readme>{readme}</Readme>
-    </Item>
-  ));
+const Marketplace: FunctionComponent<IMarketplaceProps> = ({
+  data,
+  handlers,
+}) => {
+  const bundles = data.bundles.map((bundle: IBundleFragment) => {
+    const { id, name, readme } = bundle;
+    const item = ({ open }: IToggle) => (
+      <Item onClick={open}>
+        <Name>{name}</Name>
+        <Readme>{readme}</Readme>
+      </Item>
+    );
+    const modalData = { bundle };
+    return (
+      <PreviewBundleModal key={id} data={modalData} handlers={handlers}>
+        {item}
+      </PreviewBundleModal>
+    );
+  });
   return <Wrap>{bundles}</Wrap>;
 };
 
