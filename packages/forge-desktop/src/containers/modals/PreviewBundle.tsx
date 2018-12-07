@@ -1,16 +1,13 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
+import PreviewBundleModal from '../../components/modals/PreviewBundleModal';
+import { IToggle } from '../../components/statefuls/Toggle';
+import Button from '../../components/buttons/Button';
 
 interface IPreviewBundleProps {}
 
-const PreviewBundle: FunctionComponent = () => {
-  const [count, setCount] = useState(0);
-  const upvote = () => setCount(count + 1);
-  return (
-    <div>
-      PreviewBundle: {count}
-      <button onClick={upvote}>Up</button>
-    </div>
-  );
+const PreviewBundle: FunctionComponent<IPreviewBundleProps> = () => {
+  const button = ({ open }: IToggle) => <Button onClick={open}>Choose</Button>;
+  return <PreviewBundleModal>{button}</PreviewBundleModal>;
 };
 
 export default PreviewBundle;

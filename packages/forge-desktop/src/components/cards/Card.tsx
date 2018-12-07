@@ -10,4 +10,5 @@ export default styled('div')`
   ${shadows.simple}
   ${layouts.space}
   ${({ slim }: any) => slim && shapes.thin}
+  flex-grow: 1;
 `;

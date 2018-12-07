@@ -11,6 +11,7 @@ import RegularEditor from '../editors/RegularEditor';
 import { IComponentProps } from '../../utils/components';
 import { Link } from 'lumbridge';
 import FormList from '../layouts/FormList';
+import ChooseBundle from '../../containers/modals/ChooseBundle';
 
 interface ICodeFragment {
   id?: string;
@@ -99,7 +100,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               name="bundleId"
               label="Bundle"
               help="The group of snippets."
-              placeholder="E.g. React"
+              component={ChooseBundle}
             />
             <GoodButton type="submit" loading={data.loading}>
               Create

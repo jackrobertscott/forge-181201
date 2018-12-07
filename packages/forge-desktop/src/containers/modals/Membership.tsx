@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import SignInModal from '../../components/modals/SignInModal';
+import MembershipModal from '../../components/modals/MembershipModal';
 import { IToggle } from '../../components/statefuls/Toggle';
 import Button from '../../components/buttons/Button';
 
-interface ISignInProps {}
+interface IMembershipProps {}
 
-const SignIn: FunctionComponent<ISignInProps> = () => {
+const Membership: FunctionComponent<IMembershipProps> = () => {
   const button = ({ open }: IToggle) => <Button onClick={open}>Choose</Button>;
-  return <SignInModal>{button}</SignInModal>;
+  return <MembershipModal>{button}</MembershipModal>;
 };
 
-export default SignIn;
+export default Membership;
