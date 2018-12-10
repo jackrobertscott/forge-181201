@@ -9,6 +9,7 @@ export default Persistor.create({
         data: Yup.object().required(),
       },
       handler: ({ id, data }) => {
+        // @ts-ignore
         return new Promise((resolve, reject) => {
           try {
             const save = JSON.stringify(data);
@@ -25,6 +26,7 @@ export default Persistor.create({
         id: Yup.string().required(),
       },
       handler: ({ id }) => {
+        // @ts-ignore
         return new Promise((resolve, reject) => {
           try {
             const encode = localStorage.getItem(id);
