@@ -1,5 +1,5 @@
 import Bundle from '../models/Bundle';
-import User, { IUser } from '../models/User';
+import User from '../models/User';
 import Code from '../models/Code';
 import { recordAction } from '../utils/record';
 
