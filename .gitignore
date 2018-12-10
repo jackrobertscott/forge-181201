@@ -12,11 +12,10 @@ lib
 # mac
 .DS_Store
 
-# environment
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Environment
+.env
+*.env*
+!.env.example
 
 # logs
 npm-debug.log*

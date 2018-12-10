@@ -1,5 +1,5 @@
 // @ts-ignore
-import Analytics from 'analytics-node';
+import * as Analytics from 'analytics-node';
 import * as Sentry from '@sentry/node';
 import config from '../config';
 
