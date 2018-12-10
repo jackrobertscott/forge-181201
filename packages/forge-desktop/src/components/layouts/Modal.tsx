@@ -1,9 +1,4 @@
-import React, {
-  ReactNode,
-  FunctionComponent,
-  useState,
-  useEffect,
-} from 'react';
+import React, { ReactNode, FunctionComponent, useEffect } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import styled from 'styled-components';
 import layouts from '../../styles/layouts';
