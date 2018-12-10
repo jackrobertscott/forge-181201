@@ -21,3 +21,16 @@ type GitHubPayload {
   userId: String!
   accessToken: String!
 }
+
+type Payload {
+  token: String!
+  userId: String!
+}
+
+extend type Query {
+  oauthGitHubUrl: String!
+}
+
+extend type Mutation {
+  findOrCreateGitHub(code: String!): Payload!
+}

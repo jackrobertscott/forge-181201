@@ -9,3 +9,27 @@ type Code @auth {
   contents: String!
   language: String
 }
+
+input CodeFilterInput {
+  limit: Int
+}
+
+input CodeInput {
+  name: String!
+  shortcut: String!
+  contents: String!
+  language: String
+}
+
+extend type Query {
+  userCodes(search: String, filter: CodeFilterInput): [Code!]!
+  codes(filter: CodeFilterInput): [Code!]!
+  code(id: String!): Code!
+}
+
+extend type Mutation {
+  addCode(input: CodeInput!): Code
+  editCode(id: String!, input: CodeInput!): Code
+  cloneCode(id: String!): Code
+  deleteCode(id: String!): Code
+}

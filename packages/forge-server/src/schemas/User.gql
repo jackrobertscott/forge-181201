@@ -26,3 +26,35 @@ type User @auth {
   optins: [Optin!]!
   hasOptin(bundleId: String!): Boolean
 }
+
+input UserFilterInput {
+  limit: Int
+}
+
+input PreferencesInput {
+  shortcutOpen: String
+}
+
+input UserInput {
+  email: String
+  name: String
+  avatar: String
+  preferences: PreferencesInput
+}
+
+extend type Query {
+  users(filter: UserFilterInput): [User]!
+  user(id: String!): User!
+  me: User!
+}
+
+extend type Mutation {
+  addUser(input: UserInput!): User
+  editUser(id: String!, input: UserInput!): User
+  editMe(input: UserInput!): User
+  deleteUser(id: String!): User
+  subscribeUser(token: String!, coupon: String): User
+  unsubscribeUser: User
+  optinUser(bundleId: String!): Optin
+  optoutUser(bundleId: String!): Optin
+}

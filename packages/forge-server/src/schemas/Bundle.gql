@@ -10,3 +10,26 @@ type Bundle @auth {
   codes: [Code!]!
   published: Boolean
 }
+
+input BundleFilterInput {
+  limit: Int
+}
+
+input BundleInput {
+  name: String!
+  readme: String!
+  codeIds: [String!]!
+  published: Boolean
+}
+
+extend type Query {
+  userBundles(search: String, filter: BundleFilterInput): [Bundle!]!
+  marketBundles(search: String, filter: BundleFilterInput): [Bundle!]!
+  bundle(id: String!): Bundle!
+}
+
+extend type Mutation {
+  addBundle(input: BundleInput!): Bundle
+  editBundle(id: String!, input: BundleInput!): Bundle
+  deleteBundle(id: String!): Bundle
+}
