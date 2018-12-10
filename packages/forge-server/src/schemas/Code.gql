@@ -1,0 +1,11 @@
+type Code @auth {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  creatorId: String!
+  creator: User
+  name: String!
+  shortcut: String!
+  contents: String!
+  language: String
+}

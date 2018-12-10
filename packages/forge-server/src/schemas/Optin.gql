@@ -1,0 +1,9 @@
+type Optin {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  userId: String!
+  user: User
+  bundleId: String!
+  bundle: Bundle
+}

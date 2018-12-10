@@ -1,0 +1,23 @@
+interface Provider {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  creatorId: String!
+  creator: User
+  domain: String!
+}
+
+type GitHub implements Provider {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  creatorId: String!
+  creator: User
+  domain: String!
+  payload: GitHubPayload!
+}
+
+type GitHubPayload {
+  userId: String!
+  accessToken: String!
+}

@@ -1,0 +1,12 @@
+type Bundle @auth {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  creatorId: String!
+  creator: User
+  name: String!
+  readme: String!
+  codeIds: [String!]!
+  codes: [Code!]!
+  published: Boolean
+}

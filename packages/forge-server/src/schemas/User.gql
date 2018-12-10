@@ -1,0 +1,28 @@
+type ChargeCustomer {
+  id: String
+}
+
+type ChargeSubscription {
+  id: String
+  prevId: String
+}
+
+type Preferences {
+  shortcutOpen: String
+}
+
+type User @auth {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  hash: String!
+  email: String!
+  name: String!
+  avatar: String
+  isSubscribed: Boolean!
+  customer: ChargeCustomer
+  subscription: ChargeSubscription
+  preferences: Preferences
+  optins: [Optin!]!
+  hasOptin(bundleId: String!): Boolean
+}
