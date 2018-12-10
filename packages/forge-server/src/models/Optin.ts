@@ -6,6 +6,7 @@ export interface IOptin extends Document {
   updatedAt: string;
   userId: string;
   bundleId: string;
+  toRecord: (extra?: object) => object;
 }
 
 const schema = {
@@ -23,15 +24,15 @@ const schema = {
 
 const optinSchema = new Schema(schema, modelOptions);
 
-/**
- * This is a helper method which converts mongoose properties
- * from objects to strings, numbers, and booleans.
- */
-optinSchema.method('toGraph', function toGraph(this: any) {
+optinSchema.method('toRecord', function toRecord(this: any, extra: object) {
+  const { id, createdAt, updatedAt, userId, bundleId } = this.toObject();
   return {
-    ...this.toObject(),
-    bundleId: String(this.bundleId),
-    userId: String(this.userId),
+    id,
+    createdAt,
+    updatedAt,
+    userId,
+    bundleId,
+    ...(extra || {}),
   };
 });
 

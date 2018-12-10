@@ -7,6 +7,7 @@ export interface IProvider extends Document {
   creatorId: string;
   domain: string;
   payload: object;
+  toRecord: (extra?: object) => object;
 }
 
 const schema = {
@@ -28,14 +29,14 @@ const schema = {
 
 const providerSchema = new Schema(schema, modelOptions);
 
-/**
- * This is a helper method which converts mongoose properties
- * from objects to strings, numbers, and booleans.
- */
-providerSchema.method('toGraph', function toGraph(this: any) {
+providerSchema.method('toRecord', function toRecord(this: any, extra: object) {
+  const { id, createdAt, updatedAt, creatorId } = this.toObject();
   return {
-    ...this.toObject(),
-    creatorId: String(this.creatorId),
+    id,
+    createdAt,
+    updatedAt,
+    creatorId,
+    ...(extra || {}),
   };
 });
 

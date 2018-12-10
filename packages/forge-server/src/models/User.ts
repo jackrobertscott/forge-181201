@@ -10,6 +10,7 @@ export interface IUser extends Document {
   customer: {
     id: string;
   };
+  toRecord: (extra?: object) => object;
 }
 
 const schema = {
@@ -41,16 +42,6 @@ const schema = {
 const userSchema = new Schema(schema, modelOptions);
 
 /**
- * This is a helper method which converts mongoose properties
- * from objects to strings, numbers, and booleans.
- */
-userSchema.method('toGraph', function toGraph(this: any) {
-  return {
-    ...this.toObject(),
-  };
-});
-
-/**
  * Is this customer paying?
  */
 userSchema.virtual('isSubscribed').get(function(this: any) {
@@ -62,6 +53,28 @@ userSchema.virtual('isSubscribed').get(function(this: any) {
       this.subscription.id &&
       this.subscription.id.length
   );
+});
+
+userSchema.method('toRecord', function toRecord(this: any, extra: object) {
+  const {
+    id,
+    createdAt,
+    updatedAt,
+    email,
+    name,
+    customer,
+    subscription,
+  } = this.toObject();
+  return {
+    id,
+    createdAt,
+    updatedAt,
+    email,
+    name,
+    customerId: customer && customer.id,
+    subscriptionId: subscription && subscription.id,
+    ...(extra || {}),
+  };
 });
 
 export default model<IUser>('User', userSchema);

@@ -8,6 +8,7 @@ export interface IBundle extends Document {
   name: string;
   readme: string;
   published: boolean;
+  toRecord: (extra?: object) => object;
 }
 
 const schema = {
@@ -33,14 +34,16 @@ const schema = {
 
 const bundleSchema: Schema = new Schema(schema, modelOptions);
 
-/**
- * This is a helper method which converts mongoose properties
- * from objects to strings, numbers, and booleans.
- */
-bundleSchema.method('toGraph', function toGraph(this: any) {
+bundleSchema.method('toRecord', function toRecord(this: any, extra: object) {
+  const { id, createdAt, updatedAt, creatorId, name, readme } = this.toObject();
   return {
-    ...this.toObject(),
-    creatorId: String(this.creatorId),
+    id,
+    createdAt,
+    updatedAt,
+    creatorId,
+    name,
+    readme,
+    ...(extra || {}),
   };
 });
 

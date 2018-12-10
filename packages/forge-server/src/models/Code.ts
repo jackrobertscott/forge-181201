@@ -9,6 +9,7 @@ export interface ICode extends Document {
   shortcut: string;
   contents: string;
   language?: string;
+  toRecord: (extra?: object) => object;
 }
 
 const schema = {
@@ -36,14 +37,23 @@ const schema = {
 
 const codeSchema = new Schema(schema, modelOptions);
 
-/**
- * This is a helper method which converts mongoose properties
- * from objects to strings, numbers, and booleans.
- */
-codeSchema.method('toGraph', function toGraph(this: any) {
+codeSchema.method('toRecord', function toRecord(this: any, extra: object) {
+  const {
+    id,
+    createdAt,
+    updatedAt,
+    creatorId,
+    name,
+    shortcut,
+  } = this.toObject();
   return {
-    ...this.toObject(),
-    creatorId: String(this.creatorId),
+    id,
+    createdAt,
+    updatedAt,
+    creatorId,
+    name,
+    shortcut,
+    ...(extra || {}),
   };
 });
 
