@@ -203,12 +203,3 @@ if (isMac) {
 if (isMac && config.hideDockOnStart) {
   app.dock.hide();
 }
-
-/**
- * When all the windows of the app are closed.
- */
-app.on('window-all-closed', () => {
-  if (!isMac) {
-    app.quit();
-  }
-});
