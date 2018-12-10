@@ -203,3 +203,12 @@ if (isMac) {
 if (isMac && config.hideDockOnStart) {
   app.dock.hide();
 }
+
+/**
+ * Get app to open when user logs in.
+ */
+if (isMac || isWin) {
+  app.setLoginItemSettings({
+    openAtLogin: true,
+  });
+}
