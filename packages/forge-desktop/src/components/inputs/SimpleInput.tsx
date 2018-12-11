@@ -1,3 +1,4 @@
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import bgs from '../../styles/bgs';
 import shapes from '../../styles/shapes';
@@ -5,7 +6,7 @@ import shadows from '../../styles/shadows';
 import states from '../../styles/states';
 import layouts from '../../styles/layouts';
 
-export default styled('input')`
+const Wrap = styled('input')`
   ${bgs.dark}
   ${shapes.narrow}
   ${shapes.fill}
@@ -13,3 +14,15 @@ export default styled('input')`
   ${layouts.noshrink}
   ${states.focused([bgs.darkLight, shadows.pop])}
 `;
+
+export interface IInputProps {
+  field?: any;
+  [name: string]: any;
+}
+
+const SimpleInput: FunctionComponent<IInputProps> = ({
+  field = {},
+  ...args
+}) => <Wrap {...args} {...field} />;
+
+export default SimpleInput;

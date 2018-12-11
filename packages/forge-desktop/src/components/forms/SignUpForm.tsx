@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Formik, FormikProps, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import { IComponentProps } from '../../utils/components';
 import SimpleInput from '../inputs/SimpleInput';
 import Arrow from '../buttons/Arrow';
 import Onboard from '../layouts/Onboard';
+import Problems from '../cards/Problems';
 
 const Visible = styled('div')``;
 
@@ -74,6 +75,7 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
               component={SimpleInput}
               problem={touched.email && errors.email}
             />
+            <Problems items={errors as any} />
             <GoodButton
               type="submit"
               bright="true"
