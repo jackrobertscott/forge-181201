@@ -9,7 +9,17 @@ export interface IBgsConfig {
 export default {
   fade: () => css`
     color: ${colors.white};
+    background-color: #3e3e3e;
     background: linear-gradient(to top right, #191919, #3e3e3e);
+  `,
+  fadeLight: () => css`
+    color: ${colors.night};
+    background-color: ${colors.white};
+    background: linear-gradient(
+      to top right,
+      ${colors.offset},
+      ${colors.white}
+    );
   `,
   /**
    * Regular components used on most pages.

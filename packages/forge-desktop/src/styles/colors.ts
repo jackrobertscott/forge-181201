@@ -18,6 +18,8 @@ export default {
    * Used as a faint compliment to the dark theme e.g. secondary fonts.
    */
   shade: '#797979',
+  offset: '#eeeeee',
+  offsetDark: '#dadada',
   /**
    * Used to determine primary actions such as buttons.
    */

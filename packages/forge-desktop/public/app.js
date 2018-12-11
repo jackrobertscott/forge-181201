@@ -115,7 +115,7 @@ function createTray() {
       showWindow: createOrFocusWindow,
     })
   );
-  tray = new Tray(path.join(__dirname, './assets/electron/Tray.png'));
+  tray = new Tray(path.join(__dirname, './assets/electron/TrayTemplate.png'));
   tray.setToolTip('Forge');
   tray.setContextMenu(menu);
   return tray;
