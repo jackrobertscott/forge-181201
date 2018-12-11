@@ -31,12 +31,14 @@ const Left = styled('img')`
   transform: rotate(-90deg);
   display: block;
   height: 18px;
+  filter: invert(35%);
 `;
 
 const Right = styled('img')`
   transform: rotate(90deg);
   display: block;
   height: 18px;
+  filter: invert(35%);
 `;
 
 export interface IPreviewBundleModalProps extends IComponentProps {

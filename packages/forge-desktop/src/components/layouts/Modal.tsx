@@ -13,7 +13,7 @@ const Wrap = styled('div')`
   ${shapes.padded}
   ${layouts.spider}
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(100, 100, 100, 0.2);
   animation: ${animate.fadeIn} 0.2s linear;
 `;
 

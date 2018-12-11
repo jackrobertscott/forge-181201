@@ -30,9 +30,9 @@ const Forward = styled('div')`
 
 const MiniButton = styled('button')`
   ${({ ...args }: { to?: boolean | string; [name: string]: any }) => null}
-  ${bgs.darkLight}
   ${shapes.mini}
   ${shadows.simple}
+  ${bgs.darkLight}
   ${states.hovered(bgs.darkLighter)}
   ${states.clicked([bgs.darkLight, shadows.none])}
   ${words.small}

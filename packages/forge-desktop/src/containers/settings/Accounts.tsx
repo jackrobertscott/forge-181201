@@ -8,9 +8,6 @@ export interface IAccountsProps {}
 
 const Accounts: FunctionComponent<IAccountsProps> = () => {
   const GitHub = ({ ...args }) => <Button {...args}>Connect to GitHub</Button>;
-  const Twitter = ({ ...args }) => (
-    <Button {...args}>Connect to Twitter</Button>
-  );
   return (
     <List>
       <Title>Accounts</Title>
@@ -21,12 +18,6 @@ const Accounts: FunctionComponent<IAccountsProps> = () => {
           help="Make logging in easier by connecting to GitHub."
           auto="right"
           input={GitHub}
-        />
-        <Control
-          label="Twitter"
-          help="Send tweets from Forge for fun times."
-          auto="right"
-          input={Twitter}
         />
       </List>
     </List>

@@ -1,16 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import Onboard from '../../components/layouts/Onboard';
+import ChooseAuth from '../../components/menus/ChooseAuth';
 
-export interface ICreateCodeProps {}
+export interface IAuthProps {}
 
-const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
-  const data = {
-    loading: false,
-  };
-  const handlers = {
-    submit: () => null,
-  };
-  return <Onboard data={data} handlers={handlers} />;
+const Auth: FunctionComponent<IAuthProps> = () => {
+  return <ChooseAuth />;
 };
 
-export default CreateCode;
+export default Auth;

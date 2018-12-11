@@ -22,12 +22,12 @@ const CardMenu: FunctionComponent<ICardMenuProps> & {
 );
 
 CardMenu.Item = styled('div')`
-  ${bgs.dark}
   ${shapes.narrow}
   ${shadows.simple}
   ${layouts.space}
-  ${states.hovered(bgs.darkLight)}
-  ${states.clicked([bgs.dark, shadows.none])}
+  ${bgs.darkLight}
+  ${states.hovered(bgs.darkLighter)}
+  ${states.clicked([bgs.darkLight, shadows.none])}
   ${({
     ...args
   }: {

@@ -6,6 +6,9 @@ import Settings from '../containers/pages/Settings';
 import Market from '../containers/pages/Market';
 
 export default Router.create({
+  nomatch: {
+    redirect: '/',
+  },
   routes: {
     dashboard: {
       path: '/',

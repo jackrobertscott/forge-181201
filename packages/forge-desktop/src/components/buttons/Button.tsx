@@ -12,6 +12,8 @@ const Wrap = styled('button').attrs({ type: 'button' })`
   ${shadows.simple}
   ${layouts.space}
   ${layouts.noshrink}
+  ${layouts.rowsCenter}
+  justify-content: space-between;
   ${states.hovered(bgs.darkLight)}
   ${states.clicked([bgs.dark, shadows.none])}
   ${({ auto }: { auto?: string; [name: string]: any }) =>
@@ -29,11 +31,20 @@ const Wrap = styled('button').attrs({ type: 'button' })`
 export interface IButton {
   children: ReactNode;
   loading?: boolean;
+  icon?: ReactNode;
   [property: string]: any;
 }
 
-const Button: FunctionComponent<IButton> = ({ children, loading, ...args }) => (
-  <Wrap {...args}>{loading ? 'Loading...' : children}</Wrap>
+const Button: FunctionComponent<IButton> = ({
+  children,
+  loading,
+  icon,
+  ...args
+}) => (
+  <Wrap disabled={!!loading} {...args}>
+    {loading ? 'Loading...' : children}
+    {icon}
+  </Wrap>
 );
 
 export default Button;

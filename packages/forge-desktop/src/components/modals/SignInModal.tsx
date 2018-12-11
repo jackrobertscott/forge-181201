@@ -1,5 +1,4 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import styled from 'styled-components';
 import { IComponentProps } from '../../utils/components';
 import Split from '../layouts/Split';
 import Card from '../cards/Card';
