@@ -14,14 +14,17 @@ export interface IUser extends Document {
 }
 
 const schema = {
-  email: {
+  username: {
     type: String,
     required: true,
     unique: true,
   },
-  name: {
+  email: {
     type: String,
     required: true,
+  },
+  name: {
+    type: String,
   },
   avatar: {
     type: String,

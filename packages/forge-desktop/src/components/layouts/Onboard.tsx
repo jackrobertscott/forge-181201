@@ -18,7 +18,7 @@ const Wrap = styled('div')`
 const Logo = styled('img')`
   height: 35px;
   margin: 0 auto 25px;
-  opacity: 0.3;
+  opacity: 0.6;
 `;
 
 const Fade = styled('div')`

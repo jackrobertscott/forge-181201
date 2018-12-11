@@ -7,6 +7,11 @@ interface Provider {
   domain: String!
 }
 
+type GitHubPayload {
+  userId: String!
+  accessToken: String!
+}
+
 type GitHub implements Provider {
   id: ID!
   createdAt: Date!
@@ -17,9 +22,20 @@ type GitHub implements Provider {
   payload: GitHubPayload!
 }
 
-type GitHubPayload {
-  userId: String!
-  accessToken: String!
+type CustomPayload {
+  username: String!
+  password: String!
+  email: String!
+}
+
+type Custom implements Provider {
+  id: ID!
+  createdAt: Date!
+  updatedAt: Date!
+  creatorId: String!
+  creator: User
+  domain: String!
+  payload: CustomPayload!
 }
 
 type Payload {
@@ -32,5 +48,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  findOrCreateGitHub(code: String!): Payload!
+  authCreateCustom(username: String!, password: String!, email: String!): Payload!
+  authLoginCustom(username: String!, password: String!): Payload!
+  authConnectGitHub(code: String!): Payload!
+  authLoginGitHub(code: String!): Payload!
 }

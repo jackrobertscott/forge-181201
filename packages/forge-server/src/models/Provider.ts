@@ -6,7 +6,9 @@ export interface IProvider extends Document {
   updatedAt: string;
   creatorId: string;
   domain: string;
-  payload: object;
+  payload: {
+    [name: string]: string | boolean | number;
+  };
   toRecord: (extra?: object) => object;
 }
 

@@ -1,13 +1,17 @@
-import axios from 'axios';
 import * as queryString from 'query-string';
 import { encode } from '../utils/auth';
 import { recordAction, recordUser } from '../utils/record';
 import Provider from '../models/Provider';
 import User from '../models/User';
 import config from '../config';
+import { resolveCode } from '../utils/github';
+import { hashPassword, comparePassword } from '../utils/password';
 
 export default {
   Query: {
+    /**
+     * Get the auth url from GitHub.
+     */
     async oauthGitHubUrl() {
       const options = {
         client_id: config.auth.github.id,
@@ -19,99 +23,142 @@ export default {
     },
   },
   Mutation: {
-    async findOrCreateGitHub(_: any, { code }: { code: string }) {
-      /**
-       * Get the user token from GitHub.
-       */
-      const options = {
-        client_id: config.auth.github.id,
-        client_secret: config.auth.github.secret,
-        code,
-      };
-      const url = `${
-        config.auth.github.url
-      }/login/oauth/access_token?${queryString.stringify(options)}`;
-      const { data } = await axios.get(url);
-      const { error, error_description, access_token } = queryString.parse(
-        data
-      );
-      if (error) {
-        throw new Error(
-          error_description && error_description.length
-            ? error_description[0]
-            : 'The action could not be performed because of an unknown error.'
-        );
-      }
-      /**
-       * Get the user data from GitHub.
-       */
-      const ghUserResponse: {
-        data: {
-          id: string;
-          email: string;
-          name: string;
-          login: string;
-          avatar_url: string;
-        };
-      } = await axios.get(`${config.auth.github.api}/user`, {
-        headers: {
-          Authorization: `token ${access_token}`,
+    /**
+     * Create a new user which can login with username and password.
+     */
+    async authCreateCustom(
+      _: any,
+      {
+        username,
+        password,
+        email,
+      }: { username: string; password: string; email: string }
+    ) {
+      const user: any = await User.create({
+        username,
+        email,
+      });
+      await Provider.create({
+        creatorId: user.id,
+        domain: 'custom',
+        payload: {
+          username,
+          password: hashPassword(password),
+          email,
         },
       });
-      const ghUserData = ghUserResponse.data;
-      if (!ghUserData.email) {
-        const emailResponse = await axios.get(
-          `${config.auth.github.api}/user/emails`,
-          {
-            headers: {
-              Authorization: `token ${access_token}`,
-            },
-          }
+      recordUser({
+        userId: user.id,
+        traits: user.toRecord(),
+      });
+      recordAction({
+        userId: user.id,
+        scope: 'Provider',
+        action: 'Custom Created',
+      });
+      recordAction({
+        userId: user.id,
+        scope: 'User',
+        action: 'Created',
+      });
+      return {
+        token: encode({ userId: user.id }),
+        userId: user.id,
+      };
+    },
+    /**
+     * Login a user with their username and password.
+     */
+    async authLoginCustom(
+      _: any,
+      {
+        username,
+        password,
+      }: { username: string; password: string; email: string }
+    ) {
+      const provider = await Provider.findOne({
+        domain: 'custom',
+        'payload.username': username,
+      });
+      if (!provider) {
+        throw new Error(
+          `Could not find a login with the username "${username}".`
         );
-        const ghEmailData = emailResponse.data[0];
-        if (ghEmailData && ghEmailData.email) {
-          ghUserData.email = ghEmailData.email;
-        }
       }
-      /**
-       * Find or create a user in the database.
-       */
-      let user;
-      let provider;
-      let newUser = false;
-      provider = await Provider.findOne({
+      const match = await comparePassword(password, provider.payload
+        .password as string);
+      if (!match) {
+        throw new Error('Password is incorrect.');
+      }
+      const user = await User.findById(provider.creatorId);
+      if (!user) {
+        throw new Error('User was not found.');
+      }
+      recordUser({
+        userId: user.id,
+        traits: user.toRecord(),
+      });
+      recordAction({
+        userId: user.id,
+        scope: 'Provider',
+        action: 'Custom Logged In',
+      });
+      return {
+        token: encode({ userId: user.id }),
+        userId: user.id,
+      };
+    },
+    /**
+     * Connect an existing user to a GitHub account.
+     */
+    async authConnectGitHub(
+      _: any,
+      { code }: { code: string },
+      { user }: { user: any }
+    ) {
+      const { ghUserData, access_token } = await resolveCode(code);
+      user.avatar = user.avatar || ghUserData.avatar_url;
+      await user.save();
+      await Provider.create({
+        creatorId: user.id,
+        domain: 'github',
+        payload: {
+          userId: ghUserData.id,
+          accessToken: access_token,
+        },
+      });
+      recordUser({
+        userId: user.id,
+        traits: user.toRecord(),
+      });
+      recordAction({
+        userId: user.id,
+        scope: 'Provider',
+        action: 'GitHub Created',
+      });
+      return {
+        token: encode({ userId: user.id }),
+        userId: user.id,
+      };
+    },
+    /**
+     * Log a user in with their GitHub (if connected).
+     */
+    async authLoginGitHub(_: any, { code }: { code: string }) {
+      const { ghUserData } = await resolveCode(code);
+      const provider = await Provider.findOne({
         domain: 'github',
         'payload.userId': ghUserData.id,
       });
-      if (provider) {
-        user = await User.findById(provider.creatorId);
-      } else {
-        user = await User.findOne({ email: ghUserData.email });
-        if (!user) {
-          newUser = true;
-          const { email, name, login } = ghUserData;
-          user = await User.create({
-            email,
-            name: name || login || 'Your Name',
-          });
-        }
-        user.avatar = user.avatar || ghUserData.avatar_url;
-        await user.save();
-        provider = await Provider.create({
-          creatorId: user.id,
-          domain: 'github',
-          payload: {
-            userId: ghUserData.id,
-            accessToken: access_token,
-          },
-        });
+      if (!provider) {
+        throw new Error(
+          'Could not find a user connected to that GitHub account.'
+        );
       }
+      const user = await User.findById(provider.creatorId);
       if (!user) {
         throw new Error('User was not defined.');
       }
-      /**
-       * Record analytics.
-       */
       recordUser({
         userId: user.id,
         traits: user.toRecord(),
@@ -121,16 +168,6 @@ export default {
         scope: 'Provider',
         action: 'GitHub Logged In',
       });
-      if (newUser) {
-        recordAction({
-          userId: user.id,
-          scope: 'User',
-          action: 'Created',
-        });
-      }
-      /**
-       * Return the user's information to the client.
-       */
       return {
         token: encode({ userId: user.id }),
         userId: user.id,

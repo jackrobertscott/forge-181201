@@ -16,8 +16,9 @@ type User @auth {
   createdAt: Date!
   updatedAt: Date!
   hash: String!
+  username: String!
   email: String!
-  name: String!
+  name: String
   avatar: String
   isSubscribed: Boolean!
   customer: ChargeCustomer
