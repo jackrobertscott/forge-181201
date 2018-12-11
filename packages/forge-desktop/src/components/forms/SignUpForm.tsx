@@ -10,8 +10,6 @@ import Arrow from '../buttons/Arrow';
 import Onboard from '../layouts/Onboard';
 import Problems from '../cards/Problems';
 
-const Visible = styled('div')``;
-
 interface IUserFragment {
   username?: string;
   password?: string;
