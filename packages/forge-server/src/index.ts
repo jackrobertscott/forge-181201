@@ -57,7 +57,6 @@ const schema = makeExecutableSchema({
 const server = new ApolloServer({
   schema,
   formatError(error?: any) {
-    console.log(error);
     if (
       error &&
       error.extensions &&

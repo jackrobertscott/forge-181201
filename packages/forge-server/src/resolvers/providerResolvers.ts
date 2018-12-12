@@ -6,6 +6,7 @@ import User from '../models/User';
 import config from '../config';
 import { resolveCode } from '../utils/github';
 import { hashPassword, comparePassword } from '../utils/password';
+import { UserInputError } from 'apollo-server';
 
 export default {
   Query: {
@@ -82,14 +83,14 @@ export default {
         'payload.username': username,
       });
       if (!provider) {
-        throw new Error(
+        throw new UserInputError(
           `Could not find a login with the username "${username}".`
         );
       }
       const match = await comparePassword(password, provider.payload
         .password as string);
       if (!match) {
-        throw new Error('Password is incorrect.');
+        throw new UserInputError('Password is incorrect.');
       }
       const user = await User.findById(provider.creatorId);
       if (!user) {
@@ -152,13 +153,13 @@ export default {
         'payload.userId': ghUserData.id,
       });
       if (!provider) {
-        throw new Error(
+        throw new UserInputError(
           'Could not find a user connected to that GitHub account.'
         );
       }
       const user = await User.findById(provider.creatorId);
       if (!user) {
-        throw new Error('User was not defined.');
+        throw new Error('User was not found.');
       }
       recordUser({
         userId: user.id,
