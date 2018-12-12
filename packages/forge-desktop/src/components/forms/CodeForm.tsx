@@ -11,7 +11,7 @@ import RegularEditor from '../editors/RegularEditor';
 import { IComponentProps } from '../../utils/components';
 import { Link } from 'lumbridge';
 import FormList from '../layouts/FormList';
-import ChooseBundle from '../../containers/modals/ChooseBundle';
+import BundleModal from '../modals/BundleModal';
 
 interface ICodeFragment {
   id?: string;
@@ -72,6 +72,9 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
         setFieldValue('shortcut', short);
       }
     };
+    const bundleHandlers = {
+      choose: console.log,
+    };
     return (
       <FormList>
         <Split reverse={true}>
@@ -103,7 +106,8 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               name="bundleId"
               label="Bundle"
               help="The group of snippets."
-              component={ChooseBundle}
+              component={BundleModal}
+              handlers={bundleHandlers}
             />
             <GoodButton
               type="submit"

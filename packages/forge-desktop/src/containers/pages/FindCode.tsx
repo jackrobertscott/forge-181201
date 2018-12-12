@@ -34,9 +34,10 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     error,
     loading,
   } = useInstanceExecute(codeListQuery);
-  console.log(userCodes);
   const data = {
     codes: userCodes || [],
+    error,
+    loading,
   };
   const handlers = {
     choose: () => null,

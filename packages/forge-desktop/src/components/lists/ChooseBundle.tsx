@@ -33,7 +33,11 @@ const ChooseBundle: FunctionComponent<IChooseBundleProps> = ({
     const { id, name, codeCount } = bundle;
     const choose = () => handlers.choose(bundle);
     return (
-      <Result key={id} note={`${codeCount} Snippets`} onClick={choose}>
+      <Result
+        key={id}
+        note={codeCount && `${codeCount} Snippets`}
+        onClick={choose}
+      >
         {name}
       </Result>
     );

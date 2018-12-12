@@ -1,6 +1,5 @@
 import Bundle from '../models/Bundle';
 import User from '../models/User';
-import Code from '../models/Code';
 import { recordAction } from '../utils/record';
 
 export default {
@@ -86,13 +85,6 @@ export default {
         return user.toObject();
       }
       return null;
-    },
-    async codes({ codeIds }: { codeIds?: string[] }) {
-      if (codeIds && codeIds.length) {
-        const codes = await Code.find({ _id: { $in: codeIds } });
-        return codes.map((code: any) => code.toObject());
-      }
-      return [];
     },
   },
 };

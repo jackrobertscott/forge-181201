@@ -6,8 +6,6 @@ type Bundle @auth {
   creator: User
   name: String!
   readme: String!
-  codeIds: [String!]!
-  codes: [Code!]!
   published: Boolean
 }
 
@@ -18,7 +16,6 @@ input BundleFilterInput {
 input BundleInput {
   name: String!
   readme: String!
-  codeIds: [String!]!
   published: Boolean
 }
 
