@@ -22,6 +22,13 @@ export default {
         config.auth.github.url
       }/login/oauth/authorize?${queryString.stringify(options)}`;
     },
+    async userConnectedGitHub(_: any, {}, { user }: { user: any }) {
+      const count = await Provider.count({
+        creatorId: user.id,
+        domain: 'github',
+      });
+      return !!count;
+    },
   },
   Mutation: {
     /**

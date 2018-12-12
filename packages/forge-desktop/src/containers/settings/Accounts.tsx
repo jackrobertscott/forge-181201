@@ -1,13 +1,59 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import gql from 'graphql-tag';
+import queryString from 'query-string';
 import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
 import Control from '../../components/inputs/Control';
 import Button from '../../components/buttons/Button';
+import apolloPersistor from '../../persistors/apolloPersistor';
+import useInstanceExecute from '../effects/useInstanceExecute';
+
+export const githubUrlQuery = apolloPersistor.instance({
+  name: 'query',
+  map: ({ ...args }) => ({
+    ...args,
+    query: gql`
+      query GitHubUrl {
+        oauthGitHubUrl
+        userConnectedGitHub
+      }
+    `,
+  }),
+});
+
+export const githubConnectMutation = apolloPersistor.instance({
+  name: 'mutate',
+  map: ({ ...args }) => ({
+    ...args,
+    mutation: gql`
+      mutation ConnectGitHub($code: String!) {
+        authConnectGitHub(code: $code) {
+          token
+          userId
+        }
+      }
+    `,
+  }),
+});
 
 export interface IAccountsProps {}
 
 const Accounts: FunctionComponent<IAccountsProps> = () => {
-  const GitHub = ({ ...args }) => <Button {...args}>Connect to GitHub</Button>;
+  useEffect(() => {
+    const { code } = queryString.parse(window.location.search);
+    if (code) {
+      githubConnectMutation.execute({ variables: { code } });
+    }
+  }, []);
+  const {
+    data: { oauthGitHubUrl, userConnectedGitHub },
+  } = useInstanceExecute(githubUrlQuery);
+  const navigateGitHub = () => window.location.assign(oauthGitHubUrl);
+  const GitHub = ({ ...args }) => (
+    <Button {...args} onClick={navigateGitHub}>
+      {userConnectedGitHub ? 'Update connection' : 'Connect'} to GitHub
+    </Button>
+  );
   return (
     <List>
       <Title>Accounts</Title>
@@ -15,7 +61,7 @@ const Accounts: FunctionComponent<IAccountsProps> = () => {
       <List wide="true">
         <Control
           label="GitHub"
-          help="Make logging in easier by connecting to GitHub."
+          help="Make logging in easier by connecting to github."
           auto="right"
           input={GitHub}
         />
