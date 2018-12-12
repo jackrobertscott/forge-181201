@@ -2,6 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import authRoutes from '../routes/authRoutes';
 import authStore from '../stores/authStore';
 import authScope, { retrieveLocalAuth } from '../scopes/authScope';
+import logo from '../assets/logo/Dark.svg';
 
 const Routes = authRoutes.render();
 
@@ -20,7 +21,11 @@ const App: FunctionComponent<IAppProps> = () => {
     return () => unwatch();
   }, []);
   if (!authChecked) {
-    return <div>Loading...</div>;
+    return (
+      <div className="app-loading-screen">
+        <img src={logo} />
+      </div>
+    );
   }
   return <Routes />;
 };
