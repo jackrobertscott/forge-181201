@@ -4,10 +4,14 @@ import CreateCode from '../containers/pages/CreateCode';
 import EditCode from '../containers/pages/EditCode';
 import Settings from '../containers/pages/Settings';
 import Market from '../containers/pages/Market';
+import authStore from '../stores/authStore';
 
 export default Router.create({
   nomatch: {
-    redirect: '/',
+    redirect: '/auth',
+  },
+  change: {
+    before: () => authStore.state.loggedIn,
   },
   routes: {
     dashboard: {

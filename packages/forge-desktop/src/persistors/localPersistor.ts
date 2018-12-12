@@ -1,7 +1,7 @@
 import { Persistor } from 'lumbridge';
 import * as Yup from 'yup';
 
-export default Persistor.create({
+const localPersistor: Persistor = Persistor.create({
   methods: {
     store: {
       payload: {
@@ -40,3 +40,5 @@ export default Persistor.create({
     },
   },
 });
+
+export default localPersistor;

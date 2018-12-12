@@ -2,7 +2,7 @@ import { Persistor } from 'lumbridge';
 import { string, object } from 'yup';
 import client from '../client';
 
-export default Persistor.create({
+const apolloPersistor: Persistor = Persistor.create({
   methods: {
     query: {
       payload: {
@@ -24,3 +24,5 @@ export default Persistor.create({
     },
   },
 });
+
+export default apolloPersistor;

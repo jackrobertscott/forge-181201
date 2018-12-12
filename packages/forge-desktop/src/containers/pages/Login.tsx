@@ -1,7 +1,9 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import gql from 'graphql-tag';
+import { Terminal } from 'lumbridge';
 import LoginForm from '../../components/forms/LoginForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
+import authStore from '../../stores/authStore';
 
 export const loginMutation = apolloPersistor.instance({
   name: 'mutate',
@@ -21,16 +23,22 @@ export const loginMutation = apolloPersistor.instance({
 export interface ILoginProps {}
 
 const Login: FunctionComponent<ILoginProps> = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [serverErrors, setServerErrors] = useState<Error | null>(null);
   useEffect(() => {
-    loginMutation.watch({
-      data: (...args: any[]) => console.log(args),
-      catch: (...args: any[]) => console.error(args),
-      status: ({ loading: loadingStatus }) => setLoading(loadingStatus),
+    const unwatch = loginMutation.watch({
+      data: ({ authLoginCustom }) => {
+        authStore.dispatch.patch(authLoginCustom);
+        Terminal.navigate('/');
+      },
+      catch: error => setServerErrors(error || null),
+      status: status => setLoading(status.loading),
     });
+    return () => unwatch();
   }, []);
   const data = {
     loading,
+    serverErrors,
   };
   const handlers = {
     submit: (formData: any) => loginMutation.execute({ variables: formData }),
