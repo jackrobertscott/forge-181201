@@ -35,6 +35,10 @@ export default {
         email,
       }: { username: string; password: string; email: string }
     ) {
+      const count: number = await User.countDocuments({ username });
+      if (count) {
+        throw new UserInputError('User with that username already exists.');
+      }
       const user: any = await User.create({
         username,
         email,
