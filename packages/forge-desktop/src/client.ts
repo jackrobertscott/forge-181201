@@ -1,16 +1,16 @@
 import ApolloClient, { Operation } from 'apollo-boost';
 import config from './config';
+import authStore from './stores/authStore';
 
 const authenticateRequests = (operation: Operation) => {
-  /**
-   * TODO: Make sure we set the token here.
-   */
-  const token = '';
-  operation.setContext({
-    headers: {
-      authorization: token || '',
-    },
-  });
+  const token = authStore.state.token;
+  if (token) {
+    operation.setContext({
+      headers: {
+        authorization: token,
+      },
+    });
+  }
 };
 
 export default new ApolloClient({
