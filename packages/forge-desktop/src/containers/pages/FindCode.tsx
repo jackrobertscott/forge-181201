@@ -40,7 +40,9 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     loading,
   };
   const handlers = {
-    choose: () => null,
+    choose: () => {
+      console.log('TODO: copy code and things...');
+    },
   };
   return (
     <Split>

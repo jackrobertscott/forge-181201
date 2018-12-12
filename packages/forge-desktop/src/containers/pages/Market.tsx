@@ -1,73 +1,48 @@
 import React, { FunctionComponent } from 'react';
+import gql from 'graphql-tag';
 import Marketplace from '../../components/layouts/Marketplace';
+import apolloPersistor from '../../persistors/apolloPersistor';
+import useInstanceExecute from '../effects/useInstanceExecute';
 
-const fakeBundles = [
-  {
-    id: '123',
-    name: 'React',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '324',
-    name: 'Vue.js',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '345',
-    name: 'Angular',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '645',
-    name: 'Console',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '276',
-    name: 'React',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '243',
-    name: 'Vue.js',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '563',
-    name: 'Angular',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-  {
-    id: '654',
-    name: 'Console',
-    codeCount: 10,
-    readme:
-      'This is a simple description about the bundle that will help users understand what it is.',
-  },
-];
+// {
+//   id: '123',
+//   name: 'React',
+//   codeCount: 10,
+//   readme:
+//     'This is a simple description about the bundle that will help users understand what it is.',
+// },
+
+export const getMarketBundles = apolloPersistor.instance({
+  name: 'query',
+  map: ({ ...args }) => ({
+    ...args,
+    query: gql`
+      query GetMarketBundles() {
+        marketBundles {
+          id
+          name
+          readme
+        }
+      }
+    `,
+  }),
+});
 
 export interface IMarketProps {}
 
 const Market: FunctionComponent<IMarketProps> = () => {
+  const {
+    data: { marketBundles },
+    error,
+    loading,
+  } = useInstanceExecute(getMarketBundles);
   const data = {
-    bundles: fakeBundles,
+    bundles: marketBundles,
   };
   const handlers = {
-    subscribe: () => null,
+    subscribe: () => {
+      console.log('TODO: sign up a person to this bundle...');
+    },
   };
   return <Marketplace data={data} handlers={handlers} />;
 };
