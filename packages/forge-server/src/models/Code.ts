@@ -5,6 +5,7 @@ export interface ICode extends Document {
   createdAt: string;
   updatedAt: string;
   creatorId: string;
+  bundleId: string;
   name: string;
   shortcut: string;
   contents: string;
@@ -16,6 +17,11 @@ const schema = {
   creatorId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
+  },
+  bundleId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Bundle',
     required: true,
   },
   name: {

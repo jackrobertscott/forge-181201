@@ -58,6 +58,8 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     errors,
     touched,
   }: FormikProps<ICodeFragment>) => {
+    const editorChange = ({ value }: { value: string }) =>
+      setFieldValue('contents', value);
     const nameChange = (event: any) => {
       handleChange(event);
       if (!prefill.shortcut && !touched.shortcut) {
@@ -95,6 +97,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               help="Find the snippet quickly with this shortcut."
               placeholder="E.g. abc"
               component={Control}
+              problem={touched.shortcut && errors.shortcut}
             />
             <Control
               name="bundleId"
@@ -111,7 +114,10 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               Create
             </GoodButton>
           </List>
-          <RegularEditor />
+          <RegularEditor
+            initialValue={prefill.contents}
+            onChange={editorChange}
+          />
         </Split>
       </FormList>
     );

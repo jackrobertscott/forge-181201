@@ -1,6 +1,7 @@
 import User from '../models/User';
 import Code from '../models/Code';
 import Optin from '../models/Optin';
+import Bundle from '../models/Bundle';
 import { recordAction } from '../utils/record';
 
 export default {
@@ -47,9 +48,15 @@ export default {
   Mutation: {
     async addCode(
       _: any,
-      { input }: { input: object },
+      { bundleId, input }: { bundleId: string; input: object },
       { user }: { user: any }
     ) {
+      const count: number = await Bundle.count({ _id: bundleId });
+      if (!count) {
+        throw new Error(
+          `Can not create code because bundle with id "${bundleId}" does not exist.`
+        );
+      }
       const code: any = await Code.create({
         ...input,
         creatorId: user && user.id,
@@ -106,6 +113,13 @@ export default {
       if (creatorId) {
         const user: any = await User.findById(creatorId);
         return user.toObject();
+      }
+      return null;
+    },
+    async bundle({ bundleId }: { bundleId?: string }) {
+      if (bundleId) {
+        const bundle: any = await Bundle.findById(bundleId);
+        return bundle.toObject();
       }
       return null;
     },

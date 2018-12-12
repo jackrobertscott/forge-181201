@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import { Terminal } from 'lumbridge';
 import LoginForm from '../../components/forms/LoginForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
-import authStore from '../../stores/authStore';
 import useInstance from '../effects/useInstance';
 import { saveLocalAuth } from '../../scopes/authScope';
 
