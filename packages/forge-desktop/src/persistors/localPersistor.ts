@@ -14,7 +14,7 @@ const localPersistor: Persistor = Persistor.create({
           try {
             const save = JSON.stringify(data);
             localStorage.setItem(id, save);
-            resolve({ id, data });
+            resolve(data);
           } catch (error) {
             reject(error);
           }
@@ -31,7 +31,7 @@ const localPersistor: Persistor = Persistor.create({
           try {
             const encode = localStorage.getItem(id);
             const data = JSON.parse(encode || '');
-            resolve({ id, data });
+            resolve(data);
           } catch (error) {
             reject(error);
           }

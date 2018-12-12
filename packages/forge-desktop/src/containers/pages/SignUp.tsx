@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import { Terminal } from 'lumbridge';
 import SignUpForm from '../../components/forms/SignUpForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
-import authStore from '../../stores/authStore';
 import useInstance from '../effects/useInstance';
+import { saveLocalAuth } from '../../scopes/authScope';
 
 export const signUpMutation = apolloPersistor.instance({
   name: 'mutate',
@@ -32,7 +32,7 @@ const SignUp: FunctionComponent<ISignUpProps> = () => {
   useEffect(() => {
     const unwatch = signUpMutation.watch({
       data: ({ authCreateCustom }) => {
-        authStore.dispatch.patch(authCreateCustom);
+        saveLocalAuth.execute({ data: authCreateCustom });
         Terminal.navigate('/');
       },
     });

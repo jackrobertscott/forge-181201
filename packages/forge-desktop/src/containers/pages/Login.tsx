@@ -5,6 +5,7 @@ import LoginForm from '../../components/forms/LoginForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import authStore from '../../stores/authStore';
 import useInstance from '../effects/useInstance';
+import { saveLocalAuth } from '../../scopes/authScope';
 
 export const loginMutation = apolloPersistor.instance({
   name: 'mutate',
@@ -28,7 +29,7 @@ const Login: FunctionComponent<ILoginProps> = () => {
   useEffect(() => {
     const unmount = loginMutation.watch({
       data: ({ authLoginCustom }) => {
-        authStore.dispatch.patch(authLoginCustom);
+        saveLocalAuth.execute({ data: authLoginCustom });
         Terminal.navigate('/');
       },
     });
