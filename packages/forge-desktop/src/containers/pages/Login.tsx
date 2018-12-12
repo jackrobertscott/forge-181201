@@ -30,7 +30,7 @@ const Login: FunctionComponent<ILoginProps> = () => {
     const unmount = loginMutation.watch({
       data: ({ authLoginCustom }) => {
         saveLocalAuth.execute({ data: authLoginCustom });
-        Terminal.navigate('/');
+        setTimeout(() => Terminal.navigate('/'));
       },
     });
     return () => unmount();

@@ -33,7 +33,7 @@ const SignUp: FunctionComponent<ISignUpProps> = () => {
     const unwatch = signUpMutation.watch({
       data: ({ authCreateCustom }) => {
         saveLocalAuth.execute({ data: authCreateCustom });
-        Terminal.navigate('/');
+        setTimeout(() => Terminal.navigate('/'));
       },
     });
     return () => unwatch();

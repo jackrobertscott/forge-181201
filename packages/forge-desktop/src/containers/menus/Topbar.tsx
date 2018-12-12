@@ -1,11 +1,16 @@
 import React, { FunctionComponent } from 'react';
+import { Link, Terminal } from 'lumbridge';
 import Header from '../../components/menus/Header';
 import PopupMenu from '../../components/menus/PopupMenu';
-import { Link } from 'lumbridge';
+import { saveLocalAuth } from '../../scopes/authScope';
 
 export interface ITopbarProps {}
 
 const Topbar: FunctionComponent<ITopbarProps> = () => {
+  const logout = () => {
+    saveLocalAuth.execute({ data: {} });
+    setTimeout(() => Terminal.navigate('/auth'));
+  };
   const menu = (
     <PopupMenu.List>
       <PopupMenu.Item as={Link} to="/settings/profile">
@@ -20,6 +25,7 @@ const Topbar: FunctionComponent<ITopbarProps> = () => {
       <PopupMenu.Item as={Link} to="/settings/membership">
         Membership
       </PopupMenu.Item>
+      <PopupMenu.Item onClick={logout}>Logout</PopupMenu.Item>
     </PopupMenu.List>
   );
   return <Header menu={menu} />;
