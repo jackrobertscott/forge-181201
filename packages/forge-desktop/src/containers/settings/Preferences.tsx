@@ -6,6 +6,24 @@ import Title from '../../components/texts/Title';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
+import useInstanceExecute from '../effects/useInstanceExecute';
+
+export const getUserQuery = apolloPersistor.instance({
+  name: 'query',
+  map: ({ ...args }) => ({
+    ...args,
+    query: gql`
+      query GetUser() {
+        me {
+          id
+          preferences {
+            shortcutOpen
+          }
+        }
+      }
+    `,
+  }),
+});
 
 export const editPreferencesMutation = apolloPersistor.instance({
   name: 'mutate',
@@ -24,18 +42,24 @@ export const editPreferencesMutation = apolloPersistor.instance({
 export interface IPreferencesProps {}
 
 const Preferences: FunctionComponent<IPreferencesProps> = () => {
+  const {
+    data: { me },
+  } = useInstanceExecute(getUserQuery);
   const { loading, error } = useInstance(editPreferencesMutation);
   useInstanceSuccess(editPreferencesMutation);
   const data = {
     prefill: {
       shortcutOpen: '',
+      ...(me ? me.preferences : {}),
     },
     loading,
     error,
   };
   const handlers = {
     submit: (formData: any) =>
-      editPreferencesMutation.execute({ variables: { preferences: formData } }),
+      editPreferencesMutation.execute({
+        variables: { input: { preferences: formData } },
+      }),
   };
   return (
     <List>
