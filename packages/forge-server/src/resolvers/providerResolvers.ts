@@ -23,7 +23,7 @@ export default {
       }/login/oauth/authorize?${queryString.stringify(options)}`;
     },
     async userConnectedGitHub(_: any, {}, { user }: { user: any }) {
-      const count = await Provider.count({
+      const count = await Provider.countDocuments({
         creatorId: user.id,
         domain: 'github',
       });

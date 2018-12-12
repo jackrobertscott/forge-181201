@@ -51,7 +51,7 @@ export default {
       { bundleId, input }: { bundleId: string; input: object },
       { user }: { user: any }
     ) {
-      const count: number = await Bundle.count({ _id: bundleId });
+      const count: number = await Bundle.countDocuments({ _id: bundleId });
       if (!count) {
         throw new Error(
           `Can not create code because bundle with id "${bundleId}" does not exist.`
