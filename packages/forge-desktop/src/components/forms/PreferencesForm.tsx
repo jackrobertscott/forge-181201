@@ -16,7 +16,7 @@ export interface IPreferencesFormProps extends IComponentProps {
   };
   data: {
     loading: boolean;
-    preferences: IPreferencesFragment;
+    prefill: IPreferencesFragment;
   };
 }
 
@@ -26,7 +26,7 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
 }) => {
   const prefill: IPreferencesFragment = {
     shortcutOpen: '',
-    ...(data.preferences || {}),
+    ...(data.prefill || {}),
   };
   const validation = Yup.object().shape({
     shortcutOpen: Yup.string().trim(),

@@ -18,7 +18,7 @@ export interface IProfileFormProps extends IComponentProps {
   };
   data: {
     loading: boolean;
-    profile: IProfileFragment;
+    prefill: IProfileFragment;
   };
 }
 
@@ -30,7 +30,7 @@ const ProfileForm: FunctionComponent<IProfileFormProps> = ({
     name: '',
     username: '',
     email: '',
-    ...(data.profile || {}),
+    ...(data.prefill || {}),
   };
   const validation = Yup.object().shape({
     name: Yup.string().trim(),

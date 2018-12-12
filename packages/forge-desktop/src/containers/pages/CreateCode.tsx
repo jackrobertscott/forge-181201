@@ -1,9 +1,10 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Terminal } from 'lumbridge';
 import gql from 'graphql-tag';
 import CodeForm from '../../components/forms/CodeForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstance from '../effects/useInstance';
+import useInstanceSuccess from '../effects/useInstanceSuccess';
 
 export const createCodeMutation = apolloPersistor.instance({
   name: 'mutate',
@@ -23,20 +24,14 @@ export interface ICreateCodeProps {}
 
 const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
   const { error, loading } = useInstance(createCodeMutation);
-  useEffect(() => {
-    createCodeMutation.watch({
-      data: ({ addCode }) => {
-        if (addCode) {
-          setTimeout(() => Terminal.navigate('/'));
-        }
-      },
-    });
+  useInstanceSuccess(createCodeMutation, () => {
+    setTimeout(() => Terminal.navigate('/'));
   });
   const data = {
-    title: 'Create Code',
     code: {},
     error,
     loading,
+    title: 'Create Code',
   };
   const handlers = {
     submit: ({ bundleId, ...formData }: any) =>
