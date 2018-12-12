@@ -12,6 +12,7 @@ export const createBundleMutation = apolloPersistor.instance({
       mutation CreateBundle($input: BundleInput!) {
         addBundle(input: $input) {
           id
+          name
         }
       }
     `,
@@ -24,12 +25,15 @@ export interface ICreateBundleProps {
   };
 }
 
-const CreateBundle: FunctionComponent<ICreateBundleProps> = props => {
+const CreateBundle: FunctionComponent<ICreateBundleProps> = ({
+  handlers: bundleHandlers,
+}) => {
   const { error, loading } = useInstance(createBundleMutation);
   useEffect(() => {
-    createBundleMutation.watch({
-      data: ({ addBundle }) => props.handlers.choose(addBundle),
+    const unwatch = createBundleMutation.watch({
+      data: ({ addBundle }) => addBundle && bundleHandlers.choose(addBundle),
     });
+    return () => unwatch();
   });
   const data = {
     prefill: {},

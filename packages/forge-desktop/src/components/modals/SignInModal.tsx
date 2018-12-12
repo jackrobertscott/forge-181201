@@ -11,7 +11,7 @@ export interface ISignInModalProps extends IComponentProps {
 }
 
 const SignInModal: FunctionComponent<ISignInModalProps> = ({ children }) => {
-  const modal = (
+  const modal = () => (
     <Split modal={true}>
       <Card>{children}</Card>
       <Card>Hello world!</Card>

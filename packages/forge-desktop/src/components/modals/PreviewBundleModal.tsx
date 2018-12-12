@@ -57,7 +57,7 @@ const PreviewBundleModal: FunctionComponent<IPreviewBundleModalProps> = ({
   handlers,
 }) => {
   const chooseBundle = () => handlers.subscribe(data.bundle);
-  const modal = (
+  const modal = () => (
     <Split modal={true}>
       <List>
         <Card style={{ flexGrow: 0 }}>

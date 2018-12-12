@@ -33,7 +33,7 @@ const Close = styled('div')`
 `;
 
 export interface IModalProps {
-  component: ReactNode;
+  component: (bag: IToggle) => ReactNode;
   children: (bag: IToggle) => ReactNode;
 }
 
@@ -62,7 +62,7 @@ const Modal: FunctionComponent<IModalProps> = ({ component, children }) => {
           <Center>
             <Close onClick={close}>x close.</Close>
             <OutsideClickHandler onOutsideClick={closeNoFocus}>
-              {component}
+              {component({ toggle, active, close, ...others })}
             </OutsideClickHandler>
           </Center>
         </Wrap>

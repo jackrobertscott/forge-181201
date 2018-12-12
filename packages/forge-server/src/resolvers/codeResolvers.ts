@@ -59,6 +59,7 @@ export default {
       }
       const code: any = await Code.create({
         ...input,
+        bundleId,
         creatorId: user && user.id,
       });
       recordAction({

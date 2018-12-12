@@ -29,6 +29,7 @@ const Name = styled('div')`
 
 const Note = styled('div')`
   ${words.secondary}
+  text-align: right;
 `;
 
 export interface IResultProps {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { IComponentProps } from '../../utils/components';
 import Split from '../layouts/Split';
 import Card from '../cards/Card';
@@ -23,24 +23,40 @@ export interface IBundleModalProps extends IComponentProps {
   };
 }
 
-const BundleModal: FunctionComponent<IBundleModalProps> = ({ handlers }) => {
-  const modal = (
-    <Split modal={true} middle={true}>
-      <List>
+const BundleModal: FunctionComponent<IBundleModalProps> = ({
+  handlers: bundleHandlers,
+}) => {
+  const [currentBundle, setCurrentBundle] = useState<any>(null);
+  const modal = ({ close }: IToggle) => {
+    const handlers = {
+      choose: (bundle: any) => {
+        setCurrentBundle(bundle);
+        bundleHandlers.choose(bundle);
+        close();
+      },
+    };
+    return (
+      <Split modal={true} middle={true}>
+        <List>
+          <Card style={{ flexGrow: 0 }}>
+            <Title>Select Bundle</Title>
+            <Subtitle>Create or select a bundle.</Subtitle>
+          </Card>
+          <SelectBundle handlers={handlers} />
+        </List>
         <Card style={{ flexGrow: 0 }}>
-          <Title>Select Bundle</Title>
-          <Subtitle>Create or select a bundle.</Subtitle>
+          <Title>Create Bundle</Title>
+          <br />
+          <CreateBundle handlers={handlers} />
         </Card>
-        <SelectBundle handlers={handlers} />
-      </List>
-      <Card style={{ flexGrow: 0 }}>
-        <Title>Create Bundle</Title>
-        <br />
-        <CreateBundle handlers={handlers} />
-      </Card>
-    </Split>
+      </Split>
+    );
+  };
+  const button = ({ open }: IToggle) => (
+    <Button onClick={open}>
+      {currentBundle ? currentBundle.name : 'Choose'}
+    </Button>
   );
-  const button = ({ open }: IToggle) => <Button onClick={open}>Choose</Button>;
   return <Modal component={modal}>{button}</Modal>;
 };
 

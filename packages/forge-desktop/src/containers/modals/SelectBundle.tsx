@@ -13,7 +13,6 @@ export const bundleListQuery = apolloPersistor.instance({
         userBundles {
           id
           name
-          readme
         }
       }
     `,

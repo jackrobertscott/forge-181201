@@ -14,7 +14,7 @@ export interface IMembershipModalProps extends IComponentProps {
 const MembershipModal: FunctionComponent<IMembershipModalProps> = ({
   children,
 }) => {
-  const modal = (
+  const modal = () => (
     <Split modal={true}>
       <Card>{children}</Card>
       <Card>Hello world!</Card>
