@@ -3,12 +3,12 @@ import gql from 'graphql-tag';
 import SignUpForm from '../../components/forms/SignUpForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
 
-export const loginQuery = apolloPersistor.instance({
-  name: 'query',
+export const signUpMutation = apolloPersistor.instance({
+  name: 'mutate',
   map: ({ ...args }) => ({
     ...args,
-    query: gql`
-      query SignUp($username: String, $password: String, $email: String) {
+    mutation: gql`
+      mutation SignUp($username: String!, $password: String!, $email: String!) {
         authCreateCustom(
           username: $username
           password: $password
@@ -27,7 +27,7 @@ export interface ISignUpProps {}
 const SignUp: FunctionComponent<ISignUpProps> = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    loginQuery.watch({
+    signUpMutation.watch({
       data: (...args: any[]) => console.log(args),
       catch: (...args: any[]) => console.error(args),
       status: ({ loading: loadingStatus }) => setLoading(loadingStatus),
@@ -37,7 +37,7 @@ const SignUp: FunctionComponent<ISignUpProps> = () => {
     loading,
   };
   const handlers = {
-    submit: (formData: any) => loginQuery.execute({ variables: formData }),
+    submit: (formData: any) => signUpMutation.execute({ variables: formData }),
   };
   return <SignUpForm data={data} handlers={handlers} />;
 };

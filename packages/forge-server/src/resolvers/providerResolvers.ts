@@ -38,12 +38,13 @@ export default {
         username,
         email,
       });
+      const hash = await hashPassword(password);
       await Provider.create({
         creatorId: user.id,
         domain: 'custom',
         payload: {
           username,
-          password: hashPassword(password),
+          password: hash,
           email,
         },
       });

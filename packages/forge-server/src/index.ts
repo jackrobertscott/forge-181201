@@ -11,7 +11,7 @@ import bundleResolvers from './resolvers/bundleResolvers';
 import codeResolvers from './resolvers/codeResolvers';
 import providerResolvers from './resolvers/providerResolvers';
 import userResolvers from './resolvers/userResolvers';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 /**
@@ -26,15 +26,7 @@ connection.on('error', error => {
   throw error;
 });
 
-const typeDefs = [
-  'schema.gql',
-  '@auth.gql',
-  'Bundle.gql',
-  'Code.gql',
-  'Optin.gql',
-  'Provider.gql',
-  'User.gql',
-].map(file => {
+const typeDefs = readdirSync(join(__dirname, './schemas/')).map(file => {
   return readFileSync(join(__dirname, './schemas/', file)).toString('utf-8');
 });
 
@@ -65,6 +57,7 @@ const schema = makeExecutableSchema({
 const server = new ApolloServer({
   schema,
   formatError(error?: any) {
+    console.log(error);
     if (
       error &&
       error.extensions &&
