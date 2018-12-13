@@ -13,7 +13,9 @@ const App: FunctionComponent<IAppProps> = () => {
   useEffect(() => {
     const unwatch = authScope.watch({
       data: data => {
-        authStore.dispatch.patch(data);
+        if (data) {
+          authStore.dispatch.patch(data);
+        }
         setAuthChecked(true);
       },
     });

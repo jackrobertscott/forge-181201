@@ -3,7 +3,6 @@ import FindCode from '../containers/pages/FindCode';
 import CreateCode from '../containers/pages/CreateCode';
 import EditCode from '../containers/pages/EditCode';
 import Settings from '../containers/pages/Settings';
-import Market from '../containers/pages/Market';
 import authStore from '../stores/authStore';
 
 export default Router.create({
@@ -18,10 +17,6 @@ export default Router.create({
       path: '/',
       exact: true,
       component: FindCode,
-    },
-    market: {
-      path: '/market',
-      component: Market,
     },
     createCode: {
       path: '/create',

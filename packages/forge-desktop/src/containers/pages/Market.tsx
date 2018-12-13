@@ -4,14 +4,6 @@ import Marketplace from '../../components/layouts/Marketplace';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstanceExecute from '../effects/useInstanceExecute';
 
-// {
-//   id: '123',
-//   name: 'React',
-//   codeCount: 10,
-//   readme:
-//     'This is a simple description about the bundle that will help users understand what it is.',
-// },
-
 export const getMarketBundles = apolloPersistor.instance({
   name: 'query',
   map: ({ ...args }) => ({

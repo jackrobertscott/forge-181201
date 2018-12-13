@@ -30,9 +30,11 @@ const localPersistor: Persistor = Persistor.create({
         return new Promise((resolve, reject) => {
           try {
             const encode = localStorage.getItem(id);
-            const data = JSON.parse(encode || '');
+            const data = encode && JSON.parse(encode);
             resolve(data);
           } catch (error) {
+            console.log(error);
+            localStorage.removeItem(id);
             reject(error);
           }
         });

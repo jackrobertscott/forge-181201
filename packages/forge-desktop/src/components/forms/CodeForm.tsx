@@ -11,14 +11,12 @@ import RegularEditor from '../editors/RegularEditor';
 import { IComponentProps } from '../../utils/components';
 import { Link } from 'lumbridge';
 import FormList from '../layouts/FormList';
-import BundleModal from '../modals/BundleModal';
 import { cleanFormPrefill } from '../../utils/form';
 
 interface ICodeFragment {
   id?: string;
   name?: string;
   shortcut?: string;
-  bundleId?: string;
   contents?: string;
 }
 
@@ -30,7 +28,6 @@ interface ICodeFormProps extends IComponentProps {
     title: string;
     loading: boolean;
     prefill: ICodeFragment;
-    nobundle?: boolean;
   };
 }
 
@@ -39,7 +36,6 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     {
       name: '',
       shortcut: '',
-      bundleId: '',
       contents: '',
     },
     data.prefill
@@ -55,11 +51,6 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     contents: Yup.string()
       .trim()
       .required(),
-    bundleId: data.nobundle
-      ? Yup.string()
-      : Yup.string()
-          .trim()
-          .required(),
   });
   const form = ({
     setFieldValue,
@@ -81,19 +72,6 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
         setFieldValue('shortcut', short);
       }
     };
-    const bundleHandlers = {
-      choose: ({ id }: { id?: string }) => setFieldValue('bundleId', id || ''),
-    };
-    const bundleControl = !data.nobundle && (
-      <Control
-        name="bundleId"
-        label="Bundle"
-        help="The group of snippets."
-        component={BundleModal}
-        problem={touched.bundleId && errors.bundleId}
-        handlers={bundleHandlers}
-      />
-    );
     return (
       <FormList>
         <Split reverse={true}>
@@ -121,7 +99,6 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               component={Control}
               problem={touched.shortcut && errors.shortcut}
             />
-            {bundleControl}
             <GoodButton type="submit" auto="right" loading={data.loading}>
               Save
             </GoodButton>

@@ -36,9 +36,6 @@ const Header: FunctionComponent<IHeaderProps> = ({ menu }) => (
       <MiniButton as={Link} to="/">
         Dashboard
       </MiniButton>
-      <MiniButton as={Link} to="/market">
-        Market
-      </MiniButton>
       <PopupMenu items={menu}>
         <MiniButton>
           <Circles />

@@ -12,8 +12,8 @@ export const createCodeMutation = apolloPersistor.instance({
   map: ({ ...args }) => ({
     ...args,
     mutation: gql`
-      mutation CreateCode($bundleId: String!, $input: CodeInput!) {
-        addCode(bundleId: $bundleId, input: $input) {
+      mutation CreateCode($input: CodeInput!) {
+        addCode(input: $input) {
           id
         }
       }
@@ -36,10 +36,9 @@ const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
     title: 'Create Code',
   };
   const handlers = {
-    submit: ({ bundleId, name, shortcut, contents }: any) =>
+    submit: ({ name, shortcut, contents }: any) =>
       createCodeMutation.execute({
         variables: {
-          bundleId,
           input: { name, shortcut, contents },
         },
       }),
