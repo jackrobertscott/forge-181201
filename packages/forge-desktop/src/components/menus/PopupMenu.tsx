@@ -11,6 +11,7 @@ import words from '../../styles/words';
 
 const Container = styled('div')`
   position: relative;
+  flex-shrink: 0;
 `;
 
 const Wrap = styled('div')`

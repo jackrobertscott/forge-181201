@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState, ChangeEvent } from 'react';
+import gql from 'graphql-tag';
 import { Link } from 'lumbridge';
 import { throttle } from 'throttle-debounce';
 import Split from '../../components/layouts/Split';
@@ -9,7 +10,6 @@ import List from '../../components/layouts/List';
 import ChooseCode from '../../components/lists/ChooseCode';
 import useInstanceExecute from '../effects/useInstanceExecute';
 import apolloPersistor from '../../persistors/apolloPersistor';
-import gql from 'graphql-tag';
 
 export const codeListQuery = apolloPersistor.instance({
   name: 'query',
@@ -52,7 +52,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     loading,
   };
   const handlers = {
-    focus: (code: any, force?: boolean) => {
+    focusCode: (code: any, force?: boolean) => {
       if (force) {
         setEditing(false);
       }
@@ -60,7 +60,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
         setFocusedCode(code);
       }
     },
-    choose: (code?: any) => setEditing(!!code),
+    chooseCode: (code?: any) => setEditing(!!code),
   };
   return (
     <Split>

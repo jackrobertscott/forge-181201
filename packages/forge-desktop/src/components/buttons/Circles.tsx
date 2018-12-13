@@ -5,11 +5,8 @@ import layouts from '../../styles/layouts';
 
 const Wrap = styled('div')`
   ${layouts.rowsCenter}
-  ${({ height }: { height?: string; [name: string]: any }) =>
-    height &&
-    css`
-      height: ${height};
-    `}
+  height: ${({ height }: { height?: string; [name: string]: any }) =>
+    height || '15px'};
 `;
 
 const Circle = styled('div')`
