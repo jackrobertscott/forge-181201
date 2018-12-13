@@ -41,10 +41,10 @@ const CreateBundle: FunctionComponent<ICreateBundleProps> = ({
     loading,
   };
   const handlers = {
-    submit: (formData: any) =>
+    submit: ({ name, readme }: any) =>
       createBundleMutation.execute({
         variables: {
-          input: formData,
+          input: { name, readme },
         },
       }),
   };

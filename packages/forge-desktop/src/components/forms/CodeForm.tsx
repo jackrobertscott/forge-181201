@@ -12,6 +12,7 @@ import { IComponentProps } from '../../utils/components';
 import { Link } from 'lumbridge';
 import FormList from '../layouts/FormList';
 import BundleModal from '../modals/BundleModal';
+import { cleanFormPrefill } from '../../utils/form';
 
 interface ICodeFragment {
   id?: string;
@@ -28,18 +29,20 @@ interface ICodeFormProps extends IComponentProps {
   data: {
     title: string;
     loading: boolean;
-    code: ICodeFragment;
+    prefill: ICodeFragment;
   };
 }
 
 const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
-  const prefill: ICodeFragment = {
-    name: '',
-    shortcut: '',
-    bundleId: '',
-    contents: '',
-    ...(data.code || {}),
-  };
+  const prefill: ICodeFragment = cleanFormPrefill(
+    {
+      name: '',
+      shortcut: '',
+      bundleId: '',
+      contents: '',
+    },
+    data.prefill
+  );
   const validation = Yup.object().shape({
     name: Yup.string()
       .trim()

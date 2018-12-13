@@ -57,7 +57,6 @@ export default {
         payload: {
           username,
           password: hash,
-          email,
         },
       });
       recordUser({

@@ -17,7 +17,7 @@ export const getMarketBundles = apolloPersistor.instance({
   map: ({ ...args }) => ({
     ...args,
     query: gql`
-      query GetMarketBundles() {
+      query GetMarketBundles {
         marketBundles {
           id
           name
@@ -37,7 +37,7 @@ const Market: FunctionComponent<IMarketProps> = () => {
     loading,
   } = useInstanceExecute(getMarketBundles);
   const data = {
-    bundles: marketBundles,
+    bundles: marketBundles || [],
   };
   const handlers = {
     subscribe: () => {

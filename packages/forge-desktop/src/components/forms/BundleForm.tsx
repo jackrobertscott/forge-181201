@@ -6,6 +6,7 @@ import Control from '../inputs/Control';
 import LargeInput from '../inputs/LargeInput';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
+import { cleanFormPrefill } from '../../utils/form';
 
 export interface IBundleFragment {
   name?: string;
@@ -26,11 +27,13 @@ const BundleForm: FunctionComponent<IBundleFormProps> = ({
   data,
   handlers,
 }) => {
-  const prefill: IBundleFragment = {
-    name: '',
-    readme: '',
-    ...(data.prefill || {}),
-  };
+  const prefill: IBundleFragment = cleanFormPrefill(
+    {
+      name: '',
+      readme: '',
+    },
+    data.prefill
+  );
   const validation = Yup.object().shape({
     name: Yup.string()
       .trim()

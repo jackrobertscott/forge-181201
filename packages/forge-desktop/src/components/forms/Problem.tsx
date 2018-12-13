@@ -14,6 +14,7 @@ import shapes from '../../styles/shapes';
 import Title from '../texts/Title';
 import Subtitle from '../texts/Subtitle';
 import FormList from '../layouts/FormList';
+import { cleanFormPrefill } from '../../utils/form';
 
 const Wrap = styled('div')`
   ${layouts.center}
@@ -38,9 +39,9 @@ export interface IProblemProps extends IComponentProps {
 }
 
 const Problem: FunctionComponent<IProblemProps> = ({ handlers, data }) => {
-  const prefill: IReport = {
+  const prefill: IReport = cleanFormPrefill({
     message: '',
-  };
+  });
   const validation = Yup.object().shape({
     message: Yup.string().trim(),
   });

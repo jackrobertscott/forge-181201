@@ -13,7 +13,7 @@ export const getUserQuery = apolloPersistor.instance({
   map: ({ ...args }) => ({
     ...args,
     query: gql`
-      query GetUser() {
+      query GetUser {
         me {
           id
           preferences {
@@ -48,19 +48,19 @@ const Preferences: FunctionComponent<IPreferencesProps> = () => {
   const { loading, error } = useInstance(editPreferencesMutation);
   useInstanceSuccess(editPreferencesMutation);
   const data = {
-    prefill: {
-      shortcutOpen: '',
-      ...(me ? me.preferences : {}),
-    },
+    prefill: me ? me.preferences : {},
     loading,
     error,
   };
   const handlers = {
-    submit: (formData: any) =>
+    submit: ({ shortcutOpen }: any) =>
       editPreferencesMutation.execute({
-        variables: { input: { preferences: formData } },
+        variables: { input: { preferences: { shortcutOpen } } },
       }),
   };
+  if (!me) {
+    return null;
+  }
   return (
     <List>
       <Title>Preferences</Title>

@@ -7,6 +7,7 @@ import { IComponentProps } from '../../utils/components';
 import SimpleInput from '../inputs/SimpleInput';
 import Arrow from '../buttons/Arrow';
 import Onboard from '../layouts/Onboard';
+import { cleanFormPrefill } from '../../utils/form';
 
 interface IUserFragment {
   username?: string;
@@ -23,10 +24,10 @@ interface ILoginFormProps extends IComponentProps {
 }
 
 const LoginForm: FunctionComponent<ILoginFormProps> = ({ data, handlers }) => {
-  const prefill: IUserFragment = {
+  const prefill: IUserFragment = cleanFormPrefill({
     username: '',
     password: '',
-  };
+  });
   const validation = Yup.object().shape({
     username: Yup.string()
       .trim()

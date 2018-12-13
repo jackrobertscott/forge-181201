@@ -47,24 +47,24 @@ const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
   const { error, loading } = useInstance(editCodeMutation);
   useInstanceSuccess(editCodeMutation);
   const data = {
-    code,
+    prefill: code,
     error,
     loading,
     title: 'Edit Code',
   };
   const handlers = {
-    submit: (formData: any) =>
+    submit: ({ name, shortcut, contents }: any) =>
       editCodeMutation.execute({
         variables: {
           id: code.id,
-          input: formData,
+          input: { name, shortcut, contents },
         },
       }),
   };
-  if (code) {
-    return <CodeForm data={data} handlers={handlers} />;
+  if (!code) {
+    return null;
   }
-  return null;
+  return <CodeForm data={data} handlers={handlers} />;
 };
 
 export default CreateCode;

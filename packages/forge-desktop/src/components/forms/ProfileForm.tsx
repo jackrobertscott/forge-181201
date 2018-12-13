@@ -5,10 +5,10 @@ import GoodButton from '../buttons/GoodButton';
 import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
+import { cleanFormPrefill } from '../../utils/form';
 
 export interface IProfileFragment {
   name?: string;
-  username?: string;
   email?: string;
 }
 
@@ -26,15 +26,15 @@ const ProfileForm: FunctionComponent<IProfileFormProps> = ({
   data,
   handlers,
 }) => {
-  const prefill: IProfileFragment = {
-    name: '',
-    username: '',
-    email: '',
-    ...(data.prefill || {}),
-  };
+  const prefill: IProfileFragment = cleanFormPrefill(
+    {
+      name: '',
+      email: '',
+    },
+    data.prefill
+  );
   const validation = Yup.object().shape({
     name: Yup.string().trim(),
-    username: Yup.string().trim(),
     email: Yup.string().trim(),
   });
   const form = ({ errors, touched }: FormikProps<IProfileFragment>) => (
@@ -44,14 +44,6 @@ const ProfileForm: FunctionComponent<IProfileFormProps> = ({
         label="Your Name"
         help="What do you want us to call you?"
         placeholder="E.g. Ron Weasley"
-        component={Control}
-        problem={touched.name && errors.name}
-      />
-      <Field
-        name="username"
-        label="Username"
-        help="Your own unique identifier."
-        placeholder="E.g. i-dont-like-spiders"
         component={Control}
         problem={touched.name && errors.name}
       />

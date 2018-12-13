@@ -25,7 +25,6 @@ type GitHub implements Provider {
 type CustomPayload {
   username: String!
   password: String!
-  email: String!
 }
 
 type Custom implements Provider {

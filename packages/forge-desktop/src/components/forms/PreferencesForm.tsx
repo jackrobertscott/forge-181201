@@ -5,6 +5,7 @@ import GoodButton from '../buttons/GoodButton';
 import Control from '../inputs/Control';
 import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
+import { cleanFormPrefill } from '../../utils/form';
 
 export interface IPreferencesFragment {
   shortcutOpen?: string;
@@ -24,10 +25,12 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
   data,
   handlers,
 }) => {
-  const prefill: IPreferencesFragment = {
-    shortcutOpen: '',
-    ...(data.prefill || {}),
-  };
+  const prefill: IPreferencesFragment = cleanFormPrefill(
+    {
+      shortcutOpen: '',
+    },
+    data.prefill
+  );
   const validation = Yup.object().shape({
     shortcutOpen: Yup.string().trim(),
   });

@@ -48,8 +48,8 @@ export default class ErrorCapture extends Component<
   }
 
   private submit = ({ message }: { message: string }) => {
-    console.log('Todo: send message to Sentry...');
-    console.log('Todo: relaunch app...');
+    console.log('TODO: send message to Sentry...');
+    console.log('TODO: relaunch app...');
     // runElectron(electron => {
     //   electron.ipcRenderer.send('relaunch');
     // });

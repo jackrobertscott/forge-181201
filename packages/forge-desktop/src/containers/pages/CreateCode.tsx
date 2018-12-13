@@ -28,17 +28,17 @@ const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
     setTimeout(() => Terminal.navigate('/'));
   });
   const data = {
-    code: {},
+    prefill: {},
     error,
     loading,
     title: 'Create Code',
   };
   const handlers = {
-    submit: ({ bundleId, ...formData }: any) =>
+    submit: ({ bundleId, name, shortcut, contents }: any) =>
       createCodeMutation.execute({
         variables: {
           bundleId,
-          input: formData,
+          input: { name, shortcut, contents },
         },
       }),
   };

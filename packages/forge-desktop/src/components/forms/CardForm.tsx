@@ -8,6 +8,7 @@ import { IComponentProps } from '../../utils/components';
 import FormList from '../layouts/FormList';
 import colors from '../../styles/colors';
 import CardInput from '../inputs/CardInput';
+import { cleanFormPrefill } from '../../utils/form';
 
 export interface ICardFragment {
   name?: string;
@@ -25,10 +26,12 @@ export interface ICardFormProps extends IComponentProps {
 }
 
 const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
-  const prefill: ICardFragment = {
-    name: '',
-    ...(data.prefill || {}),
-  };
+  const prefill: ICardFragment = cleanFormPrefill(
+    {
+      name: '',
+    },
+    data.prefill
+  );
   const validation = Yup.object().shape({
     name: Yup.string()
       .trim()
