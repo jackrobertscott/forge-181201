@@ -23,6 +23,7 @@ const Status = styled('div')`
   ${bgs.darkLight}
   ${words.secondary}
   ${({ active }: any) => active && [bgs.marine, words.primary]}
+  transition: .2s;
   margin-bottom: 20px;
 `;
 
@@ -33,21 +34,24 @@ const Subtitle = styled('span')`
 `;
 
 export interface IStatusEditorProps {
-  active: boolean;
   [name: string]: any;
 }
 
 const StatusEditor: FunctionComponent<IStatusEditorProps & IEditorProps> = ({
-  active,
   ...args
-}) => (
-  <Wrap>
-    <Status active={active} space="bottom">
-      <Title>{active ? 'Inserting...' : 'Preview'}</Title>
-      <Subtitle>Press Enter to Copy</Subtitle>
-    </Status>
-    <Editor {...args} />
-  </Wrap>
-);
+}) => {
+  const help = args.snippeting
+    ? 'Press [Enter] to Copy'
+    : 'Press [Right Arrow] to Edit';
+  return (
+    <Wrap>
+      <Status active={args.snippeting} space="bottom">
+        <Title>{args.snippeting ? 'Inserting...' : 'Preview'}</Title>
+        <Subtitle>{help}</Subtitle>
+      </Status>
+      <Editor {...args} />
+    </Wrap>
+  );
+};
 
 export default StatusEditor;

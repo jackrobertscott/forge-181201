@@ -21,6 +21,11 @@ const Wrap = styled('div')`
       ${states.hovered(bgs.darkLight)}
       ${states.clicked([bgs.dark, shadows.none])}
     `}
+  ${({ active }) =>
+    active &&
+    css`
+      ${bgs.darkLight}
+    `}
 `;
 
 const Name = styled('div')`

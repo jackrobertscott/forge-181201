@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'lumbridge';
 import Split from '../../components/layouts/Split';
 import SimpleInput from '../../components/inputs/SimpleInput';
@@ -20,6 +20,7 @@ export const codeListQuery = apolloPersistor.instance({
           id
           name
           shortcut
+          contents
         }
       }
     `,
@@ -34,15 +35,28 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     error,
     loading,
   } = useInstanceExecute(codeListQuery);
+  const [focusedCode, setFocusedCode] = useState<any>(null);
+  const [editing, setEditing] = useState<boolean>(false);
+  const copyCommand = {
+    keycode: 3, // Enter
+    action: ({ value }: { value: string }) => console.log(`TODO: copy`, value),
+  };
   const data = {
+    focusedCode,
     codes: userCodes || [],
     error,
     loading,
   };
   const handlers = {
-    choose: () => {
-      console.log('TODO: copy code and things...');
+    focus: (code: any, force?: boolean) => {
+      if (force || !editing) {
+        if (force) {
+          setEditing(false);
+        }
+        setFocusedCode(code);
+      }
     },
+    choose: (code?: any) => setEditing(!!code),
   };
   return (
     <Split>
@@ -53,7 +67,11 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
         </GoodButton>
         <ChooseCode data={data} handlers={handlers} />
       </List>
-      <StatusEditor active={false} />
+      <StatusEditor
+        value={focusedCode && focusedCode.contents}
+        snippeting={editing}
+        command={copyCommand}
+      />
     </Split>
   );
 };

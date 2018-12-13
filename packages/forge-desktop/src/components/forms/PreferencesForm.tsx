@@ -26,9 +26,7 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
   handlers,
 }) => {
   const prefill: IPreferencesFragment = cleanFormPrefill(
-    {
-      shortcutOpen: '',
-    },
+    { shortcutOpen: '' },
     data.prefill
   );
   const validation = Yup.object().shape({

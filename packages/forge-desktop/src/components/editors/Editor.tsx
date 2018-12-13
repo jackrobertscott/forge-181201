@@ -38,7 +38,7 @@ export interface IEditorProps {
   command?: {
     keycode: number;
     action: (...args: any[]) => any;
-    context: string;
+    context?: string;
   };
 }
 

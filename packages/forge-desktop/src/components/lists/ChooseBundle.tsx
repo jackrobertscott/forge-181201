@@ -21,7 +21,6 @@ export interface IChooseBundleProps extends IComponentProps {
   };
   handlers: {
     choose: (bundle: IBundleFragment) => any;
-    [name: string]: any;
   };
 }
 
