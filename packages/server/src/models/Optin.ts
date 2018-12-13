@@ -5,8 +5,8 @@ export interface IOptin extends Document {
   id: string;
   createdAt: string;
   updatedAt: string;
-  userId: Schema.Types.ObjectId;
-  bundleId: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId | string;
+  bundleId: Schema.Types.ObjectId | string;
   toRecord: (extra?: object) => object;
 }
 

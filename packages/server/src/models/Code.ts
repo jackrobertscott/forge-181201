@@ -5,8 +5,8 @@ export interface ICode extends Document {
   id: string;
   createdAt: string;
   updatedAt: string;
-  creatorId: Schema.Types.ObjectId;
-  bundleId?: Schema.Types.ObjectId;
+  creatorId: Schema.Types.ObjectId | string;
+  bundleId?: Schema.Types.ObjectId | string;
   name: string;
   shortcut: string;
   contents: string;

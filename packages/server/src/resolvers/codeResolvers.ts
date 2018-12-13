@@ -1,6 +1,6 @@
 import User from '../models/User';
 import Code from '../models/Code';
-import Optin from '../models/Optin';
+import Optin, { IOptin } from '../models/Optin';
 import Bundle from '../models/Bundle';
 import { recordAction } from '../utils/record';
 import { compareIds } from '../utils/models';
@@ -12,7 +12,7 @@ export default {
       { filter, search }: { filter?: object; search?: string },
       { user }: { user: any }
     ) {
-      const optins: Array<{ bundleId: string }> = await Optin.find({
+      const optins: IOptin[] = await Optin.find({
         userId: user.id,
       }).select('bundleId');
       const bundleIds = optins.map(({ bundleId }) => bundleId);

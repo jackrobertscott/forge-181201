@@ -5,7 +5,7 @@ export interface IProvider extends Document {
   id: string;
   createdAt: string;
   updatedAt: string;
-  creatorId: Schema.Types.ObjectId;
+  creatorId: Schema.Types.ObjectId | string;
   domain: string;
   payload: {
     [name: string]: string | boolean | number;

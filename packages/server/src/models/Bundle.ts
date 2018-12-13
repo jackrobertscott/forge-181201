@@ -5,7 +5,7 @@ export interface IBundle extends Document {
   id: string;
   createdAt: string;
   updatedAt: string;
-  creatorId: Schema.Types.ObjectId;
+  creatorId: Schema.Types.ObjectId | string;
   name: string;
   readme: string;
   published: boolean;
