@@ -11,17 +11,12 @@ export default {
       { filter, search }: { filter?: object; search?: string },
       { user }: { user: any }
     ) {
-      const items: any[] = await Optin.find({ userId: user.id })
-        .select('bundleId')
-        .populate({
-          path: 'bundleId',
-          select: 'codeIds',
-        });
-      const codeIds = items.reduce((ids, optin) => {
-        return ids.concat(optin.bundleId.codeIds);
-      }, []);
+      const optins: Array<{ bundleId: string }> = await Optin.find({
+        userId: user.id,
+      }).select('bundleId');
+      const bundleIds = optins.map(({ bundleId }) => bundleId);
       let options: any = {
-        $or: [{ creatorId: user.id }, { _id: { $in: codeIds } }],
+        $or: [{ creatorId: user.id }, { bundleId: { $in: bundleIds } }],
       };
       if (search && search.length) {
         const regSearch = new RegExp(search, 'i');
