@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import styled from 'styled-components';
 import keycode from 'keycode';
 import { IComponentProps } from '../../utils/components';
@@ -27,7 +27,9 @@ export interface IChooseCodeProps extends IComponentProps {
   handlers: {
     focusCode: (code: ICodeFragment, force?: boolean) => any;
     chooseCode: (code?: ICodeFragment) => any;
-    clipboardCopy: (value: string) => void;
+    clipboardCopyCode: (value: string) => void;
+    deleteCode: (data: { id: string }) => void;
+    cloneCode: (data: { id: string }) => void;
   };
 }
 
@@ -70,14 +72,10 @@ const ChooseCode: FunctionComponent<IChooseCodeProps> = ({
     },
     [activeKey]
   );
-
   const codes = data.codes.map((code: ICodeFragment) => {
     const { id, name, shortcut } = code;
     const focus = () => handlers.focusCode(code, true);
-    const copy = () => console.log('TODO');
-    const menu = (
-      <CodeMenu data={{ code }} handlers={{ copy: handlers.clipboardCopy }} />
-    );
+    const menu = <CodeMenu data={{ code }} handlers={handlers} />;
     return (
       <Result
         key={id}

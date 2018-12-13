@@ -66,7 +66,6 @@ const EditCode: FunctionComponent<IEditCodeProps> = () => {
   };
   const handlers = {
     submit: ({ name, shortcut, contents }: any) =>
-      (console.log(name) as any) ||
       editCodeMutation.execute({
         variables: {
           id: code.id,

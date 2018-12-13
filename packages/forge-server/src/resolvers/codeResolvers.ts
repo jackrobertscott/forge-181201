@@ -3,6 +3,7 @@ import Code from '../models/Code';
 import Optin from '../models/Optin';
 import Bundle from '../models/Bundle';
 import { recordAction } from '../utils/record';
+import { compareIds } from '../utils/models';
 
 export default {
   Query: {
@@ -65,8 +66,15 @@ export default {
       });
       return code.toObject();
     },
-    async editCode(_: any, { id, input }: { id: string; input: object }) {
+    async editCode(
+      _: any,
+      { id, input }: { id: string; input: object },
+      { user }: { user: any }
+    ) {
       const code: any = await Code.findById(id);
+      if (!compareIds(code.creatorId, user.id)) {
+        throw new Error('Can not edit a code which is not your own.');
+      }
       Object.assign(code, input);
       await code.save();
       recordAction({
@@ -79,6 +87,9 @@ export default {
     },
     async cloneCode(_: any, { id }: { id: string }, { user }: { user: any }) {
       const code: any = await Code.findById(id);
+      if (!compareIds(code.creatorId, user.id)) {
+        throw new Error('Can not clone a code which is not your own.');
+      }
       const { _id, ...data }: any = code.toObject();
       const clone: any = await Code.create({
         ...data,
@@ -92,8 +103,11 @@ export default {
       });
       return clone.toObject();
     },
-    async deleteCode(_: any, { id }: { id: string }) {
+    async deleteCode(_: any, { id }: { id: string }, { user }: { user: any }) {
       const code: any = await Code.findById(id);
+      if (!compareIds(code.creatorId, user.id)) {
+        throw new Error('Can not clone a code which is not your own.');
+      }
       await code.remove();
       recordAction({
         userId: code.creatorId,

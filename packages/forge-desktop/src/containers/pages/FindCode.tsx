@@ -1,11 +1,6 @@
-import React, {
-  FunctionComponent,
-  useState,
-  ChangeEvent,
-  useEffect,
-} from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import gql from 'graphql-tag';
-import { Link } from 'lumbridge';
+import { Link, Terminal } from 'lumbridge';
 import { throttle } from 'throttle-debounce';
 import Split from '../../components/layouts/Split';
 import SimpleInput from '../../components/inputs/SimpleInput';
@@ -33,20 +28,69 @@ export const codeListQuery = apolloPersistor.instance({
   }),
 });
 
+export const deleteCodeMutation = apolloPersistor.instance({
+  name: 'mutate',
+  map: ({ ...args }) => ({
+    ...args,
+    mutation: gql`
+      mutation DeleteCode($id: String!) {
+        deleteCode(id: $id) {
+          id
+        }
+      }
+    `,
+  }),
+});
+
+export const cloneCodeMutation = apolloPersistor.instance({
+  name: 'mutate',
+  map: ({ ...args }) => ({
+    ...args,
+    mutation: gql`
+      mutation CloneCode($id: String!) {
+        cloneCode(id: $id) {
+          id
+        }
+      }
+    `,
+  }),
+});
+
 export interface IFindCodeProps {}
 
 const FindCode: FunctionComponent<IFindCodeProps> = () => {
+  const [focusedCode, setFocusedCode] = useState<any>(null);
+  const [editing, setEditing] = useState<boolean>(false);
+  const redo = () => {
+    codeListQuery.redo();
+  };
+  useEffect(() => {
+    const unwatch = deleteCodeMutation.watch({
+      data: redo,
+    });
+    return () => unwatch();
+  }, []);
+  useEffect(() => {
+    const unwatch = cloneCodeMutation.watch({
+      data: ({ cloneCode: newCode }) => {
+        setTimeout(() => Terminal.navigate(`/edit?id=${newCode.id}`));
+      },
+    });
+    return () => unwatch();
+  }, []);
   const {
     data: { userCodes },
     error,
     loading,
   } = useInstanceExecute(codeListQuery);
-  const [focusedCode, setFocusedCode] = useState<any>(null);
-  const [editing, setEditing] = useState<boolean>(false);
-  const clipboardCopy = (value: string) => console.log(`TODO: copy`, value);
+  const clipboardCopyCode = (value: string) => console.log(`TODO: copy`, value);
+  const deleteCode = ({ id }: { id: string }) =>
+    deleteCodeMutation.execute({ variables: { id } });
+  const cloneCode = ({ id }: { id: string }) =>
+    cloneCodeMutation.execute({ variables: { id } });
   const copyCommand = {
     keycode: 3, // Enter
-    action: ({ value }: { value: string }) => clipboardCopy(value),
+    action: ({ value }: { value: string }) => clipboardCopyCode(value),
   };
   const runSearch = throttle(300, (event: any) => {
     codeListQuery.execute({ variables: { search: event.target.value } });
@@ -67,7 +111,9 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
       }
     },
     chooseCode: (code?: any) => setEditing(!!code),
-    clipboardCopy,
+    clipboardCopyCode,
+    deleteCode,
+    cloneCode,
   };
   return (
     <Split>

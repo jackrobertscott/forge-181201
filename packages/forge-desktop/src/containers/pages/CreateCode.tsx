@@ -26,7 +26,7 @@ export interface ICreateCodeProps {}
 const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
   const { error, loading } = useInstance(createCodeMutation);
   useInstanceSuccess(createCodeMutation, () => {
-    codeListQuery.refresh();
+    codeListQuery.redo();
     setTimeout(() => Terminal.navigate('/'));
   });
   const data = {

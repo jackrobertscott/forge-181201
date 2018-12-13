@@ -10,7 +10,9 @@ const apolloPersistor: Persistor = Persistor.create({
         variables: object(),
       },
       handler: ({ query, variables }) => {
-        return client.query({ query, variables }).then(({ data }) => data);
+        return client
+          .query({ query, variables, fetchPolicy: 'network-only' })
+          .then(({ data }) => data);
       },
     },
     mutate: {
