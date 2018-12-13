@@ -17,12 +17,14 @@ const Wrap = styled('input')`
 
 export interface IInputProps {
   field?: any;
+  inner?: any;
   [name: string]: any;
 }
 
 const SimpleInput: FunctionComponent<IInputProps> = ({
   field = {},
+  inner,
   ...args
-}) => <Wrap {...args} {...field} />;
+}) => <Wrap ref={inner} {...args} {...field} />;
 
 export default SimpleInput;

@@ -4,7 +4,7 @@ const { globalShortcut, ipcMain } = electron;
 
 module.exports = ({ createOrFocusWindow }) => {
   const defaultShortcuts = {
-    exit: 'Escape',
+    exit: 'CommandOrControl+Q',
     open: 'CommandOrControl+D',
   };
   const shortcuts = Object.assign({}, defaultShortcuts);

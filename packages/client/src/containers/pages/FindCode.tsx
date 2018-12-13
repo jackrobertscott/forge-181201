@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useState, useEffect, useRef } from 'react';
 import gql from 'graphql-tag';
 import { Link, Terminal } from 'lumbridge';
 import { throttle } from 'throttle-debounce';
@@ -10,6 +10,7 @@ import List from '../../components/layouts/List';
 import ChooseCode from '../../components/lists/ChooseCode';
 import useInstanceExecute from '../effects/useInstanceExecute';
 import apolloPersistor from '../../persistors/apolloPersistor';
+import { runElectron } from '../../utils/electron';
 
 export const codeListQuery = apolloPersistor.instance({
   name: 'query',
@@ -61,6 +62,7 @@ export interface IFindCodeProps {}
 const FindCode: FunctionComponent<IFindCodeProps> = () => {
   const [focusedCode, setFocusedCode] = useState<any>(null);
   const [editing, setEditing] = useState<boolean>(false);
+  const searchInput = useRef<HTMLInputElement>(null);
   const redo = () => {
     codeListQuery.redo();
   };
@@ -78,12 +80,27 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     });
     return () => unwatch();
   }, []);
+  useEffect(() => {
+    runElectron(electron => {
+      electron.ipcRenderer.on('focused', () => {
+        if (searchInput.current) {
+          setFocusedCode(null);
+          searchInput.current.select();
+        }
+      });
+    });
+  }, []);
   const {
     data: { userCodes },
     error,
     loading,
   } = useInstanceExecute(codeListQuery);
-  const clipboardCopyCode = (value: string) => console.log(`TODO: copy`, value);
+  const clipboardCopyCode = (value: string) => {
+    runElectron(electron => {
+      electron.clipboard.writeText(value);
+      electron.ipcRenderer.send('dismiss');
+    });
+  };
   const deleteCode = ({ id }: { id: string }) =>
     deleteCodeMutation.execute({ variables: { id } });
   const cloneCode = ({ id }: { id: string }) =>
@@ -118,7 +135,12 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
   return (
     <Split>
       <List>
-        <SimpleInput placeholder="Search..." onChange={runSearch} />
+        <SimpleInput
+          autoFocus={true}
+          placeholder="Search..."
+          onChange={runSearch}
+          inner={searchInput}
+        />
         <GoodButton as={Link} to="/create" auto="left">
           Create
         </GoodButton>

@@ -7,6 +7,7 @@ import Control from '../../components/inputs/Control';
 import Button from '../../components/buttons/Button';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstanceExecute from '../effects/useInstanceExecute';
+import { runElectron } from '../../utils/electron';
 
 export const githubUrlQuery = apolloPersistor.instance({
   name: 'query',
@@ -48,7 +49,14 @@ const Accounts: FunctionComponent<IAccountsProps> = () => {
   const {
     data: { oauthGitHubUrl, userConnectedGitHub },
   } = useInstanceExecute(githubUrlQuery);
-  const navigateGitHub = () => window.location.assign(oauthGitHubUrl);
+  const navigateGitHub = () => {
+    runElectron(
+      electron => {
+        electron.ipcRenderer.send('authGitHub', oauthGitHubUrl);
+      },
+      () => window.location.assign(oauthGitHubUrl)
+    );
+  };
   const GitHub = ({ ...args }) => (
     <Button {...args} onClick={navigateGitHub}>
       {userConnectedGitHub ? 'Update connection' : 'Connect'} to GitHub

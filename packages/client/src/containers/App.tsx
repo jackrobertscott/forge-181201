@@ -3,6 +3,7 @@ import authRoutes from '../routes/authRoutes';
 import authStore from '../stores/authStore';
 import authScope, { retrieveLocalAuth } from '../scopes/authScope';
 import logo from '../assets/logo/Dark.svg';
+import { runElectron } from '../utils/electron';
 
 const Routes = authRoutes.render();
 
@@ -21,6 +22,9 @@ const App: FunctionComponent<IAppProps> = () => {
     });
     retrieveLocalAuth.execute();
     return () => unwatch();
+  }, []);
+  useEffect(() => {
+    runElectron(electron => electron.ipcRenderer.send('ready'));
   }, []);
   if (!authChecked) {
     return (
