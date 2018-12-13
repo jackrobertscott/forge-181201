@@ -30,6 +30,7 @@ interface ICodeFormProps extends IComponentProps {
     title: string;
     loading: boolean;
     prefill: ICodeFragment;
+    nobundle?: boolean;
   };
 }
 
@@ -54,9 +55,11 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     contents: Yup.string()
       .trim()
       .required(),
-    bundleId: Yup.string()
-      .trim()
-      .required(),
+    bundleId: data.nobundle
+      ? Yup.string()
+      : Yup.string()
+          .trim()
+          .required(),
   });
   const form = ({
     setFieldValue,
@@ -81,6 +84,16 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
     const bundleHandlers = {
       choose: ({ id }: { id?: string }) => setFieldValue('bundleId', id || ''),
     };
+    const bundleControl = !data.nobundle && (
+      <Control
+        name="bundleId"
+        label="Bundle"
+        help="The group of snippets."
+        component={BundleModal}
+        problem={touched.bundleId && errors.bundleId}
+        handlers={bundleHandlers}
+      />
+    );
     return (
       <FormList>
         <Split reverse={true}>
@@ -108,21 +121,14 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               component={Control}
               problem={touched.shortcut && errors.shortcut}
             />
-            <Control
-              name="bundleId"
-              label="Bundle"
-              help="The group of snippets."
-              component={BundleModal}
-              problem={touched.bundleId && errors.bundleId}
-              handlers={bundleHandlers}
-            />
+            {bundleControl}
             <GoodButton
               type="submit"
               auto="right"
               min="true"
               loading={data.loading}
             >
-              Create
+              Save
             </GoodButton>
           </List>
           <RegularEditor

@@ -5,6 +5,7 @@ import CodeForm from '../../components/forms/CodeForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstance from '../effects/useInstance';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
+import { codeListQuery } from './FindCode';
 
 export const createCodeMutation = apolloPersistor.instance({
   name: 'mutate',
@@ -25,6 +26,7 @@ export interface ICreateCodeProps {}
 const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
   const { error, loading } = useInstance(createCodeMutation);
   useInstanceSuccess(createCodeMutation, () => {
+    codeListQuery.refresh();
     setTimeout(() => Terminal.navigate('/'));
   });
   const data = {

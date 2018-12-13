@@ -16,6 +16,7 @@ export interface ICodeFragment {
   id: string;
   name: string;
   shortcut: string;
+  contents: string;
 }
 
 export interface IChooseCodeProps extends IComponentProps {
@@ -26,6 +27,7 @@ export interface IChooseCodeProps extends IComponentProps {
   handlers: {
     focusCode: (code: ICodeFragment, force?: boolean) => any;
     chooseCode: (code?: ICodeFragment) => any;
+    clipboardCopy: (value: string) => void;
   };
 }
 
@@ -68,16 +70,21 @@ const ChooseCode: FunctionComponent<IChooseCodeProps> = ({
     },
     [activeKey]
   );
+
   const codes = data.codes.map((code: ICodeFragment) => {
     const { id, name, shortcut } = code;
     const focus = () => handlers.focusCode(code, true);
+    const copy = () => console.log('TODO');
+    const menu = (
+      <CodeMenu data={{ code }} handlers={{ copy: handlers.clipboardCopy }} />
+    );
     return (
       <Result
         key={id}
         note={shortcut}
         onClick={focus}
         active={focusedCode && focusedCode.id === id}
-        menu={<CodeMenu />}
+        menu={menu}
       >
         {name}
       </Result>

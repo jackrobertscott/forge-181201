@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useState, ChangeEvent } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  ChangeEvent,
+  useEffect,
+} from 'react';
 import gql from 'graphql-tag';
 import { Link } from 'lumbridge';
 import { throttle } from 'throttle-debounce';
@@ -38,9 +43,10 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
   } = useInstanceExecute(codeListQuery);
   const [focusedCode, setFocusedCode] = useState<any>(null);
   const [editing, setEditing] = useState<boolean>(false);
+  const clipboardCopy = (value: string) => console.log(`TODO: copy`, value);
   const copyCommand = {
     keycode: 3, // Enter
-    action: ({ value }: { value: string }) => console.log(`TODO: copy`, value),
+    action: ({ value }: { value: string }) => clipboardCopy(value),
   };
   const runSearch = throttle(300, (event: any) => {
     codeListQuery.execute({ variables: { search: event.target.value } });
@@ -61,6 +67,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
       }
     },
     chooseCode: (code?: any) => setEditing(!!code),
+    clipboardCopy,
   };
   return (
     <Split>

@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import gql from 'graphql-tag';
+import queryString from 'query-string';
 import CodeForm from '../../components/forms/CodeForm';
 import apolloPersistor from '../../persistors/apolloPersistor';
-import gql from 'graphql-tag';
-import useInstanceExecute from '../effects/useInstanceExecute';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
+import { Terminal } from 'lumbridge';
 
 export const getCodeQuery = apolloPersistor.instance({
   name: 'query',
@@ -17,7 +18,6 @@ export const getCodeQuery = apolloPersistor.instance({
           name
           shortcut
           contents
-          bundleId
         }
       }
     `,
@@ -38,12 +38,23 @@ export const editCodeMutation = apolloPersistor.instance({
   }),
 });
 
-export interface ICreateCodeProps {}
+export interface IEditCodeProps {}
 
-const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
-  const {
-    data: { code },
-  } = useInstanceExecute(getCodeQuery);
+const EditCode: FunctionComponent<IEditCodeProps> = () => {
+  const [code, setCode] = useState<any>(null);
+  useEffect(() => {
+    const unwatch = getCodeQuery.watch({
+      data: ({ code: prefill }) => setCode(prefill),
+    });
+    return () => unwatch();
+  }, []);
+  useEffect(() => {
+    const { id } = queryString.parse(window.location.search);
+    if (!id) {
+      setTimeout(() => Terminal.navigate('/'));
+    }
+    getCodeQuery.execute({ variables: { id } });
+  }, []);
   const { error, loading } = useInstance(editCodeMutation);
   useInstanceSuccess(editCodeMutation);
   const data = {
@@ -51,9 +62,11 @@ const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
     error,
     loading,
     title: 'Edit Code',
+    nobundle: true,
   };
   const handlers = {
     submit: ({ name, shortcut, contents }: any) =>
+      (console.log(name) as any) ||
       editCodeMutation.execute({
         variables: {
           id: code.id,
@@ -67,4 +80,4 @@ const CreateCode: FunctionComponent<ICreateCodeProps> = () => {
   return <CodeForm data={data} handlers={handlers} />;
 };
 
-export default CreateCode;
+export default EditCode;
