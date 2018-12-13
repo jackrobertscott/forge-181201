@@ -44,18 +44,11 @@ export default {
   Mutation: {
     async addCode(
       _: any,
-      { bundleId, input }: { bundleId: string; input: object },
+      { input }: { input: object },
       { user }: { user: any }
     ) {
-      const count: number = await Bundle.countDocuments({ _id: bundleId });
-      if (!count) {
-        throw new Error(
-          `Can not create code because bundle with id "${bundleId}" does not exist.`
-        );
-      }
       const code: any = await Code.create({
         ...input,
-        bundleId,
         creatorId: user && user.id,
       });
       recordAction({
