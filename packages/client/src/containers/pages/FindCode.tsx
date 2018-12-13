@@ -84,9 +84,10 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     runElectron(electron => {
       electron.ipcRenderer.on('focused', () => {
         if (searchInput.current) {
-          setFocusedCode(null);
           searchInput.current.select();
         }
+        setFocusedCode(null);
+        setEditing(false);
       });
     });
   }, []);

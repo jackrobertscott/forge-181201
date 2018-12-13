@@ -53,7 +53,7 @@ export default {
     ${!borderless && `border: 1px solid ${colors.marineDark};`}
   `,
   marineLight: ({ borderless }: IBgsConfig = {}) => css`
-    color: ${colors.marineLight};
+    color: ${colors.white};
     background-color: ${Color(colors.marine)
       .lighten(0.3)
       .string()};

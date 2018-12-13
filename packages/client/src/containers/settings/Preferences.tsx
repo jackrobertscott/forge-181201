@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import gql from 'graphql-tag';
 import PreferencesForm from '../../components/forms/PreferencesForm';
 import List from '../../components/layouts/List';
@@ -7,6 +7,7 @@ import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
 import useInstanceExecute from '../effects/useInstanceExecute';
+import { runElectron } from '../../utils/electron';
 
 export const getUserQuery = apolloPersistor.instance({
   name: 'query',
@@ -47,6 +48,12 @@ const Preferences: FunctionComponent<IPreferencesProps> = () => {
   } = useInstanceExecute(getUserQuery);
   const { loading, error } = useInstance(editPreferencesMutation);
   useInstanceSuccess(editPreferencesMutation);
+  useEffect(() => {
+    const unwatch = editPreferencesMutation.watch({
+      data: () => getUserQuery.execute(), // being watched in App.tsx
+    });
+    return () => unwatch();
+  }, []);
   const data = {
     prefill: me ? me.preferences : {},
     loading,
