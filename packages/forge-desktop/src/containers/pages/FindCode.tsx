@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, ChangeEvent } from 'react';
 import { Link } from 'lumbridge';
+import { throttle } from 'throttle-debounce';
 import Split from '../../components/layouts/Split';
 import SimpleInput from '../../components/inputs/SimpleInput';
 import StatusEditor from '../../components/editors/StatusEditor';
@@ -15,8 +16,8 @@ export const codeListQuery = apolloPersistor.instance({
   map: ({ ...args }) => ({
     ...args,
     query: gql`
-      query ListCodes {
-        userCodes {
+      query ListCodes($search: String) {
+        userCodes(search: $search, filter: { limit: 20 }) {
           id
           name
           shortcut
@@ -41,6 +42,9 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     keycode: 3, // Enter
     action: ({ value }: { value: string }) => console.log(`TODO: copy`, value),
   };
+  const runSearch = throttle(300, (event: any) => {
+    codeListQuery.execute({ variables: { search: event.target.value } });
+  });
   const data = {
     focusedCode,
     codes: userCodes || [],
@@ -49,10 +53,10 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
   };
   const handlers = {
     focus: (code: any, force?: boolean) => {
+      if (force) {
+        setEditing(false);
+      }
       if (force || !editing) {
-        if (force) {
-          setEditing(false);
-        }
         setFocusedCode(code);
       }
     },
@@ -61,7 +65,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
   return (
     <Split>
       <List>
-        <SimpleInput placeholder="Search..." />
+        <SimpleInput placeholder="Search..." onChange={runSearch} />
         <GoodButton as={Link} to="/create" auto="left">
           Create
         </GoodButton>
