@@ -3,10 +3,11 @@ type Bundle @auth {
   createdAt: Date!
   updatedAt: Date!
   creatorId: String!
-  creator: User
   name: String!
   readme: String!
-  published: Boolean
+  published: Boolean!
+  # Extras
+  creator: User
 }
 
 input BundleFilterInput {
@@ -14,8 +15,8 @@ input BundleFilterInput {
 }
 
 input BundleInput {
-  name: String!
-  readme: String!
+  name: String
+  readme: String
   published: Boolean
 }
 

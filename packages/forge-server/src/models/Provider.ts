@@ -2,9 +2,10 @@ import { Schema, Document, model } from 'mongoose';
 import { modelOptions } from '../utils/models';
 
 export interface IProvider extends Document {
+  id: string;
   createdAt: string;
   updatedAt: string;
-  creatorId: string;
+  creatorId: Schema.Types.ObjectId;
   domain: string;
   payload: {
     [name: string]: string | boolean | number;

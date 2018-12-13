@@ -2,10 +2,11 @@ import { Schema, Document, model } from 'mongoose';
 import { modelOptions } from '../utils/models';
 
 export interface IOptin extends Document {
+  id: string;
   createdAt: string;
   updatedAt: string;
-  userId: string;
-  bundleId: string;
+  userId: Schema.Types.ObjectId;
+  bundleId: Schema.Types.ObjectId;
   toRecord: (extra?: object) => object;
 }
 

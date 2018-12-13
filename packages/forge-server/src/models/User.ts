@@ -2,6 +2,7 @@ import { Schema, Document, model } from 'mongoose';
 import { modelOptions } from '../utils/models';
 
 export interface IUser extends Document {
+  id: string;
   createdAt: string;
   updatedAt: string;
   email: string;
@@ -9,6 +10,14 @@ export interface IUser extends Document {
   avatar?: string;
   customer: {
     id: string;
+  };
+  subscription: {
+    id: string;
+    prevId: string;
+  };
+  preferences: {
+    shortcutOpen: string;
+    searchOnOpen: boolean;
   };
   toRecord: (extra?: object) => object;
 }
@@ -30,15 +39,25 @@ const schema = {
     type: String,
   },
   customer: {
-    id: { type: String },
+    id: {
+      type: String,
+    },
   },
   subscription: {
-    id: { type: String },
-    prevId: { type: String },
+    id: {
+      type: String,
+    },
+    prevId: {
+      type: String,
+    },
   },
   preferences: {
-    shortcutOpen: { type: String },
-    searchOnOpen: { type: Boolean },
+    shortcutOpen: {
+      type: String,
+    },
+    searchOnOpen: {
+      type: Boolean,
+    },
   },
 };
 

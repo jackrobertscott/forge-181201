@@ -2,10 +2,11 @@ import { Schema, Document, model } from 'mongoose';
 import { modelOptions } from '../utils/models';
 
 export interface ICode extends Document {
+  id: string;
   createdAt: string;
   updatedAt: string;
-  creatorId: string;
-  bundleId: string;
+  creatorId: Schema.Types.ObjectId;
+  bundleId?: Schema.Types.ObjectId;
   name: string;
   shortcut: string;
   contents: string;
@@ -22,7 +23,6 @@ const schema = {
   bundleId: {
     type: Schema.Types.ObjectId,
     ref: 'Bundle',
-    required: true,
   },
   name: {
     type: String,

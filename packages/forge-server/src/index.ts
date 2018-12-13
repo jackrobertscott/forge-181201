@@ -11,6 +11,7 @@ import bundleResolvers from './resolvers/bundleResolvers';
 import codeResolvers from './resolvers/codeResolvers';
 import providerResolvers from './resolvers/providerResolvers';
 import userResolvers from './resolvers/userResolvers';
+import optinResolvers from './resolvers/optinResolvers';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
@@ -26,6 +27,9 @@ connection.on('error', error => {
   throw error;
 });
 
+/**
+ * Load all gql files into an array of strings.
+ */
 const typeDefs = readdirSync(join(__dirname, './schemas/')).map(file => {
   return readFileSync(join(__dirname, './schemas/', file)).toString('utf-8');
 });
@@ -40,7 +44,8 @@ const schema = makeExecutableSchema({
     bundleResolvers,
     codeResolvers,
     providerResolvers,
-    userResolvers
+    userResolvers,
+    optinResolvers
   ) as any,
   schemaDirectives: {
     auth: AuthDirective,

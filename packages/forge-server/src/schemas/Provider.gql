@@ -3,8 +3,9 @@ interface Provider {
   createdAt: Date!
   updatedAt: Date!
   creatorId: String!
-  creator: User
   domain: String!
+  # Extras
+  creator: User
 }
 
 type GitHubPayload {
@@ -17,9 +18,10 @@ type GitHub implements Provider {
   createdAt: Date!
   updatedAt: Date!
   creatorId: String!
-  creator: User
   domain: String!
   payload: GitHubPayload!
+  # Extras
+  creator: User
 }
 
 type CustomPayload {
@@ -32,9 +34,10 @@ type Custom implements Provider {
   createdAt: Date!
   updatedAt: Date!
   creatorId: String!
-  creator: User
   domain: String!
   payload: CustomPayload!
+  # Extras
+  creator: User
 }
 
 type Payload {

@@ -3,7 +3,13 @@ type Optin {
   createdAt: Date!
   updatedAt: Date!
   userId: String!
-  user: User
   bundleId: String!
+  # Extras
+  user: User
   bundle: Bundle
+}
+
+extend type Mutation {
+  optinUser(bundleId: String!): Optin
+  optoutUser(bundleId: String!): Optin
 }

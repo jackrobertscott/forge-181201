@@ -9,13 +9,13 @@ type ChargeSubscription {
 
 type Preferences {
   shortcutOpen: String
+  searchOnOpen: Boolean
 }
 
 type User @auth {
   id: ID!
   createdAt: Date!
   updatedAt: Date!
-  hash: String!
   username: String!
   email: String!
   name: String
@@ -24,8 +24,10 @@ type User @auth {
   customer: ChargeCustomer
   subscription: ChargeSubscription
   preferences: Preferences
+  # Extras
   optins: [Optin!]!
-  hasOptin(bundleId: String!): Boolean
+  hasOptin(bundleId: String!): Boolean!
+  hash: String!
 }
 
 input UserFilterInput {
@@ -34,6 +36,7 @@ input UserFilterInput {
 
 input PreferencesInput {
   shortcutOpen: String
+  searchOnOpen: Boolean
 }
 
 input UserInput {
@@ -56,6 +59,4 @@ extend type Mutation {
   deleteUser(id: String!): User
   subscribeUser(token: String!, coupon: String): User
   unsubscribeUser: User
-  optinUser(bundleId: String!): Optin
-  optoutUser(bundleId: String!): Optin
 }

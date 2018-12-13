@@ -2,6 +2,7 @@ import { Schema, Document, model } from 'mongoose';
 import { modelOptions } from '../utils/models';
 
 export interface IBundle extends Document {
+  id: string;
   createdAt: string;
   updatedAt: string;
   creatorId: Schema.Types.ObjectId;
