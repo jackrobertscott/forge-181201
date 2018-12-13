@@ -26,7 +26,11 @@ const Wrap = styled('div')`
   ${({ active }) =>
     active &&
     css`
-      ${bgs.darkLight}
+      &,
+      &:hover,
+      &:active {
+        ${bgs.darkLighter}
+      }
     `}
 `;
 

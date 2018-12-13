@@ -61,7 +61,7 @@ const BundleForm: FunctionComponent<IBundleFormProps> = ({
         input={LargeInput}
         problem={touched.readme && errors.readme}
       />
-      <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
+      <GoodButton type="submit" auto="right" loading={data.loading}>
         Create
       </GoodButton>
     </FormList>

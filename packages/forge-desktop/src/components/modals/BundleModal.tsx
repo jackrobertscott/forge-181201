@@ -53,8 +53,8 @@ const BundleModal: FunctionComponent<IBundleModalProps> = ({
     );
   };
   const button = ({ open }: IToggle) => (
-    <Button onClick={open}>
-      {currentBundle ? currentBundle.name : 'Choose'}
+    <Button onClick={open} auto="right">
+      {currentBundle ? currentBundle.name : 'Select Bundle'}
     </Button>
   );
   return <Modal component={modal}>{button}</Modal>;

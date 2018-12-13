@@ -59,6 +59,9 @@ export default {
       .string()};
     ${!borderless && `border: 1px solid ${colors.marineDark};`}
   `,
+  marineEdges: () => css`
+    border: 1px solid ${colors.marineLight};
+  `,
   /**
    * Dangerous actions.
    */

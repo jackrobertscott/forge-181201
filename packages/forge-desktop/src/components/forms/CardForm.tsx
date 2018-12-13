@@ -54,7 +54,7 @@ const CardForm: FunctionComponent<ICardFormProps> = ({ data, handlers }) => {
         input={CardInput}
         hidePostalCode={true}
       />
-      <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
+      <GoodButton type="submit" auto="right" loading={data.loading}>
         Save
       </GoodButton>
     </FormList>

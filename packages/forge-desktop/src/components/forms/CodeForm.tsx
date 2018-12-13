@@ -122,12 +122,7 @@ const CodeForm: FunctionComponent<ICodeFormProps> = ({ data, handlers }) => {
               problem={touched.shortcut && errors.shortcut}
             />
             {bundleControl}
-            <GoodButton
-              type="submit"
-              auto="right"
-              min="true"
-              loading={data.loading}
-            >
+            <GoodButton type="submit" auto="right" loading={data.loading}>
               Save
             </GoodButton>
           </List>

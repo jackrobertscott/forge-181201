@@ -42,7 +42,7 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
         component={Control}
         problem={touched.shortcutOpen && errors.shortcutOpen}
       />
-      <GoodButton type="submit" auto="right" min="true" loading={data.loading}>
+      <GoodButton type="submit" auto="right" loading={data.loading}>
         Save
       </GoodButton>
     </FormList>
