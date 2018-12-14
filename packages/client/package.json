@@ -7,7 +7,7 @@
   "homepage": "./",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jackrobertscott/forge-desktop.git"
+    "url": "git+https://github.com/jackrobertscott/forge.git"
   },
   "author": {
     "name": "Jack Scott",
