@@ -25,6 +25,6 @@ const SimpleInput: FunctionComponent<IInputProps> = ({
   field = {},
   inner,
   ...args
-}) => <Wrap ref={inner} {...args} {...field} />;
+}) => <Wrap ref={inner} {...field} {...args} />;
 
 export default SimpleInput;

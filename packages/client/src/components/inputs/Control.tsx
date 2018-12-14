@@ -72,7 +72,7 @@ const Control: FunctionComponent<IControlProps> = ({
           <Status problem={problem}>{message}</Status>
         </div>
       </Alert>
-      <InputComponent {...args} {...field} />
+      <InputComponent {...field} {...args} />
     </Wrap>
   );
 };

@@ -1,7 +1,6 @@
 import Optin from '../models/Optin';
 import { createHmac } from 'crypto';
 import config from '../config';
-import Bundle from '../models/Bundle';
 import User from '../models/User';
 import {
   paymentsCustomerUnsubscribe,

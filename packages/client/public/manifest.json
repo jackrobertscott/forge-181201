@@ -3,13 +3,13 @@
   "name": "Coding evolved.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "assets/favicon/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#1F1F1F",
   "background_color": "#ffffff"
 }

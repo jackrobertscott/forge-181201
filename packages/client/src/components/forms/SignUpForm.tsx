@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Formik, FormikProps, Field, Form } from 'formik';
+import { paramCase } from 'change-case';
 import * as Yup from 'yup';
-import styled from 'styled-components';
 import List from '../layouts/List';
 import GoodButton from '../buttons/GoodButton';
 import { IComponentProps } from '../../utils/components';
@@ -48,7 +48,15 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
       .email()
       .required(),
   });
-  const form = ({ errors, touched }: FormikProps<IUserFragment>) => {
+  const form = ({
+    errors,
+    touched,
+    setFieldValue,
+  }: FormikProps<IUserFragment>) => {
+    const usernameChange = (event: any) => {
+      const name = String(event.target.value || '');
+      setFieldValue('username', paramCase(name).toLowerCase());
+    };
     return (
       <Onboard back={true}>
         <Form>
@@ -59,6 +67,7 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
               placeholder="Claim a username"
               component={SimpleInput}
               problem={touched.username && errors.username}
+              onChange={usernameChange}
             />
             <Field
               type="password"

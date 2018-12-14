@@ -27,6 +27,11 @@ const schema = {
     type: String,
     required: true,
     unique: true,
+    validate: {
+      validator: (value: any) => /^[0-9a-z\-]+$/.test(value),
+      message: ({ value }: any) =>
+        `${value} must only be letters, numbers and dashes e.g. "one-two-three".`,
+    },
   },
   email: {
     type: String,

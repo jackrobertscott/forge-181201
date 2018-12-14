@@ -67,10 +67,15 @@ const server = new ApolloServer({
       error.extensions &&
       error.extensions.code === 'INTERNAL_SERVER_ERROR'
     ) {
-      if (config.production) {
-        capture(error);
-      } else {
-        console.log(error);
+      const validationError =
+        error.extensions.exception &&
+        error.extensions.exception.name === 'ValidationError';
+      if (!validationError) {
+        if (config.production) {
+          capture(error);
+        } else {
+          console.log(error);
+        }
       }
     }
     return error;
