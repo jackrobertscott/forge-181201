@@ -21,7 +21,7 @@ export default {
     },
     async me(_: any, {}, { user: me }: { user: any }) {
       const user: any = await User.findById(me.id);
-      return user.toObject();
+      return { preferences: {}, ...user.toObject() };
     },
   },
   Mutation: {

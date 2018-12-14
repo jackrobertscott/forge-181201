@@ -16,13 +16,6 @@ export const getUserQuery = apolloPersistor.instance({
       query GetUser {
         me {
           id
-          hash
-          name
-          username
-          email
-          createdAt
-          updatedAt
-          isSubscribed
           preferences {
             shortcutOpen
           }
@@ -56,7 +49,7 @@ const Preferences: FunctionComponent<IPreferencesProps> = () => {
   useInstanceSuccess(editPreferencesMutation);
   useEffect(() => {
     const unwatch = editPreferencesMutation.watch({
-      data: () => getUserQuery.execute(), // being watched in App.tsx
+      data: () => getUserQuery.execute(),
     });
     return () => unwatch();
   }, []);

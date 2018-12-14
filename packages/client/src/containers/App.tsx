@@ -1,13 +1,35 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
+import gql from 'graphql-tag';
 import authRoutes from '../routes/authRoutes';
 import authStore from '../stores/authStore';
 import authScope, { retrieveLocalAuth } from '../scopes/authScope';
 import { runElectron } from '../utils/electron';
-import { getUserQuery } from './settings/Preferences';
 import { loadAsset } from '../utils/assets';
 import intercom from '../utils/intercom';
 import withToaster from '../components/toast/withToaster';
 import toastStore from '../stores/toastStore';
+import apolloPersistor from '../persistors/apolloPersistor';
+
+export const getUserQuery = apolloPersistor.instance({
+  name: 'query',
+  map: ({ ...args }) => ({
+    ...args,
+    query: gql`
+      query GetUser {
+        me {
+          id
+          hash
+          name
+          username
+          email
+          createdAt
+          updatedAt
+          isSubscribed
+        }
+      }
+    `,
+  }),
+});
 
 const Routes = authRoutes.render();
 
