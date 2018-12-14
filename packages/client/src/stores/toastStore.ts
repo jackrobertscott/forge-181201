@@ -13,7 +13,7 @@ const toastStore: Store = Store.create({
     },
   },
   actions: {
-    ping: ({ type = null, contents = null }) => ({
+    ping: ({ type = null, contents = null } = {}) => ({
       type,
       contents,
     }),

@@ -17,7 +17,7 @@ const authStore: Store = Store.create({
     },
   },
   actions: {
-    patch: ({ token = null, userId = null }) => ({
+    patch: ({ token = null, userId = null } = {}) => ({
       token,
       userId,
       loggedIn: Boolean(token && userId),

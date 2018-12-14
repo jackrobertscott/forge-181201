@@ -2,7 +2,10 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import authRoutes from '../routes/authRoutes';
 import authStore from '../stores/authStore';
-import authScope, { retrieveLocalAuth } from '../scopes/authScope';
+import authScope, {
+  retrieveLocalAuth,
+  saveLocalAuth,
+} from '../scopes/authScope';
 import { runElectron } from '../utils/electron';
 import { loadAsset } from '../utils/assets';
 import intercom from '../utils/intercom';
@@ -54,14 +57,17 @@ const App: FunctionComponent<IAppProps> = ({ addToast }) => {
   }, []);
   useEffect(() => {
     const unwatch = getUserQuery.watch({
+      catch: () => saveLocalAuth.execute({ data: {} }),
       data: ({ me }) => {
         if (!me) {
           return;
         }
         runElectron(electron => {
-          electron.ipcRenderer.send('updateShortcuts', {
-            open: me.preferences.shortcutOpen,
-          });
+          if (me.preferences) {
+            electron.ipcRenderer.send('updateShortcuts', {
+              open: me.preferences.shortcutOpen,
+            });
+          }
         });
         intercom.update({
           user_id: me.id,

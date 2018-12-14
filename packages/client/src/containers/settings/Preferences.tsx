@@ -54,7 +54,7 @@ const Preferences: FunctionComponent<IPreferencesProps> = () => {
     return () => unwatch();
   }, []);
   const data = {
-    prefill: me ? me.preferences : {},
+    prefill: me && me.preferences ? me.preferences : {},
     loading,
     error,
   };

@@ -4,6 +4,7 @@ import Optin, { IOptin } from '../models/Optin';
 import Bundle from '../models/Bundle';
 import { recordAction } from '../utils/record';
 import { compareIds } from '../utils/models';
+import { AuthenticationError } from 'apollo-server';
 
 export default {
   Query: {
@@ -12,6 +13,9 @@ export default {
       { filter, search }: { filter?: object; search?: string },
       { user }: { user: any }
     ) {
+      if (!user) {
+        throw new AuthenticationError('Access denied.');
+      }
       const optins: IOptin[] = await Optin.find({
         userId: user.id,
       }).select('bundleId');
