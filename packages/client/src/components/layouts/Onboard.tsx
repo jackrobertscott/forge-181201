@@ -13,6 +13,7 @@ const Wrap = styled('div')`
   ${layouts.center}
   ${bgs.fade}
   flex-grow: 1;
+  -webkit-app-region: drag;
 `;
 
 const Logo = styled('img')`

@@ -7,21 +7,21 @@ import Preferences from '../containers/settings/Preferences';
 export default Router.create({
   base: '/settings',
   routes: {
-    preferences: {
-      path: '/preferences',
-      component: Preferences,
-    },
     profile: {
       path: '/profile',
       component: Profile,
     },
-    accounts: {
-      path: '/accounts',
-      component: Accounts,
+    preferences: {
+      path: '/preferences',
+      component: Preferences,
     },
-    membership: {
-      path: '/membership',
-      component: Membership,
-    },
+    // accounts: {
+    //   path: '/accounts',
+    //   component: Accounts,
+    // },
+    // membership: {
+    //   path: '/membership',
+    //   component: Membership,
+    // },
   },
 });
