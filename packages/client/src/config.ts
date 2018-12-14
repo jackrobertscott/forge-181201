@@ -35,8 +35,8 @@ switch (environment) {
       debug: false,
       assetPath: './assets',
       urls: {
-        spa: 'https://useforge.co',
-        api: 'https://api.useforge.co',
+        spa: 'https://app.useforge.co',
+        api: 'https://api.v1.useforge.co',
       },
       stripeKey: 'pk_live_8a0UIMwjDkpxEeG1RBzigzv0',
       segmentId: 'oBormUrYCXRyVLATpu1b4E0xUvqWC2Fq',
