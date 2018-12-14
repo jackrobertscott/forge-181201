@@ -33,7 +33,6 @@ const localPersistor: Persistor = Persistor.create({
             const data = encode && JSON.parse(encode);
             resolve(data || {});
           } catch (error) {
-            console.log(error);
             localStorage.removeItem(id);
             reject(error);
           }

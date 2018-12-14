@@ -7,7 +7,10 @@ export default (instance: Instance, cb?: (data: any) => any) => {
     () => {
       const unwatch = instance.watch({
         data: data => {
-          toastStore.dispatch.ping({ type: '', contents: 'Success saved.' });
+          toastStore.dispatch.ping({
+            type: '',
+            contents: 'Saved successfully.',
+          });
           if (cb) {
             cb(data);
           }

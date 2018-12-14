@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const Wrap = styled.div`
   padding: 20px;
   position: fixed;
+  z-index: 100;
   bottom: 0;
   right: 0;
 `;

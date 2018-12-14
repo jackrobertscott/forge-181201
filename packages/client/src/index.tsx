@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import config from './config';
 import ErrorCatch from './containers/pages/ErrorCatch';
 import App from './containers/App';
+import Toaster from './components/toast/Toaster';
 
 /**
  * Register error reporter before app rendering starts.
@@ -21,7 +22,9 @@ Sentry.init({
 const app = (
   <ErrorCatch>
     <StripeProvider apiKey={config.stripeKey}>
-      <App />
+      <Toaster>
+        <App />
+      </Toaster>
     </StripeProvider>
   </ErrorCatch>
 );

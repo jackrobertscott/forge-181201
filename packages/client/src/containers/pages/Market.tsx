@@ -33,7 +33,7 @@ const Market: FunctionComponent<IMarketProps> = () => {
   };
   const handlers = {
     subscribe: () => {
-      console.log('TODO: sign up a person to this bundle...');
+      // TODO: sign up a person to this bundle...
     },
   };
   return <Marketplace data={data} handlers={handlers} />;

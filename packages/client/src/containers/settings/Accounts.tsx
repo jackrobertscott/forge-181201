@@ -69,7 +69,7 @@ const Accounts: FunctionComponent<IAccountsProps> = () => {
       <List wide="true">
         <Control
           label="GitHub"
-          help="Make logging in easier by connecting to github."
+          help="Make logging in easier by connecting to GitHub."
           auto="right"
           input={GitHub}
         />

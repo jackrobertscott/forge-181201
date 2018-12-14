@@ -62,8 +62,7 @@ const App: FunctionComponent<IAppProps> = ({ addToast }) => {
   });
   useEffect(() => {
     const unwatch = toastStore.watch({
-      state: ({ type, contents }) =>
-        type && contents && addToast({ type, contents }),
+      state: ({ type, contents }) => contents && addToast({ type, contents }),
     });
     return () => unwatch();
   });

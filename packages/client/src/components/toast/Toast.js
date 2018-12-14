@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
-import { themePlatform } from '../stylings';
+import bgs from '../../styles/bgs';
+import shapes from '../../styles/shapes';
+import words from '../../styles/words';
+import colors from '../../styles/colors';
 
 const slideIn = keyframes`
   0% {
@@ -15,17 +18,15 @@ const slideIn = keyframes`
 `;
 
 const Wrap = styled.div`
+  ${bgs.darkLighter}
+  ${shapes.simple}
   width: 300px;
-  padding: 15px;
-  border-radius: ${themePlatform({ default: '3px', win32: '0' })};
-  background-color: #fff;
   margin-top: 10px;
   ${({ type }) =>
     type === 'error' &&
     css`
-      border-left: 10px solid #f70000;
+      border-left: 5px solid ${colors.dangerLighter};
     `};
-  color: #000;
   opacity: 0;
   transform: translateY(150%);
   animation: 0.5s forwards ${slideIn};
@@ -38,10 +39,10 @@ const Top = styled.div`
 `;
 
 const Label = styled.div`
-  padding: 4px 8px;
-  background-color: #000;
-  color: #fff;
-  border-radius: ${themePlatform({ default: '3px', win32: '0' })};
+  ${bgs.dark}
+  ${shapes.simple}
+  ${shapes.mini}
+  ${words.small}
 `;
 
 const Close = styled.div`
@@ -51,6 +52,7 @@ const Close = styled.div`
 `;
 
 const Contents = styled.div`
+  ${words.multiline}
   white-space: pre-wrap;
 `;
 

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
-import { sentenceCase } from 'change-case';
 import layouts from '../../styles/layouts';
 import words from '../../styles/words';
 import colors from '../../styles/colors';
@@ -63,7 +62,7 @@ const Control: FunctionComponent<IControlProps> = ({
   ...args
 }) => {
   const InputComponent = component || input;
-  const message = sentenceCase(problem || help);
+  const message = problem || help;
   return (
     <Wrap>
       <Alert>
