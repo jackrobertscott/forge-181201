@@ -73,10 +73,7 @@ const EditCode: FunctionComponent<IEditCodeProps> = () => {
         },
       }),
   };
-  if (!code) {
-    return null;
-  }
-  return <CodeForm data={data} handlers={handlers} />;
+  return !code ? null : <CodeForm data={data} handlers={handlers} />;
 };
 
 export default EditCode;

@@ -71,14 +71,11 @@ const Preferences: FunctionComponent<IPreferencesProps> = () => {
         variables: { input: { preferences: { shortcutOpen } } },
       }),
   };
-  if (!me) {
-    return null;
-  }
   return (
     <List>
       <Title>Preferences</Title>
       <br />
-      <PreferencesForm data={data} handlers={handlers} />
+      {me && <PreferencesForm data={data} handlers={handlers} />}
     </List>
   );
 };

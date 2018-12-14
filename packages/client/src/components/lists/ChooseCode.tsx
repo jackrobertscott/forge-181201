@@ -27,7 +27,7 @@ export interface IChooseCodeProps extends IComponentProps {
   handlers: {
     focusCode: (code: ICodeFragment, force?: boolean) => any;
     chooseCode: (code?: ICodeFragment) => any;
-    clipboardCopyCode: (value: string) => void;
+    clipboardCopyCode: (data: { value: string; id?: string }) => void;
     deleteCode: (data: { id: string }) => void;
     cloneCode: (data: { id: string }) => void;
   };

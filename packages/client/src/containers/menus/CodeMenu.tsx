@@ -8,7 +8,7 @@ export interface ICodeMenuProps {
     code: ICodeFragment;
   };
   handlers: {
-    clipboardCopyCode: (value: string) => void;
+    clipboardCopyCode: (data: { value: string; id?: string }) => void;
     deleteCode: (data: { id: string }) => void;
     cloneCode: (data: { id: string }) => void;
   };
@@ -17,7 +17,8 @@ export interface ICodeMenuProps {
 const CodeMenu: FunctionComponent<ICodeMenuProps> = ({ data, handlers }) => {
   const deleteCode = () => handlers.deleteCode(data.code);
   const cloneCode = () => handlers.cloneCode(data.code);
-  const copyCode = () => handlers.clipboardCopyCode(data.code.contents);
+  const copyCode = () =>
+    handlers.clipboardCopyCode({ value: data.code.contents, id: data.code.id });
   return (
     <PopupMenu.List>
       <PopupMenu.Item onClick={copyCode}>Copy</PopupMenu.Item>

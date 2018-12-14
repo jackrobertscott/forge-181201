@@ -1,6 +1,9 @@
 import { Persistor } from 'lumbridge';
 import * as Yup from 'yup';
 
+const Store = (window as any).require('electron-store');
+const store = new Store();
+
 const localPersistor: Persistor = Persistor.create({
   methods: {
     store: {
@@ -13,7 +16,7 @@ const localPersistor: Persistor = Persistor.create({
         return new Promise((resolve, reject) => {
           try {
             const save = JSON.stringify(data);
-            localStorage.setItem(id, save);
+            store.set(id, save);
             resolve(data || {});
           } catch (error) {
             reject(error);
@@ -29,11 +32,11 @@ const localPersistor: Persistor = Persistor.create({
         // @ts-ignore
         return new Promise((resolve, reject) => {
           try {
-            const encode = localStorage.getItem(id);
+            const encode = store.get(id);
             const data = encode && JSON.parse(encode);
             resolve(data || {});
           } catch (error) {
-            localStorage.removeItem(id);
+            store.delete(id);
             reject(error);
           }
         });

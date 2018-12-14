@@ -55,14 +55,11 @@ const Profile: FunctionComponent<IProfileProps> = () => {
     submit: ({ name, email }: any) =>
       editUserMutation.execute({ variables: { input: { name, email } } }),
   };
-  if (!me) {
-    return null;
-  }
   return (
     <List>
       <Title>Profile</Title>
       <br />
-      <ProfileForm data={data} handlers={handlers} />
+      {me && <ProfileForm data={data} handlers={handlers} />}
     </List>
   );
 };

@@ -11,6 +11,7 @@ import ChooseCode from '../../components/lists/ChooseCode';
 import useInstanceExecute from '../effects/useInstanceExecute';
 import apolloPersistor from '../../persistors/apolloPersistor';
 import { runElectron } from '../../utils/electron';
+import { recordAction } from '../../utils/record';
 
 export const codeListQuery = apolloPersistor.instance({
   name: 'query',
@@ -80,26 +81,39 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     });
     return () => unwatch();
   }, []);
+  let mounted = true;
   useEffect(() => {
     runElectron(electron => {
       electron.ipcRenderer.on('focused', () => {
         if (searchInput.current) {
           searchInput.current.select();
         }
-        setFocusedCode(null);
-        setEditing(false);
+        if (mounted) {
+          setFocusedCode(null);
+          setEditing(false);
+        }
       });
     });
+    return () => {
+      mounted = false;
+    };
   }, []);
   const {
     data: { userCodes },
     error,
     loading,
   } = useInstanceExecute(codeListQuery);
-  const clipboardCopyCode = (value: string) => {
+  const clipboardCopyCode = ({ id, value }: { value: string; id?: string }) => {
     runElectron(electron => {
       electron.clipboard.writeText(value);
       electron.ipcRenderer.send('dismiss');
+    });
+    recordAction({
+      scope: 'Code',
+      action: 'Clipboard Copied',
+      properties: {
+        codeId: id,
+      },
     });
   };
   const deleteCode = ({ id }: { id: string }) =>
@@ -108,7 +122,8 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     cloneCodeMutation.execute({ variables: { id } });
   const copyCommand = {
     keycode: 3, // Enter
-    action: ({ value }: { value: string }) => clipboardCopyCode(value),
+    action: ({ value }: { value: string }) =>
+      clipboardCopyCode({ value, id: focusedCode.id }),
   };
   const runSearch = throttle(300, (event: any) => {
     codeListQuery.execute({ variables: { search: event.target.value } });
