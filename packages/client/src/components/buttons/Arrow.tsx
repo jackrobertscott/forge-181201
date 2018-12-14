@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import arrow from '../../assets/features/Up.svg';
+import { loadAsset } from '../../utils/assets';
 
-export default styled('img').attrs({ src: arrow })`
+export default styled('img').attrs({ src: loadAsset('features/Up.svg') })`
   height: 1em;
   transform: rotate(90deg);
   filter: invert(100%);

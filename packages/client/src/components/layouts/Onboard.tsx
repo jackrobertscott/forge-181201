@@ -4,10 +4,10 @@ import { IComponentProps } from '../../utils/components';
 import bgs from '../../styles/bgs';
 import layouts from '../../styles/layouts';
 import Container from '../cards/Container';
-import logo from '../../assets/logo/Dark.svg';
 import animate from '../../styles/animate';
 import { Link } from 'lumbridge';
 import colors from '../../styles/colors';
+import { loadAsset } from '../../utils/assets';
 
 const Wrap = styled('div')`
   ${layouts.center}
@@ -45,7 +45,7 @@ const Onboard: FunctionComponent<IOnboardProps> = ({ children, back }) => {
   return (
     <Wrap>
       <Container>
-        <Logo src={logo} />
+        <Logo src={loadAsset('logo/Dark.svg')} />
         <Fade>{children}</Fade>
         {back && <Back to="/auth">Go back.</Back>}
       </Container>

@@ -14,7 +14,7 @@ import RegularEditor from '../editors/RegularEditor';
 import GoodButton from '../buttons/GoodButton';
 import layouts from '../../styles/layouts';
 import Button from '../buttons/Button';
-import up from '../../assets/features/Up.svg';
+import { loadAsset } from '../../utils/assets';
 
 const Readme = styled('div')`
   ${words.secondary}
@@ -75,13 +75,13 @@ const PreviewBundleModal: FunctionComponent<IPreviewBundleModalProps> = ({
       <List>
         <Top>
           <Button>
-            <Left src={up} />
+            <Left src={loadAsset('features/Up.svg')} />
           </Button>
           <Card slim={true}>
             <Readme>React Component</Readme>
           </Card>
           <Button>
-            <Right src={up} />
+            <Right src={loadAsset('features/Up.svg')} />
           </Button>
         </Top>
         <RegularEditor

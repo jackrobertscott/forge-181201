@@ -2,9 +2,9 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import authRoutes from '../routes/authRoutes';
 import authStore from '../stores/authStore';
 import authScope, { retrieveLocalAuth } from '../scopes/authScope';
-import logo from '../assets/logo/Dark.svg';
 import { runElectron } from '../utils/electron';
 import { getUserQuery } from './settings/Preferences';
+import { loadAsset } from '../utils/assets';
 
 const Routes = authRoutes.render();
 
@@ -41,7 +41,7 @@ const App: FunctionComponent<IAppProps> = () => {
   if (!authChecked) {
     return (
       <div className="app-loading-screen">
-        <img src={logo} />
+        <img src={loadAsset('logo/Dark.svg')} />
       </div>
     );
   }
