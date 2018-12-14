@@ -6,12 +6,16 @@ import { runElectron } from '../utils/electron';
 import { getUserQuery } from './settings/Preferences';
 import { loadAsset } from '../utils/assets';
 import intercom from '../utils/intercom';
+import withToaster from '../components/toast/withToaster';
+import toastStore from '../stores/toastStore';
 
 const Routes = authRoutes.render();
 
-export interface IAppProps {}
+export interface IAppProps {
+  addToast: (data: { type?: string; contents?: string }) => any;
+}
 
-const App: FunctionComponent<IAppProps> = () => {
+const App: FunctionComponent<IAppProps> = ({ addToast }) => {
   const [authChecked, setAuthChecked] = useState<boolean>(false);
   useEffect(() => {
     const unwatch = authScope.watch({
@@ -56,6 +60,13 @@ const App: FunctionComponent<IAppProps> = () => {
     intercom.start();
     return () => intercom.shutdown();
   });
+  useEffect(() => {
+    const unwatch = toastStore.watch({
+      state: ({ type, contents }) =>
+        type && contents && addToast({ type, contents }),
+    });
+    return () => unwatch();
+  });
   if (!authChecked) {
     return (
       <div className="app-loading-screen">
@@ -66,4 +77,4 @@ const App: FunctionComponent<IAppProps> = () => {
   return <Routes />;
 };
 
-export default App;
+export default withToaster(App);
