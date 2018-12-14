@@ -43,12 +43,12 @@ const Topbar: FunctionComponent<ITopbarProps> = () => {
       <PopupMenu.Item as={Link} to="/settings/preferences">
         Preferences
       </PopupMenu.Item>
-      <PopupMenu.Item as={Link} to="/settings/accounts">
-        Accounts
-      </PopupMenu.Item>
-      <PopupMenu.Item as={Link} to="/settings/membership">
-        Membership
-      </PopupMenu.Item>
+      {/* <PopupMenu.Item as={Link} to="/settings/accounts"> */}
+      {/* Accounts */}
+      {/* </PopupMenu.Item> */}
+      {/* <PopupMenu.Item as={Link} to="/settings/membership"> */}
+      {/* Membership */}
+      {/* </PopupMenu.Item> */}
       <PopupMenu.Item id="intercom-launcher">
         Help &amp; Feedback
       </PopupMenu.Item>
