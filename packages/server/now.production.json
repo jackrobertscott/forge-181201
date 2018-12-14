@@ -1,12 +1,13 @@
 {
-  "alias": [
-    "api.v1.useforge.co"
-  ],
+  "version": 2,
   "name": "forge-api-production",
   "dotenv": ".env.production",
   "env": {
     "NODE_ENV": "production"
   },
+  "alias": [
+    "api.v1.useforge.co"
+  ],
   "scale": {
     "sfo1": {
       "min": 1,
