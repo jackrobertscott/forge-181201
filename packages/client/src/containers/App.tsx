@@ -5,6 +5,7 @@ import authScope, { retrieveLocalAuth } from '../scopes/authScope';
 import { runElectron } from '../utils/electron';
 import { getUserQuery } from './settings/Preferences';
 import { loadAsset } from '../utils/assets';
+import intercom from '../utils/intercom';
 
 const Routes = authRoutes.render();
 
@@ -15,8 +16,9 @@ const App: FunctionComponent<IAppProps> = () => {
   useEffect(() => {
     const unwatch = authScope.watch({
       data: data => {
-        if (data) {
-          authStore.dispatch.patch(data);
+        authStore.dispatch.patch(data);
+        if (Object.keys(data).length) {
+          getUserQuery.execute();
         }
         setAuthChecked(true);
       },
@@ -27,17 +29,33 @@ const App: FunctionComponent<IAppProps> = () => {
   useEffect(() => {
     const unwatch = getUserQuery.watch({
       data: ({ me }) => {
+        if (!me) {
+          return;
+        }
         runElectron(electron => {
           electron.ipcRenderer.send('updateShortcuts', {
             open: me.preferences.shortcutOpen,
           });
         });
+        intercom.update({
+          user_id: me.id,
+          user_hash: me.hash,
+          name: me.name,
+          username: me.username,
+          email: me.email,
+          created_at: me.createdAt,
+          updated_at: me.updatedAt,
+          is_subscribed: me.isSubscribed,
+        });
       },
     });
-    getUserQuery.execute();
     runElectron(electron => electron.ipcRenderer.send('ready'));
     return () => unwatch();
   }, []);
+  useEffect(() => {
+    intercom.start();
+    return () => intercom.shutdown();
+  });
   if (!authChecked) {
     return (
       <div className="app-loading-screen">

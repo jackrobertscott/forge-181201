@@ -7,7 +7,6 @@ import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
 import useInstanceExecute from '../effects/useInstanceExecute';
-import { runElectron } from '../../utils/electron';
 
 export const getUserQuery = apolloPersistor.instance({
   name: 'query',
@@ -17,6 +16,13 @@ export const getUserQuery = apolloPersistor.instance({
       query GetUser {
         me {
           id
+          hash
+          name
+          username
+          email
+          createdAt
+          updatedAt
+          isSubscribed
           preferences {
             shortcutOpen
           }
