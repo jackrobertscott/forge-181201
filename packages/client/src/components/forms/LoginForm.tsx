@@ -8,6 +8,7 @@ import SimpleInput from '../inputs/SimpleInput';
 import Arrow from '../buttons/Arrow';
 import Onboard from '../layouts/Onboard';
 import { cleanFormPrefill } from '../../utils/form';
+import Problems from '../cards/Problems';
 
 interface IUserFragment {
   username?: string;
@@ -56,6 +57,7 @@ const LoginForm: FunctionComponent<ILoginFormProps> = ({ data, handlers }) => {
               component={SimpleInput}
               problem={touched.password && errors.password}
             />
+            {!!Object.keys(errors).length && <Problems items={errors as any} />}
             <GoodButton
               type="submit"
               bright="true"

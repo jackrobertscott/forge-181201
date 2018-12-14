@@ -74,7 +74,7 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
               component={SimpleInput}
               problem={touched.email && errors.email}
             />
-            <Problems items={errors as any} />
+            {!!Object.keys(errors).length && <Problems items={errors as any} />}
             <GoodButton
               type="submit"
               bright="true"

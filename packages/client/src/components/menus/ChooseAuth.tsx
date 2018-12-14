@@ -7,12 +7,22 @@ import Onboard from '../layouts/Onboard';
 import GoodButton from '../buttons/GoodButton';
 import Arrow from '../buttons/Arrow';
 import { Link } from 'lumbridge';
+import layouts from '../../styles/layouts';
 
 const Divider = styled('div')`
+  ${layouts.rowsCenter}
+  color: ${colors.nightDarker};
+  margin: 0 10px 10px;
+`;
+
+const Line = styled('div')`
   background-color: ${colors.night};
   height: 1px;
-  margin: 0 auto 10px;
-  width: 100px;
+  flex-grow: 1;
+`;
+
+const Or = styled('div')`
+  margin: 0 10px;
 `;
 
 const LinkWrap = styled(Link)`
@@ -38,7 +48,11 @@ const ChooseAuth: FunctionComponent<IChooseAuthProps> = () => {
             Login
           </LoginButton>
         </LinkWrap>
-        <Divider />
+        <Divider>
+          <Line />
+          <Or>or</Or>
+          <Line />
+        </Divider>
         <LinkWrap to="/sign-up">
           <SignUpButton icon={<Arrow />}>Sign up</SignUpButton>
         </LinkWrap>
