@@ -120,11 +120,11 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     deleteCodeMutation.execute({ variables: { id } });
   const cloneCode = ({ id }: { id: string }) =>
     cloneCodeMutation.execute({ variables: { id } });
-  const copyCommand = {
+  const copyCommand = (code?: { id: string }) => ({
     keycode: 3, // Enter
     action: ({ value }: { value: string }) =>
-      clipboardCopyCode({ value, id: focusedCode.id }),
-  };
+      clipboardCopyCode({ value, id: code ? code.id : undefined }),
+  });
   const runSearch = throttle(300, (event: any) => {
     codeListQuery.execute({ variables: { search: event.target.value } });
   });
@@ -165,7 +165,7 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
       <StatusEditor
         value={focusedCode && focusedCode.contents}
         snippeting={editing}
-        command={copyCommand}
+        command={copyCommand(focusedCode)}
       />
     </Split>
   );
