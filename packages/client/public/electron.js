@@ -145,7 +145,9 @@ function enableUpdateEvents() {
         type: 'downloaded',
       })
   );
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify().catch(error => {
+    console.log(error);
+  });
 }
 
 /**
