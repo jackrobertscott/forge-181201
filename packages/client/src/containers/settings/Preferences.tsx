@@ -7,6 +7,7 @@ import apolloPersistor from '../../persistors/apolloPersistor';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
 import useInstanceExecute from '../effects/useInstanceExecute';
+import { runElectron } from '../../utils/electron';
 
 export const getUserQuery = apolloPersistor.instance({
   name: 'query',
@@ -51,7 +52,21 @@ const Preferences: FunctionComponent<IPreferencesProps> = () => {
     const unwatch = editPreferencesMutation.watch({
       data: () => getUserQuery.execute(),
     });
-    return () => unwatch();
+    const unwatchUser = getUserQuery.watch({
+      data: ({ me: user }) => {
+        if (user && user.preferences) {
+          runElectron(electron => {
+            electron.ipcRenderer.send('updateShortcuts', {
+              open: user.preferences.shortcutOpen,
+            });
+          });
+        }
+      },
+    });
+    return () => {
+      unwatch();
+      unwatchUser();
+    };
   }, []);
   const data = {
     prefill: me && me.preferences ? me.preferences : {},

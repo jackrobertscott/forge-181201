@@ -28,6 +28,9 @@ export const getUserQuery = apolloPersistor.instance({
           createdAt
           updatedAt
           isSubscribed
+          preferences {
+            shortcutOpen
+          }
         }
       }
     `,
@@ -59,26 +62,25 @@ const App: FunctionComponent<IAppProps> = ({ addToast }) => {
     const unwatch = getUserQuery.watch({
       catch: () => saveLocalAuth.execute({ data: {} }),
       data: ({ me }) => {
-        if (!me) {
-          return;
-        }
-        runElectron(electron => {
+        if (me) {
+          intercom.update({
+            user_id: me.id,
+            user_hash: me.hash,
+            name: me.name,
+            username: me.username,
+            email: me.email,
+            created_at: me.createdAt,
+            updated_at: me.updatedAt,
+            is_subscribed: me.isSubscribed,
+          });
           if (me.preferences) {
-            electron.ipcRenderer.send('updateShortcuts', {
-              open: me.preferences.shortcutOpen,
+            runElectron(electron => {
+              electron.ipcRenderer.send('updateShortcuts', {
+                open: me.preferences.shortcutOpen,
+              });
             });
           }
-        });
-        intercom.update({
-          user_id: me.id,
-          user_hash: me.hash,
-          name: me.name,
-          username: me.username,
-          email: me.email,
-          created_at: me.createdAt,
-          updated_at: me.updatedAt,
-          is_subscribed: me.isSubscribed,
-        });
+        }
       },
     });
     runElectron(electron => electron.ipcRenderer.send('ready'));
