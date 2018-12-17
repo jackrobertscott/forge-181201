@@ -29,6 +29,7 @@ if (!isDev) {
  */
 let window;
 let tray;
+let ready = false;
 
 /**
  * Focus the window into the correct position.
@@ -66,6 +67,9 @@ function openAndCenterWindow() {
  * Create the main application window.
  */
 function createWindow() {
+  if (!ready) {
+    return;
+  }
   window = new BrowserWindow({
     width: 1000,
     height: isWin ? 585 : 530,
@@ -181,6 +185,7 @@ ipcMain.on('ready', () => {
  * we can begin to add windows.
  */
 app.on('ready', () => {
+  ready = true;
   createTray();
   createWindow();
   enableKeyboard();
