@@ -23,6 +23,7 @@ export interface IChooseCodeProps extends IComponentProps {
   data: {
     codes: ICodeFragment[];
     focusedCode: ICodeFragment;
+    editing: boolean;
   };
   handlers: {
     focusCode: (code: ICodeFragment, force?: boolean) => any;
@@ -42,31 +43,34 @@ const ChooseCode: FunctionComponent<IChooseCodeProps> = ({
   useEffect(
     () => {
       if (activeKey && data.codes.length) {
-        const index = focusedCode
-          ? data.codes.findIndex(code => code.id === focusedCode.id)
-          : -1;
-        const lastIndex = data.codes.length - 1;
-        const prevIndex = index - 1;
-        const nextIndex = index + 1;
-        if (keycode.isEventKey(activeKey, 'up')) {
-          const focus =
-            index === -1
-              ? data.codes[0]
-              : data.codes[index <= 0 ? 0 : prevIndex];
-          handlers.focusCode(focus);
-        }
-        if (keycode.isEventKey(activeKey, 'down')) {
-          const focus =
-            index === -1
-              ? data.codes[0]
-              : data.codes[index >= lastIndex ? lastIndex : nextIndex];
-          handlers.focusCode(focus);
-        }
-        if (keycode.isEventKey(activeKey, 'right')) {
-          handlers.chooseCode(focusedCode);
-        }
-        if (keycode.isEventKey(activeKey, 'escape')) {
-          handlers.chooseCode();
+        if (data.editing) {
+          if (keycode.isEventKey(activeKey, 'escape')) {
+            handlers.chooseCode();
+          }
+        } else {
+          const index = focusedCode
+            ? data.codes.findIndex(code => code.id === focusedCode.id)
+            : -1;
+          const lastIndex = data.codes.length - 1;
+          const prevIndex = index - 1;
+          const nextIndex = index + 1;
+          if (keycode.isEventKey(activeKey, 'up')) {
+            const focus =
+              index === -1
+                ? data.codes[0]
+                : data.codes[index <= 0 ? 0 : prevIndex];
+            handlers.focusCode(focus);
+          }
+          if (keycode.isEventKey(activeKey, 'down')) {
+            const focus =
+              index === -1
+                ? data.codes[0]
+                : data.codes[index >= lastIndex ? lastIndex : nextIndex];
+            handlers.focusCode(focus);
+          }
+          if (keycode.isEventKey(activeKey, 'enter')) {
+            handlers.chooseCode(focusedCode);
+          }
         }
       }
     },

@@ -132,18 +132,17 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     },
   };
   const data = {
-    focusedCode,
     codes: userCodes || [],
     error,
     loading,
+    focusedCode,
+    editing,
   };
   const handlers = {
     focusCode: (code: any, force?: boolean) => {
+      setFocusedCode(code);
       if (force) {
         setEditing(false);
-      }
-      if (force || !editing) {
-        setFocusedCode(code);
       }
     },
     chooseCode: (code?: any) => setEditing(!!code),
