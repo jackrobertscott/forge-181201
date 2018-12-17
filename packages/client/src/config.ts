@@ -37,10 +37,10 @@ switch (environment) {
         spa: 'https://app.useforge.co',
         api: 'https://api.v1.useforge.co',
       },
-      stripeKey: 'pk_live_8a0UIMwjDkpxEeG1RBzigzv0',
-      segmentId: 'oBormUrYCXRyVLATpu1b4E0xUvqWC2Fq',
-      sentryDSN: 'https://d0b3058a07a143e8b2e80c1eae7299e7@sentry.io/1304463',
-      intercom: 'dwow1727',
+      stripeKey: process.env.REACT_APP_STRIPE_KEY as string,
+      segmentId: process.env.REACT_APP_SEGMENT_ID as string,
+      sentryDSN: process.env.REACT_APP_SENTRY_DSN as string,
+      intercom: process.env.REACT_APP_INTERCOM_ID as string,
     };
     break;
   default:
@@ -52,10 +52,10 @@ switch (environment) {
         spa: 'http://localhost:3000',
         api: 'http://localhost:4000',
       },
-      stripeKey: 'pk_test_9m45EwdtEK8QXDYQlcavY2xW',
-      segmentId: 'NAKRmOnDAdm6IXOdbf1O8joPDulWejPr',
-      sentryDSN: '',
-      intercom: '',
+      stripeKey: process.env.REACT_APP_STRIPE_KEY as string,
+      segmentId: process.env.REACT_APP_SEGMENT_ID as string,
+      sentryDSN: process.env.REACT_APP_SENTRY_DSN as string,
+      intercom: process.env.REACT_APP_INTERCOM_ID as string,
     };
     break;
 }
