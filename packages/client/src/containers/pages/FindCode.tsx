@@ -64,12 +64,11 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
   const [focusedCode, setFocusedCode] = useState<any>(null);
   const [editing, setEditing] = useState<boolean>(false);
   const searchInput = useRef<HTMLInputElement>(null);
-  const redo = () => {
-    codeListQuery.redo();
-  };
   useEffect(() => {
     const unwatch = deleteCodeMutation.watch({
-      data: redo,
+      data: () => {
+        codeListQuery.redo();
+      },
     });
     return () => unwatch();
   }, []);
@@ -103,7 +102,14 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
     error,
     loading,
   } = useInstanceExecute(codeListQuery);
-  const clipboardCopyCode = ({ id, value }: { value: string; id?: string }) => {
+  const runSearch = throttle(300, (event: any) => {
+    codeListQuery.execute({ variables: { search: event.target.value } });
+  });
+  const deleteCode = ({ id }: { id: string }) =>
+    deleteCodeMutation.execute({ variables: { id } });
+  const cloneCode = ({ id }: { id: string }) =>
+    cloneCodeMutation.execute({ variables: { id } });
+  const clipboardCopyCode = ({ value, id }: { value: string; id?: string }) => {
     runElectron(electron => {
       electron.clipboard.writeText(value);
       electron.ipcRenderer.send('dismiss');
@@ -113,21 +119,18 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
       action: 'Clipboard Copied',
       properties: {
         codeId: id,
+        contents: value,
       },
     });
   };
-  const deleteCode = ({ id }: { id: string }) =>
-    deleteCodeMutation.execute({ variables: { id } });
-  const cloneCode = ({ id }: { id: string }) =>
-    cloneCodeMutation.execute({ variables: { id } });
-  const copyCommand = (code?: { id: string }) => ({
+  const copyCommand = {
     keycode: 3, // Enter
-    action: ({ value }: { value: string }) =>
-      clipboardCopyCode({ value, id: code ? code.id : undefined }),
-  });
-  const runSearch = throttle(300, (event: any) => {
-    codeListQuery.execute({ variables: { search: event.target.value } });
-  });
+    action: ({ value, meta }: { value: string; meta: any }) => {
+      if (meta && meta.code) {
+        clipboardCopyCode({ value, id: meta.code.id });
+      }
+    },
+  };
   const data = {
     focusedCode,
     codes: userCodes || [],
@@ -165,7 +168,8 @@ const FindCode: FunctionComponent<IFindCodeProps> = () => {
       <StatusEditor
         value={focusedCode && focusedCode.contents}
         snippeting={editing}
-        command={copyCommand(focusedCode)}
+        command={copyCommand}
+        meta={{ code: focusedCode }}
       />
     </Split>
   );

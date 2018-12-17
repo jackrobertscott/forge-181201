@@ -41,8 +41,8 @@ const StatusEditor: FunctionComponent<IStatusEditorProps & IEditorProps> = ({
   ...args
 }) => {
   const help = args.snippeting
-    ? 'Press [Enter] to Copy'
-    : 'Press [Right Arrow] to Edit';
+    ? 'Press "Enter" to Copy'
+    : 'Press "Enter" to Select';
   return (
     <Wrap>
       <Status active={args.snippeting} space="bottom">

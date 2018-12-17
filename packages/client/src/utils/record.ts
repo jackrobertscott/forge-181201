@@ -9,18 +9,20 @@ const analytics = new Analytics(config.segmentId);
 /**
  * Make sure to catch errors so that the app keeps functioning.
  */
-const captureErrors = (cb: any) => (...args: any[]) => {
-  try {
-    cb(...args);
-  } catch (error) {
-    Sentry.captureException(error);
+const captureAndEnsure = (cb: any) => (...args: any[]) => {
+  if (config.segmentId) {
+    try {
+      cb(...args);
+    } catch (error) {
+      Sentry.captureException(error);
+    }
   }
 };
 
 /**
  * Recording changes of screen.
  */
-export const recordPage = captureErrors((data = {}) => {
+export const recordPage = captureAndEnsure((data = {}) => {
   const userId = authStore.state.userId;
   const options = userId
     ? { userId }
@@ -35,7 +37,7 @@ export const recordPage = captureErrors((data = {}) => {
 /**
  * Identify a person with traits.
  */
-export const recordUser = captureErrors(
+export const recordUser = captureAndEnsure(
   ({ userId, traits }: { userId: string; traits: any }) => {
     const id = userId || authStore.state.userId;
     analytics.identify({
@@ -48,7 +50,7 @@ export const recordUser = captureErrors(
 /**
  * Record events which are specific to the front-end e.g. keyboard shortcuts etc.
  */
-export const recordAction = captureErrors(
+export const recordAction = captureAndEnsure(
   ({
     userId,
     scope,

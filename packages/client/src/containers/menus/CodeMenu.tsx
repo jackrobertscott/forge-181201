@@ -14,15 +14,18 @@ export interface ICodeMenuProps {
   };
 }
 
-const CodeMenu: FunctionComponent<ICodeMenuProps> = ({ data, handlers }) => {
-  const deleteCode = () => handlers.deleteCode(data.code);
-  const cloneCode = () => handlers.cloneCode(data.code);
+const CodeMenu: FunctionComponent<ICodeMenuProps> = ({
+  data: { code },
+  handlers,
+}) => {
+  const deleteCode = () => handlers.deleteCode(code);
+  const cloneCode = () => handlers.cloneCode(code);
   const copyCode = () =>
-    handlers.clipboardCopyCode({ value: data.code.contents, id: data.code.id });
+    handlers.clipboardCopyCode({ value: code.contents, id: code.id });
   return (
     <PopupMenu.List>
       <PopupMenu.Item onClick={copyCode}>Copy</PopupMenu.Item>
-      <PopupMenu.Item as={Link} to={`/edit?id=${data.code.id}`}>
+      <PopupMenu.Item as={Link} to={`/edit?id=${code.id}`}>
         Edit
       </PopupMenu.Item>
       <PopupMenu.Item onClick={cloneCode}>Duplicate</PopupMenu.Item>

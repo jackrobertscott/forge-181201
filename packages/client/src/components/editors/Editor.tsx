@@ -35,6 +35,7 @@ export interface IEditorProps {
   value?: string;
   language?: string;
   snippeting?: boolean;
+  meta?: any;
   command?: {
     keycode: number;
     action: (...args: any[]) => any;
@@ -79,8 +80,9 @@ export default class Editor extends Component<IEditorProps> {
       this.editor.addCommand(
         command.keycode,
         event => {
+          const { meta } = this.props;
           const contents = this.editor && this.editor.getValue();
-          command.action({ value: contents, event });
+          command.action({ value: contents, event, meta });
         },
         command.context || ''
       );
@@ -143,17 +145,17 @@ export default class Editor extends Component<IEditorProps> {
   private handleEvents() {
     if (this.editor) {
       this.editor.onDidChangeModelContent(() => {
-        const { onChange } = this.props;
+        const { onChange, meta } = this.props;
         const value = this.editor && this.editor.getValue();
         if (onChange) {
-          onChange({ value, event });
+          onChange({ value, event, meta });
         }
       });
       this.editor.onDidBlurEditorText(() => {
-        const { onBlur } = this.props;
+        const { onBlur, meta } = this.props;
         const value = this.editor && this.editor.getValue();
         if (onBlur) {
-          onBlur({ value, event });
+          onBlur({ value, event, meta });
         }
       });
     }
