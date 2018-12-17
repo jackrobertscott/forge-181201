@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "private": true,
   "description": "The tool every software developer wished they had.",
   "main": "public/electron.js",
@@ -68,7 +68,7 @@
   "devDependencies": {
     "@types/jest": "23.3.10",
     "concurrently": "^4.1.0",
-    "electron": "^3.0.11",
+    "electron": "^3.0.12",
     "electron-builder": "^20.38.3",
     "react-scripts": "2.1.1",
     "typescript": "3.2.1",
