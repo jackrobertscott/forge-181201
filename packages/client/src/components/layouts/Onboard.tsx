@@ -13,6 +13,15 @@ const Wrap = styled('div')`
   ${layouts.center}
   ${bgs.fade}
   flex-grow: 1;
+`;
+
+const Drag = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 40px;
   -webkit-app-region: drag;
 `;
 
@@ -45,6 +54,7 @@ export interface IOnboardProps extends IComponentProps {
 const Onboard: FunctionComponent<IOnboardProps> = ({ children, back }) => {
   return (
     <Wrap>
+      <Drag />
       <Container>
         <Logo src={loadAsset('logo/Dark.svg')} />
         <Fade>{children}</Fade>
