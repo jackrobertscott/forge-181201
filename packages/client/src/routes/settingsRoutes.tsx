@@ -3,6 +3,7 @@ import Accounts from '../containers/settings/Accounts';
 import Membership from '../containers/settings/Membership';
 import Profile from '../containers/settings/Profile';
 import Preferences from '../containers/settings/Preferences';
+import Security from '../containers/settings/Security';
 
 export default Router.create({
   base: '/settings',
@@ -15,13 +16,17 @@ export default Router.create({
       path: '/preferences',
       component: Preferences,
     },
-    // accounts: {
-    //   path: '/accounts',
-    //   component: Accounts,
-    // },
-    // membership: {
-    //   path: '/membership',
-    //   component: Membership,
-    // },
+    security: {
+      path: '/security',
+      component: Security,
+    },
+    accounts: {
+      path: '/accounts',
+      component: Accounts,
+    },
+    membership: {
+      path: '/membership',
+      component: Membership,
+    },
   },
 });

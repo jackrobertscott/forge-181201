@@ -12,6 +12,9 @@ const SettingsMenu: FunctionComponent<ISettingsMenuProps> = () => (
     <CardMenu.Item slim="true" as={Link} to="/settings/preferences">
       Preferences
     </CardMenu.Item>
+    <CardMenu.Item slim="true" as={Link} to="/settings/security">
+      Security
+    </CardMenu.Item>
     {/* <CardMenu.Item slim="true" as={Link} to="/settings/accounts"> */}
     {/* Accounts */}
     {/* </CardMenu.Item> */}

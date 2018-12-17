@@ -53,6 +53,7 @@ extend type Query {
 extend type Mutation {
   authCreateCustom(username: String!, password: String!, email: String!): Payload!
   authLoginCustom(username: String!, password: String!): Payload!
+  authPasswordChangeCustom(oldPassword: String!, newPassword: String!): Payload!
   authConnectGitHub(code: String!): Payload!
   authLoginGitHub(code: String!): Payload!
 }

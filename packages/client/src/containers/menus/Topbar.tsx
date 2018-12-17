@@ -43,6 +43,9 @@ const Topbar: FunctionComponent<ITopbarProps> = () => {
       <PopupMenu.Item as={Link} to="/settings/preferences">
         Preferences
       </PopupMenu.Item>
+      <PopupMenu.Item as={Link} to="/settings/security">
+        Security
+      </PopupMenu.Item>
       {/* <PopupMenu.Item as={Link} to="/settings/accounts"> */}
       {/* Accounts */}
       {/* </PopupMenu.Item> */}

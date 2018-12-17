@@ -121,6 +121,41 @@ export default {
       };
     },
     /**
+     * Change a person's password.
+     */
+    async authPasswordChangeCustom(
+      _: any,
+      {
+        oldPassword,
+        newPassword,
+      }: { oldPassword: string; newPassword: string },
+      { user }: { user: any }
+    ) {
+      const provider = await Provider.findOne({
+        domain: 'custom',
+        creatorId: user.id,
+      });
+      if (!provider) {
+        throw new Error(
+          'Password could not be changed as provider for user was not found.'
+        );
+      }
+      const match = await comparePassword(oldPassword, provider.payload
+        .password as string);
+      if (!match) {
+        throw new UserInputError('Current password is incorrect.');
+      }
+      provider.payload = {
+        ...provider.payload,
+        password: await hashPassword(newPassword),
+      };
+      await provider.save();
+      return {
+        token: encode({ userId: user.id }),
+        userId: user.id,
+      };
+    },
+    /**
      * Connect an existing user to a GitHub account.
      */
     async authConnectGitHub(
