@@ -4,7 +4,7 @@ import { merge } from 'lodash';
 import { connect, connection } from 'mongoose';
 import config from './config';
 import { decode } from './utils/auth';
-import { capture } from './utils/errors';
+import { capture, captureRequestData } from './utils/errors';
 import User from './models/User';
 import { AuthDirective } from './directives/AuthDirective';
 import bundleResolvers from './resolvers/bundleResolvers';
@@ -81,6 +81,7 @@ const server = new ApolloServer({
     return error;
   },
   async context({ req }: any) {
+    captureRequestData({ req });
     const token = req && req.headers && req.headers.authorization;
     if (token) {
       const data = decode(token) as { userId: string };
@@ -91,8 +92,8 @@ const server = new ApolloServer({
 });
 
 /**
- * Turn the server on by listening to a port
- * Defaults to: http://localhost:4000
+ * Turn the server on by listening to a port,
+ * defaults to: http://localhost:4000
  */
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);

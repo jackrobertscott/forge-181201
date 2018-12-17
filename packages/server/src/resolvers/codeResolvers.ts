@@ -1,3 +1,4 @@
+import * as escapeStringRegexp from 'escape-string-regexp';
 import User from '../models/User';
 import Code from '../models/Code';
 import Optin, { IOptin } from '../models/Optin';
@@ -24,7 +25,7 @@ export default {
         $or: [{ creatorId: user.id }, { bundleId: { $in: bundleIds } }],
       };
       if (search && search.length) {
-        const regSearch = new RegExp(search, 'i');
+        const regSearch = new RegExp(escapeStringRegexp(search), 'i');
         const searchOr: any = {
           $or: [
             { name: { $regex: regSearch } },
