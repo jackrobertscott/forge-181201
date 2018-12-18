@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "test": "lerna run test",
@@ -17,8 +20,5 @@
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.6"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }
