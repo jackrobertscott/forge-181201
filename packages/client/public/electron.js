@@ -86,6 +86,12 @@ function createWindow() {
         slashes: true,
       });
   window.loadURL(appUrl);
+  window.on('close', event => {
+    if (window) {
+      event.preventDefault();
+      window.hide();
+    }
+  });
   window.on('closed', () => {
     window = null;
   });
