@@ -1,7 +1,7 @@
 module.exports.createItems = ({ app, getWindow, showWindow }) => [
   {
     label: 'Open',
-    accelerator: 'CommandOrControl+Shift+D',
+    accelerator: 'CmdOrCtrl+Shift+D',
     click: showWindow,
   },
   {
@@ -9,7 +9,7 @@ module.exports.createItems = ({ app, getWindow, showWindow }) => [
   },
   {
     label: 'Inspect',
-    accelerator: 'Alt+CommandOrControl+I',
+    accelerator: 'CmdOrCtrl+Alt+I',
     click: () => {
       const window = getWindow();
       if (window) {
@@ -19,7 +19,7 @@ module.exports.createItems = ({ app, getWindow, showWindow }) => [
   },
   {
     label: 'Reload',
-    accelerator: 'CommandOrControl+R',
+    accelerator: 'CmdOrCtrl+R',
     click: () => {
       app.relaunch();
       app.exit();
@@ -27,7 +27,7 @@ module.exports.createItems = ({ app, getWindow, showWindow }) => [
   },
   {
     label: 'Quit',
-    accelerator: 'CommandOrControl+Q',
+    accelerator: 'CmdOrCtrl+Q',
     click: () => {
       app.quit();
     },

@@ -8,7 +8,7 @@ const { globalShortcut, ipcMain } = electron;
  */
 module.exports = ({ createOrFocusWindow }) => {
   const defaultShortcuts = {
-    open: 'CommandOrControl+Shift+D',
+    open: 'CmdOrCtrl+Shift+D',
   };
   const shortcuts = Object.assign({}, defaultShortcuts);
   function updateShortcuts() {

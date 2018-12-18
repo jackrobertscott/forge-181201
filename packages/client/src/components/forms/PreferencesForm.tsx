@@ -38,7 +38,7 @@ const PreferencesForm: FunctionComponent<IPreferencesFormProps> = ({
         name="shortcutOpen"
         label="App Shortcut"
         help="The keyboard shortcut used to open this app."
-        placeholder="CommandOrControl+Shift+D"
+        placeholder="CmdOrCtrl+Shift+D"
         component={Control}
         problem={touched.shortcutOpen && errors.shortcutOpen}
       />
