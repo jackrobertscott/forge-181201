@@ -112,13 +112,12 @@ function createOrFocusWindow(override) {
  * Create the tray to go in notification icons panel.
  */
 function createTray() {
-  const menu = Menu.buildFromTemplate(
-    createItems({
-      app,
-      getWindow: () => window,
-      showWindow: createOrFocusWindow,
-    })
-  );
+  const template = createItems({
+    app,
+    getWindow: () => window,
+    showWindow: createOrFocusWindow,
+  });
+  const menu = Menu.buildFromTemplate(template);
   tray = new Tray(path.join(__dirname, './assets/electron/TrayTemplate.png'));
   tray.setToolTip('Forge');
   tray.setContextMenu(menu);

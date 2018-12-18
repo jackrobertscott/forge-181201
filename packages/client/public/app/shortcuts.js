@@ -2,9 +2,12 @@ const electron = require('electron');
 
 const { globalShortcut, ipcMain } = electron;
 
+/**
+ * Note that these "global" shortcuts are global
+ * and will overwrite other shortcuts.
+ */
 module.exports = ({ createOrFocusWindow }) => {
   const defaultShortcuts = {
-    exit: 'CommandOrControl+Q',
     open: 'CommandOrControl+D',
   };
   const shortcuts = Object.assign({}, defaultShortcuts);
@@ -14,7 +17,6 @@ module.exports = ({ createOrFocusWindow }) => {
       shortcuts.open || defaultShortcuts.open,
       createOrFocusWindow
     );
-    globalShortcut.register(shortcuts.exit, () => createOrFocusWindow(false));
   }
   ipcMain.on('updateShortcuts', (_, updates) => {
     Object.assign(shortcuts, updates || {});
