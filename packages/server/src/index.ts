@@ -4,7 +4,7 @@ import { merge } from 'lodash';
 import { connect, connection } from 'mongoose';
 import config from './config';
 import { decode } from './utils/auth';
-import { capture, captureRequestData } from './utils/errors';
+import { captureRequestData, capture } from './utils/errors';
 import User from './models/User';
 import { AuthDirective } from './directives/AuthDirective';
 import bundleResolvers from './resolvers/bundleResolvers';
@@ -61,25 +61,7 @@ const schema = makeExecutableSchema({
  */
 const server = new ApolloServer({
   schema,
-  formatError(error?: any) {
-    if (
-      error &&
-      error.extensions &&
-      error.extensions.code === 'INTERNAL_SERVER_ERROR'
-    ) {
-      const validationError =
-        error.extensions.exception &&
-        error.extensions.exception.name === 'ValidationError';
-      if (!validationError) {
-        if (config.production) {
-          capture(error);
-        } else {
-          console.log(error);
-        }
-      }
-    }
-    return error;
-  },
+  formatError: capture,
   async context({ req }: any) {
     captureRequestData({ req });
     const token = req && req.headers && req.headers.authorization;
