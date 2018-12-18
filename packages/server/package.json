@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "0.2.13",
+  "version": "0.3.0",
   "private": true,
   "description": "The tool every software developer wished they had.",
   "main": "src/index.js",
