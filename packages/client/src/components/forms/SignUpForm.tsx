@@ -50,13 +50,16 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
   });
   const form = ({
     errors,
-    touched,
+    submitCount,
     setFieldValue,
   }: FormikProps<IUserFragment>) => {
     const usernameChange = (event: any) => {
       const name = String(event.target.value || '');
       setFieldValue('username', paramCase(name).toLowerCase());
     };
+    const showProblems = !!submitCount && !!Object.keys(errors).length && (
+      <Problems items={errors as any} />
+    );
     return (
       <Onboard back={true}>
         <Form>
@@ -66,7 +69,6 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
               name="username"
               placeholder="Claim a username"
               component={SimpleInput}
-              problem={touched.username && errors.username}
               onChange={usernameChange}
             />
             <Field
@@ -74,16 +76,14 @@ const SignUpForm: FunctionComponent<ISignUpFormProps> = ({
               name="password"
               placeholder="Password"
               component={SimpleInput}
-              problem={touched.password && errors.password}
             />
             <Field
               type="email"
               name="email"
               placeholder="Email"
               component={SimpleInput}
-              problem={touched.email && errors.email}
             />
-            {!!Object.keys(errors).length && <Problems items={errors as any} />}
+            {showProblems}
             <GoodButton
               type="submit"
               bright="true"

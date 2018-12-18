@@ -38,7 +38,10 @@ const LoginForm: FunctionComponent<ILoginFormProps> = ({ data, handlers }) => {
       .min(5)
       .required(),
   });
-  const form = ({ errors, touched }: FormikProps<IUserFragment>) => {
+  const form = ({ errors, submitCount }: FormikProps<IUserFragment>) => {
+    const showProblems = !!submitCount && !!Object.keys(errors).length && (
+      <Problems items={errors as any} />
+    );
     return (
       <Onboard back={true}>
         <Form>
@@ -48,16 +51,14 @@ const LoginForm: FunctionComponent<ILoginFormProps> = ({ data, handlers }) => {
               name="username"
               placeholder="Username"
               component={SimpleInput}
-              problem={touched.username && errors.username}
             />
             <Field
               type="password"
               name="password"
               placeholder="Password"
               component={SimpleInput}
-              problem={touched.password && errors.password}
             />
-            {!!Object.keys(errors).length && <Problems items={errors as any} />}
+            {showProblems}
             <GoodButton
               type="submit"
               bright="true"
