@@ -14,7 +14,7 @@ export default class Toaster extends Component {
   };
 
   static defaultProps = {
-    timeout: 8000,
+    timeout: 4000,
     toast: null,
     toastContainer: null,
   };
