@@ -1,7 +1,7 @@
 module.exports.createItems = ({ app, getWindow, showWindow }) => [
   {
     label: 'Open',
-    accelerator: 'CommandOrControl+D',
+    accelerator: 'CommandOrControl+Shift+D',
     click: showWindow,
   },
   {
