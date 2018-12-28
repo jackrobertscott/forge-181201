@@ -1,5 +1,7 @@
 # Layouts
 
+Determine the display arrangement.
+
 ```ts
 type ISnippetProps = DataComponent<{
   snippet: IUserSnippetSingle
