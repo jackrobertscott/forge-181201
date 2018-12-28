@@ -4,6 +4,14 @@
 
 ![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Preview.png)
 
+## Features
+
+[See the website](https://useforge.co/) for a nicer view of the features.
+
+| Search by Name | Use ${1:Variables} | Edit in Seconds |
+|:---:|:---:|:---:|
+| ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce7ae722d326f9d7e37_Main%20Bundle%20Snippets%20Inserting.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png) |
+
 ## Technologies
 
 The Forge repository is a testing ground for a new sort of application design architecture.
@@ -34,9 +42,3 @@ There are very few good examples of good React application design and so we desi
 - [Logics](https://github.com/jackrobertscott/forge/blob/master/docs/logics.md): maps data from our requests to our graphical layouts.
 - [Layouts](https://github.com/jackrobertscott/forge/blob/master/docs/layouts.md): concerned with the structure and composition of the data and visual components.
 - [Visuals](https://github.com/jackrobertscott/forge/blob/master/docs/visuals.md): manages all the visuals on the page such as color, size, and spacing.
-
-## Screenshots
-
-| Search by Name | Use Variables | New Snippets take Seconds |
-|:---:|:---:|:---:|
-| ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce7ae722d326f9d7e37_Main%20Bundle%20Snippets%20Inserting.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png) |
