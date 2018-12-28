@@ -2,7 +2,7 @@
   "name": "forge",
   "version": "0.3.1",
   "private": true,
-  "description": "Unobtrusive and beautiful app built to improve the development experience.",
+  "description": "Unobtrusive and beautiful desktop app built to improve the development experience.",
   "main": "public/electron.js",
   "homepage": "./",
   "repository": {
