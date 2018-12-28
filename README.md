@@ -2,9 +2,11 @@
 
 > 🏹 Unobtrusive and beautiful desktop app built to improve the development experience.
 
+![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png)
+
 ## Technologies
 
-The Forge repository is a testing ground for a new sort of application design system.
+The Forge repository is a testing ground for a new sort of application design architecture.
 
 ### Desktop
 
@@ -24,12 +26,18 @@ The server is also built with [TypeScript](https://www.typescriptlang.org/) and 
 - [MongoDB](https://www.mongodb.com/): a NoSQL database which works well with Node.js.
 - [mongoose](https://mongoosejs.com/): a schema validator used when working with MongoDB.
 
+## Architecture
+
+There are very few good examples of good React application design and so we designed one. The front-end design system was the most challenging part. As such, we broke down the roles of the application into a specific modules.
+
+- Requests: concerned with saving and retrieving data from persistent data sources.
+- Logics: maps data from our requests to our graphical layouts.
+- Layouts: concerned with the structure and composition of the data and visual components.
+- Visuals: manages all the visuals on the page such as color, size, and spacing.
+
 ## Screenshots
 
-|   |
-|---|
-| ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) |
-
-|   |   |   |
-|---|---|---|
-| ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce7ae722d326f9d7e37_Main%20Bundle%20Snippets%20Inserting.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png) |
+|   |   |
+|---|---|
+| ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce7ae722d326f9d7e37_Main%20Bundle%20Snippets%20Inserting.png) |
+| ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) |
