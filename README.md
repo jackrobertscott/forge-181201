@@ -2,7 +2,7 @@
 
 > 🏹 Unobtrusive and beautiful desktop app built to improve the development experience.
 
-![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png)
+![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Intro.png)
 
 ## Technologies
 
