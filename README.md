@@ -2,7 +2,7 @@
 
 > 🏹 Unobtrusive and beautiful desktop app built to improve the development experience.
 
-![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Intro.png)
+![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Preview.png)
 
 ## Technologies
 
