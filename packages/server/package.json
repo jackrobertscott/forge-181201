@@ -2,7 +2,7 @@
   "name": "server",
   "version": "0.3.1",
   "private": true,
-  "description": "The tool every software developer wished they had.",
+  "description": "Unobtrusive and beautiful app built to improve the development experience.",
   "main": "src/index.js",
   "author": {
     "name": "Jack R. Scott",

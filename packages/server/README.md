@@ -1,5 +1,5 @@
-# Forge Client
+# Forge Server
 
 > 🏹 Unobtrusive and beautiful app built to improve the development experience.
 
-This is the desktop app code for the Forge app.
+This is the server code for the Forge app.

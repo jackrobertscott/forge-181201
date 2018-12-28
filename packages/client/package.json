@@ -2,7 +2,7 @@
   "name": "forge",
   "version": "0.3.1",
   "private": true,
-  "description": "The tool every software developer wished they had.",
+  "description": "Unobtrusive and beautiful app built to improve the development experience.",
   "main": "public/electron.js",
   "homepage": "./",
   "repository": {
@@ -16,7 +16,6 @@
   "scripts": {
     "dev": "react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "open": "yarn link lumbridge && yarn link dragonfire",
     "start": "concurrently \"BROWSER=none yarn run dev\" \"yarn run electron\"",
     "start:win": "concurrently \"SET BROWSER=none&&yarn run dev\" \"yarn run electron\"",
