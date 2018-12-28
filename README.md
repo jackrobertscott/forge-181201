@@ -2,8 +2,6 @@
 
 > 🏹 Unobtrusive and beautiful app built to improve the development experience.
 
-[![react](https://img.shields.io/badge/framework-react-blue.svg)](https://github.com/facebook/react)
-
 ## Technologies
 
 The Forge repository is a testing ground for a new sort of application design system.
