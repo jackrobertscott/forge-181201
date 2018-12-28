@@ -30,10 +30,10 @@ The server is also built with [TypeScript](https://www.typescriptlang.org/) and 
 
 There are very few good examples of good React application design and so we designed one. The front-end design system was the most challenging part. As such, we broke down the roles of the application into a specific modules.
 
-- Requests: concerned with saving and retrieving data from persistent data sources.
-- Logics: maps data from our requests to our graphical layouts.
-- Layouts: concerned with the structure and composition of the data and visual components.
-- Visuals: manages all the visuals on the page such as color, size, and spacing.
+- [Requests](https://github.com/jackrobertscott/forge/blob/master/docs/requests.md): concerned with saving and retrieving data from persistent data sources.
+- [Logics](https://github.com/jackrobertscott/forge/blob/master/docs/logics.md): maps data from our requests to our graphical layouts.
+- [Layouts](https://github.com/jackrobertscott/forge/blob/master/docs/layouts.md): concerned with the structure and composition of the data and visual components.
+- [Visuals](https://github.com/jackrobertscott/forge/blob/master/docs/visuals.md): manages all the visuals on the page such as color, size, and spacing.
 
 ## Screenshots
 
