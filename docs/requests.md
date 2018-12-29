@@ -22,7 +22,7 @@ export interface IUserSnippets {
  * can refresh or re-execute it somewhere else in the code base.
  */
 export const querySearchSnippets = apolloPersistor.on.query({
-  query: `
+  graphql: `
     query UserSnippets {
       userSnippets {
         id
@@ -53,7 +53,7 @@ export interface IDeleteSnippet {
  * can refresh or re-execute it somewhere else in the code base.
  */
 export const mutationDeleteSnippet = apolloPersistor.on.mutation({
-  mutation: `
+  graphql: `
     mutation DeleteSnippet($id: String!) {
       deleteSnippet(id: $id) {
         id
