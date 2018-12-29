@@ -2,11 +2,9 @@
 
 > 🏹 Unobtrusive and beautiful desktop app built to improve the development experience.
 
+[See the website](https://useforge.co/) to download and try it. I appreciate any feedback.
+
 ![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Preview.png)
-
-## Features
-
-[See the website](https://useforge.co/) for a nicer view of the features.
 
 | Search by Name | Use ${1:Variables} | Edit in Seconds |
 |:---:|:---:|:---:|
