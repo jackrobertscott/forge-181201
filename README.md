@@ -17,7 +17,7 @@ Forge is a tool designed to aid 🏥 developers with basic development tasks suc
 1. 🤔 Snippet shortcuts are hard to remember e.g. `rccp` or `conc`.
 2. 😧 Creating custom snippets is really hard (usually you need to create an entire JSON page).
 3. 😠 Settings don't save across your computers.
-4. 🤭 You can't preview a snippet before you start using it.
+4. 😩 You can't preview a snippet before you start using it.
 5. 😳 You can't search snippets by keywords.
 
 Forge was designed to overcome these issues by providing a developer tool which complements your code editor. While coding in your editor, you can press `CmdOrCtrl+Shift+D` to toggle the Forge app to pop above your editor allowing you to select use a snippet.
