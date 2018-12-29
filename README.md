@@ -2,7 +2,7 @@
 
 > 🏹 Unobtrusive and beautiful desktop app built to improve the development experience.
 
-[See the website](https://useforge.co/) to download and try it. I appreciate any feedback.
+[See the website](https://useforge.co/) to download the latest version.
 
 ![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Preview.png)
 
@@ -10,9 +10,21 @@
 |:---:|:---:|:---:|
 | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8d3261ab085c37be4_Main%20Bundle%20Snippets%20Menu.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce7ae722d326f9d7e37_Main%20Bundle%20Snippets%20Inserting.png) | ![Forge Screenshot](https://uploads-ssl.webflow.com/5be925d4130794d6c2052d79/5c133ce8ae722dd2099d7e38_Edit%20Snippet.png) |
 
+## Overview
+
+Forge is a tool designed to aid 🏥 developers with basic development tasks such as creating and finding code snippets. While designing Forge, we wanted to address the following difficulties faced when you only use a code editor while developing:
+
+1. 🤔 Snippet shortcuts are hard to remember e.g. `rccp` or `conc`.
+2. 😧 Creating custom snippets is really hard (usually you need to create an entire JSON page).
+3. 😠 Settings don't save across your computers.
+4. 🤭 You can't preview a snippet before you start using it.
+5. 😳 You can't search snippets by keywords.
+
+Forge was designed to overcome these issues by providing a developer tool which complements your code editor. While coding in your editor, you can press `CmdOrCtrl+Shift+D` to toggle the Forge app to pop above your editor allowing you to select use a snippet.
+
 ## Technologies
 
-The Forge repository is a testing ground for a new sort of application design architecture.
+The Forge repository is a testing ground for a new sort of application design architecture. We have made Forge open source so that you can preview how we use and built this application using the lastest in app development technologies.
 
 ### Desktop
 
