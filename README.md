@@ -32,7 +32,7 @@ Forge was designed to overcome these issues by providing a developer tool which 
 2. 😻 Easier to use; search snippets by full name *or* shortcut.
 3. 💃 Preview your snippets before using them.
 4. 🏆 Use `${1:variables}` inside your snippets in the same way you use VS Code snippets.
-5. 🏎 Code in style with Forge's the sleek and modern user interface.
+5. 🏎 Develop in-style with Forge's sleek and modern user interface.
 
 **Shortcut:** press `CmdOrCtrl+Shift+D` to toggle the Forge app's visibility.
 
