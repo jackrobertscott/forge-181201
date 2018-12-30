@@ -12,7 +12,9 @@
 
 ## Overview
 
-Forge is a tool designed to aid 🏥 developers with basic development tasks such as creating and finding code snippets. While designing Forge, we wanted to address the following difficulties faced when you only use a code editor while developing:
+Forge is a tool designed to aid 🏥 developers with basic development tasks such as creating and finding code snippets. While designing Forge, we wanted to address the following difficulties faced when you only use a code editor while developing.
+
+**Problems with current tools:**
 
 1. 🤔 Snippet shortcuts are hard to remember e.g. `rccp` or `conc`.
 2. 😧 Creating custom snippets is really hard (usually you need to create an entire JSON page).
@@ -20,7 +22,17 @@ Forge is a tool designed to aid 🏥 developers with basic development tasks suc
 4. 😩 You can't preview a snippet before you start using it.
 5. 😳 You can't search snippets by keywords.
 
-Forge was designed to overcome these issues by providing a developer tool which complements your code editor. While coding in your editor, you can press `CmdOrCtrl+Shift+D` to toggle the Forge app to pop above your editor allowing you to select use a snippet.
+Forge was designed to overcome these issues by providing a developer tool which complements your code editor.
+
+**Features of Forge:**
+
+1. 🔥 Doesn't interrupt workflow; the app pops up above your editor and hides when you're done.
+2. 😻 Easier to use; search snippets by full name *or* shortcut.
+3. 💃 Preview your snippets before using them.
+4. 🏆 Use `${1:variables}` inside your snippets in the same way you use VS Code snippets.
+5. 🏎 Code in style with Forge's the sleek and modern user interface.
+
+**Shortcut:** press `CmdOrCtrl+Shift+D` to toggle the Forge app's visibility.
 
 ## Technologies
 
