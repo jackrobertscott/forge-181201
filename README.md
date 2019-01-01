@@ -1,6 +1,6 @@
 # Forge
 
-> 🏹 Unobtrusive and beautiful developer tool.
+> 🏹 Free, unobtrusive, and modern tool for developers.
 
 Links to download a version can be found on [our website](https://useforge.co/).
 
