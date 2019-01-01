@@ -1,8 +1,8 @@
 # Forge
 
-> 🏹 Unobtrusive and beautiful desktop app built to improve the development experience.
+> 🏹 Unobtrusive and beautiful developer tool.
 
-[See the website](https://useforge.co/) to download the latest version.
+Links to download a version can be found on [our website](https://useforge.co/).
 
 ![Forge](https://raw.githubusercontent.com/jackrobertscott/forge/master/assets/Preview.png)
 
