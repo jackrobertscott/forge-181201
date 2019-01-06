@@ -66,3 +66,7 @@ There are very few good examples of good React application design and so we desi
 - [Logics](https://github.com/jackrobertscott/forge/blob/master/docs/logics.md): maps data from our requests to our graphical layouts.
 - [Layouts](https://github.com/jackrobertscott/forge/blob/master/docs/layouts.md): concerned with the structure and composition of the data and visual components.
 - [Visuals](https://github.com/jackrobertscott/forge/blob/master/docs/visuals.md): manages all the visuals on the page such as color, size, and spacing.
+
+## Authors
+
+- Jack Scott [@jacrobsco](https://twitter.com/jacrobsco)
