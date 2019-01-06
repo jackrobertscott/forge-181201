@@ -69,4 +69,4 @@ There are very few good examples of good React application design and so we desi
 
 ## Authors
 
-- Jack Scott [@jacrobsco](https://twitter.com/jacrobsco)
+- Jack Scott [@jacrobsco](https://twitter.com/jacrobsco) - I tweet about coding and startups.
