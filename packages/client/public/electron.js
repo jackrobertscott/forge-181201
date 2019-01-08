@@ -224,15 +224,3 @@ if (isMac || isWin) {
     openAtLogin: true,
   });
 }
-
-/**
- * Don't delete this... it makes sure that the app doesn't
- * close when you press the red "x" in corner. However, it does
- * let the app be quit using the menu items - which
- * is it's advantage over app.on('will-quit')
- *
- * @see http://simurai.com/electron.atom.io/docs/all/#event-window-all-closed
- */
-app.on('window-all-closed', event => {
-  event.preventDefault();
-});
