@@ -29,7 +29,7 @@ module.exports.createItems = ({ app, getWindow, showWindow }) => [
     label: 'Quit',
     accelerator: 'CmdOrCtrl+Q',
     click: () => {
-      app.quit();
+      app.exit();
     },
   },
 ];
