@@ -4,9 +4,9 @@ import PreferencesForm from '../../components/forms/PreferencesForm';
 import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
 import apolloPersistor from '../../utils/apolloPersistor';
-import useInstanceSuccess from '../effects/useInstanceSuccess';
-import useInstance from '../effects/useInstance';
-import useInstanceExecute from '../effects/useInstanceExecute';
+import useInstanceSuccess from '../../effects/useInstanceSuccess';
+import useInstance from '../../effects/useInstance';
+import useInstanceExecute from '../../effects/useInstanceExecute';
 import { runElectron } from '../../utils/electron';
 
 export const getUserQuery = apolloPersistor.instance({

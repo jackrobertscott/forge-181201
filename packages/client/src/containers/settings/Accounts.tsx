@@ -6,7 +6,7 @@ import Title from '../../components/texts/Title';
 import Control from '../../components/inputs/Control';
 import Button from '../../components/buttons/Button';
 import apolloPersistor from '../../utils/apolloPersistor';
-import useInstanceExecute from '../effects/useInstanceExecute';
+import useInstanceExecute from '../../effects/useInstanceExecute';
 import { runElectron } from '../../utils/electron';
 
 export const githubUrlQuery = apolloPersistor.instance({

@@ -4,7 +4,7 @@ import keycode from 'keycode';
 import { IComponentProps } from '../../utils/components';
 import Result from '../cards/Result';
 import List from '../layouts/List';
-import useKeyboard from '../../containers/effects/useKeyboard';
+import useKeyboard from '../../effects/useKeyboard';
 import CodeMenu from '../../containers/menus/CodeMenu';
 
 const Wrap = styled('div')`

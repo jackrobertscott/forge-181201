@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Terminal } from 'lumbridge';
 import LoginForm from '../../components/forms/LoginForm';
 import apolloPersistor from '../../utils/apolloPersistor';
-import useInstance from '../effects/useInstance';
+import useInstance from '../../effects/useInstance';
 import { saveLocalAuth } from '../../utils/authScope';
 
 export const loginMutation = apolloPersistor.instance({

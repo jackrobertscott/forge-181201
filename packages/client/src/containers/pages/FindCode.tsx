@@ -8,7 +8,7 @@ import StatusEditor from '../../components/editors/StatusEditor';
 import GoodButton from '../../components/buttons/GoodButton';
 import List from '../../components/layouts/List';
 import ChooseCode from '../../components/lists/ChooseCode';
-import useInstanceExecute from '../effects/useInstanceExecute';
+import useInstanceExecute from '../../effects/useInstanceExecute';
 import apolloPersistor from '../../utils/apolloPersistor';
 import { runElectron } from '../../utils/electron';
 import { recordAction } from '../../utils/record';

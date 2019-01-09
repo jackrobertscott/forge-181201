@@ -5,8 +5,8 @@ import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
 import CardForm from '../../components/forms/CardForm';
 import apolloPersistor from '../../utils/apolloPersistor';
-import useInstance from '../effects/useInstance';
-import useInstanceSuccess from '../effects/useInstanceSuccess';
+import useInstance from '../../effects/useInstance';
+import useInstanceSuccess from '../../effects/useInstanceSuccess';
 
 export const createMembershipMutation = apolloPersistor.instance({
   name: 'mutate',

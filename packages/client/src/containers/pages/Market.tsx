@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import gql from 'graphql-tag';
 import Marketplace from '../../components/layouts/Marketplace';
 import apolloPersistor from '../../utils/apolloPersistor';
-import useInstanceExecute from '../effects/useInstanceExecute';
+import useInstanceExecute from '../../effects/useInstanceExecute';
 
 export const getMarketBundles = apolloPersistor.instance({
   name: 'query',

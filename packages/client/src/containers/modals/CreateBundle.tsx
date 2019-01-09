@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import gql from 'graphql-tag';
 import apolloPersistor from '../../utils/apolloPersistor';
-import useInstance from '../effects/useInstance';
+import useInstance from '../../effects/useInstance';
 import BundleForm from '../../components/forms/BundleForm';
 
 export const createBundleMutation = apolloPersistor.instance({
