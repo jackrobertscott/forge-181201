@@ -6,5 +6,5 @@ export const encode = (data: any): string => {
 };
 
 export const decode = (token: string): string | object => {
-  return jwt.verify(token, config.token.secret);
+  return jwt.verify(decodeURIComponent(token), config.token.secret);
 };
