@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 import { Link, Terminal } from 'lumbridge';
 import Header from '../../components/menus/Header';
 import PopupMenu from '../../components/menus/PopupMenu';
-import { saveLocalAuth } from '../../scopes/authScope';
+import { saveLocalAuth } from '../../utils/authScope';
 import intercom from '../../utils/intercom';
 import { runElectron } from '../../utils/electron';
 

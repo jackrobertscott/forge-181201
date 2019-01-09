@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Instance } from 'lumbridge';
-import toastStore from '../../stores/toastStore';
+import toastStore from '../../utils/toastStore';
 
 export default (instance: Instance, cb?: (data: any) => any) => {
   useEffect(

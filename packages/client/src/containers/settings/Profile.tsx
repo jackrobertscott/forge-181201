@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import ProfileForm from '../../components/forms/ProfileForm';
 import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
 import useInstanceExecute from '../effects/useInstanceExecute';

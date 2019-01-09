@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import queryString from 'query-string';
 import CodeForm from '../../components/forms/CodeForm';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import useInstanceSuccess from '../effects/useInstanceSuccess';
 import useInstance from '../effects/useInstance';
 import { Terminal } from 'lumbridge';

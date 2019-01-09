@@ -9,7 +9,7 @@ import GoodButton from '../../components/buttons/GoodButton';
 import List from '../../components/layouts/List';
 import ChooseCode from '../../components/lists/ChooseCode';
 import useInstanceExecute from '../effects/useInstanceExecute';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import { runElectron } from '../../utils/electron';
 import { recordAction } from '../../utils/record';
 

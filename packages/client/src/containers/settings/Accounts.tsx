@@ -5,7 +5,7 @@ import List from '../../components/layouts/List';
 import Title from '../../components/texts/Title';
 import Control from '../../components/inputs/Control';
 import Button from '../../components/buttons/Button';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import useInstanceExecute from '../effects/useInstanceExecute';
 import { runElectron } from '../../utils/electron';
 

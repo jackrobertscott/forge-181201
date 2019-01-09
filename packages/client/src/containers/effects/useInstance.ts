@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Instance } from 'lumbridge';
-import toastStore from '../../stores/toastStore';
+import toastStore from '../../utils/toastStore';
 
 export default (instance: Instance) => {
   const [error, setError] = useState<Error | null>(null);

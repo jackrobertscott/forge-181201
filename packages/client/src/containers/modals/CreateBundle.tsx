@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import gql from 'graphql-tag';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import useInstance from '../effects/useInstance';
 import BundleForm from '../../components/forms/BundleForm';
 

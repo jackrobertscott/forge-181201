@@ -1,6 +1,6 @@
 import ApolloClient, { Operation } from 'apollo-boost';
 import config from './config';
-import authStore from './stores/authStore';
+import authStore from './utils/authStore';
 
 const authenticateRequests = (operation: Operation) => {
   const token = authStore.state.token;

@@ -3,7 +3,7 @@ import FindCode from '../containers/pages/FindCode';
 import CreateCode from '../containers/pages/CreateCode';
 import EditCode from '../containers/pages/EditCode';
 import Settings from '../containers/pages/Settings';
-import authStore from '../stores/authStore';
+import authStore from '../utils/authStore';
 
 export default Router.create({
   nomatch: {

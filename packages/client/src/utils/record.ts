@@ -2,7 +2,7 @@ import Analytics from 'analytics-node';
 import * as Sentry from '@sentry/browser';
 import { titleCase } from 'change-case';
 import config from '../config';
-import authStore from '../stores/authStore';
+import authStore from './authStore';
 
 const analytics = new Analytics(config.segmentId);
 

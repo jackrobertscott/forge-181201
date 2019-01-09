@@ -1,17 +1,17 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import authRoutes from '../routes/authRoutes';
-import authStore from '../stores/authStore';
+import authStore from '../utils/authStore';
 import authScope, {
   retrieveLocalAuth,
   saveLocalAuth,
-} from '../scopes/authScope';
+} from '../utils/authScope';
 import { runElectron } from '../utils/electron';
 import { loadAsset } from '../utils/assets';
 import intercom from '../utils/intercom';
 import withToaster from '../components/toast/withToaster';
-import toastStore from '../stores/toastStore';
-import apolloPersistor from '../persistors/apolloPersistor';
+import toastStore from '../utils/toastStore';
+import apolloPersistor from '../utils/apolloPersistor';
 
 export const getUserQuery = apolloPersistor.instance({
   name: 'query',

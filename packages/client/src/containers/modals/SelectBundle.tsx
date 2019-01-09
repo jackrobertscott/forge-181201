@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import gql from 'graphql-tag';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import useInstanceExecute from '../effects/useInstanceExecute';
 import ChooseBundle from '../../components/lists/ChooseBundle';
 

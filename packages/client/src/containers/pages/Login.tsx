@@ -2,9 +2,9 @@ import React, { FunctionComponent, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { Terminal } from 'lumbridge';
 import LoginForm from '../../components/forms/LoginForm';
-import apolloPersistor from '../../persistors/apolloPersistor';
+import apolloPersistor from '../../utils/apolloPersistor';
 import useInstance from '../effects/useInstance';
-import { saveLocalAuth } from '../../scopes/authScope';
+import { saveLocalAuth } from '../../utils/authScope';
 
 export const loginMutation = apolloPersistor.instance({
   name: 'mutate',

@@ -1,4 +1,4 @@
-import localPersistor from '../persistors/localPersistor';
+import localPersistor from './localPersistor';
 import { Scope } from 'lumbridge';
 
 export const saveLocalAuth = localPersistor.instance({
