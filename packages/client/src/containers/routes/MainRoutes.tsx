@@ -1,9 +1,9 @@
 import { Router } from 'lumbridge';
-import FindCode from '../containers/pages/FindCode';
-import CreateCode from '../containers/pages/CreateCode';
-import EditCode from '../containers/pages/EditCode';
-import Settings from '../containers/pages/Settings';
-import authStore from '../utils/authStore';
+import FindCode from '../pages/FindCode';
+import CreateCode from '../pages/CreateCode';
+import EditCode from '../pages/EditCode';
+import Settings from '../pages/Settings';
+import authStore from '../../utils/authStore';
 
 export default Router.create({
   nomatch: {
@@ -31,4 +31,4 @@ export default Router.create({
       component: Settings,
     },
   },
-});
+}).render();

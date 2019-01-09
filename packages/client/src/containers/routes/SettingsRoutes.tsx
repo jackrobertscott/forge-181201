@@ -1,9 +1,9 @@
 import { Router } from 'lumbridge';
-import Accounts from '../containers/settings/Accounts';
-import Membership from '../containers/settings/Membership';
-import Profile from '../containers/settings/Profile';
-import Preferences from '../containers/settings/Preferences';
-import Security from '../containers/settings/Security';
+import Accounts from '../settings/Accounts';
+import Membership from '../settings/Membership';
+import Profile from '../settings/Profile';
+import Preferences from '../settings/Preferences';
+import Security from '../settings/Security';
 
 export default Router.create({
   base: '/settings',
@@ -29,4 +29,4 @@ export default Router.create({
       component: Membership,
     },
   },
-});
+}).render();

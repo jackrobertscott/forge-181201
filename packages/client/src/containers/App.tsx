@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
-import authRoutes from '../routes/authRoutes';
+import AuthRoutes from './routes/AuthRoutes';
 import authStore from '../utils/authStore';
 import authScope, {
   retrieveLocalAuth,
@@ -36,8 +36,6 @@ export const getUserQuery = apolloPersistor.instance({
     `,
   }),
 });
-
-const Routes = authRoutes.render();
 
 export interface IAppProps {
   addToast: (data: { type?: string; contents?: string }) => any;
@@ -103,7 +101,7 @@ const App: FunctionComponent<IAppProps> = ({ addToast }) => {
       </div>
     );
   }
-  return <Routes />;
+  return <AuthRoutes />;
 };
 
 export default withToaster(App);

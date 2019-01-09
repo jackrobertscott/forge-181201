@@ -1,8 +1,8 @@
 import { Router } from 'lumbridge';
-import Dashboard from '../containers/Dashboard';
-import Auth from '../containers/pages/Auth';
-import Login from '../containers/pages/Login';
-import SignUp from '../containers/pages/SignUp';
+import Dashboard from '../Dashboard';
+import Auth from '../pages/Auth';
+import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
 
 export default Router.create({
   routes: {
@@ -23,4 +23,4 @@ export default Router.create({
       component: Dashboard,
     },
   },
-});
+}).render();
