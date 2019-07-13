@@ -221,7 +221,7 @@ if (isMac && config.hideDockOnStart) {
  */
 if (isMac || isWin) {
   app.setLoginItemSettings({
-    openAtLogin: true,
+    openAtLogin: false,
   });
 }
 
