@@ -31,7 +31,7 @@
     "@types/stripe": "^6.0.4",
     "analytics-node": "^3.3.0",
     "apollo-server": "^2.2.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.2.0",
     "dotenv-safe": "^6.1.0",
